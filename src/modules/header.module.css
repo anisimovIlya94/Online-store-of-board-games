@@ -1,0 +1,58 @@
+.header{
+   background-color: #2A2A2A;
+   min-width: 100%;
+   position: fixed;
+   padding: 0 15px;
+}
+.wrapper{
+   display: flex;
+   max-width: 1220px;
+   margin: 0 auto;
+   max-height: 82px;
+   padding: 20px 0px;
+}
+.image{
+   margin: 0px 33px 0px 0px;
+}
+.search{
+   position: relative;
+}
+.input{
+   min-width: 675px;
+   min-height: 38px;
+   border-radius: 9px;
+   background-color:#f1f1f1;
+   padding: 0 0 0 12px;
+   font-size: 20px;
+}
+.magnifier{
+   position: absolute;
+   content: '';
+   top: 9px;
+   right: 10px;
+}
+.telephone{
+   margin: 5px 0px 0px 47px;
+   max-width: 100%;
+   max-height: 25.31px;
+}
+.telephoneNumber{
+   margin: 5px 0 0 10px;
+   font-family: 'Trebuchet MS';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 20px;
+   line-height: 23px;
+   white-space: nowrap;
+   color: #FFFFFF;
+}
+.personalAccount{
+   background-color: #2A2A2A;
+   margin: 0px 0px 0px 32px;
+}
+.litterBin{
+   background-color: #2A2A2A;
+   margin: 0px 0 0 25px;
+   max-width: 100%;
+   color: #e9a20a
+}
