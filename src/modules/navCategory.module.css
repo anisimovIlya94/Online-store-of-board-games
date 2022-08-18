@@ -1,0 +1,21 @@
+.category{
+   margin: 20px 0px 0px 0px;
+   position: relative;
+   max-width: 100%;
+}
+.categorySpan{
+   font-family: 'Trebuchet MS';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 16px;
+   color: #2A2A2A;
+}
+.categorySpan:hover{
+   color: #FB791B;
+}
+.arrow{
+   position: absolute;
+   top: 0;
+   content: '';
+   right: 5%;
+}

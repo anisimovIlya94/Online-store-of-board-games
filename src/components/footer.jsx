@@ -1,14 +1,18 @@
 import React from 'react'
 import classes from '../modules/footer.module.css'
-import logo from '../images/header-logo.png'
+import logo from '../images/header/header-logo.png'
 import FooterLink from './footerLink'
-import vkLogo from '../images/vk-footer-logo.svg'
+import mir from '../images/footer/Mir.png'
+import visa from '../images/footer/Visa.png'
+import master from '../images/footer/cart_master.svg'
+import VkLogo from './vkLogo'
 
 const Footer = () => {
   return (
    <footer className={classes.footer}>
-      <div className={classes.wrapper}>
-         <div className={classes.iconAndAdress}>
+        <div className={classes.wrapper}>
+           <div className={classes.upDetail}>
+           <div className={classes.iconAndAdress}>
             <img src={logo} />
             <p className={classes.adress}>г. Москва ст.м. Таганская Малый Дровяной переулок 6</p>
          </div>
@@ -40,13 +44,40 @@ const Footer = () => {
             <div className={classes.text}>
                <p>+7 (495) 911-10-11</p>
                <p>msk@magicgoldfish.ru</p>
-            </div>
-            <div className={classes.linkVk}>
+                 </div>
+                 <VkLogo/>
+            {/* <div className={classes.linkVk}>
                <a href="#">
                   <img className={classes.vkStyle} src={vkLogo} />
                </a>
-            </div>
+            </div> */}
          </div>
+           </div>
+           <div className={classes.downDetail}>
+              <div>
+                 <ul>
+                     <li className={classes.downText}>© 2022 MagicGoldFish.ru</li>
+                     <li>
+                        <a href="#">
+                           <span className={classes.downLink}>Политика конфеденциальности</span>
+                        </a>
+                     </li>
+                 </ul>                 
+              </div>
+              <div className={classes.middle}>
+                 <img src={mir} alt="" />
+                 <img className={classes.visa} src={visa} alt="" />
+                 <img src={master} alt="" />
+              </div>
+              <div>
+                 <ul className={classes.right}>
+                    <li className={classes.downText}>Содержимое не является публичной офертой</li>
+                    <li><a href="#">
+                    <span className={classes.downLink}>Пользовательское соглашение</span>
+                 </a></li>
+                 </ul>
+              </div>
+            </div>
       </div>
    </footer>
   )

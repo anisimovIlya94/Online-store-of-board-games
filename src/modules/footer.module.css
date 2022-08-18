@@ -5,7 +5,12 @@
 .wrapper{
    max-width: 1320px;
    margin: 0 auto;
+   
+}
+.upDetail{
    display: flex;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+   padding: 0 0 90px 0;
 }
 .iconAndAdress{
    margin: 0px 0px 0px 45px;
@@ -95,4 +100,31 @@ transform: translate(0,50%);
 .vkStyle:hover{
    transform: scale(1.5);
    transition: all 0.7s ease 0s;
+}
+.downDetail{
+   display: flex;
+   margin: 30px 0px 0px 0px;
+   justify-content: center;
+   align-items: flex-start;
+}
+.middle{
+   margin: 0px 280px 0px 280px;
+}
+.visa{
+   margin: 0px 12px;
+}
+.downText, .downLink{
+   font-family: 'Trebuchet MS';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 15px;
+   color: rgba(255, 255, 255, 0.44);
+}
+.downLink:hover{
+   color: #FFFFFF;
+   text-decoration: underline;
+}
+
+.right{
+   text-align: right;
 }

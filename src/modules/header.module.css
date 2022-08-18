@@ -1,15 +1,16 @@
 .header{
-   background-color: #2A2A2A;
-   min-width: 100%;
    position: fixed;
-   padding: 0 15px;
+   min-width: 100%;
 }
 .wrapper{
+   background-color: #2A2A2A;
+   padding: 15px 0px;
+}
+.hat{
    display: flex;
-   max-width: 1220px;
    margin: 0 auto;
+   max-width: 1220px;
    max-height: 82px;
-   padding: 20px 0px;
 }
 .image{
    margin: 0px 33px 0px 0px;
@@ -42,7 +43,6 @@
    font-style: normal;
    font-weight: 700;
    font-size: 20px;
-   line-height: 23px;
    white-space: nowrap;
    color: #FFFFFF;
 }
@@ -50,9 +50,8 @@
    background-color: #2A2A2A;
    margin: 0px 0px 0px 32px;
 }
-.litterBin{
+.shoppingCart{
    background-color: #2A2A2A;
    margin: 0px 0 0 25px;
    max-width: 100%;
-   color: #e9a20a
 }

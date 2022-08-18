@@ -1,17 +1,14 @@
 import React from 'react'
-import cartIcon from '../images/eva_shopping-cart-fill.png'
-import cartIconActive from '../images/eva_shopping-cart-fill — копия.png'
+import cartIcon from '../images/header/shopping-cart.png'
+import cartIconActive from '../images/header/shopping-cart-active.png'
 import classes from '../modules/header.module.css'
 
 const ShoppingCart = ({onHover,cart}) => {
    return (
-      <button className={classes.litterBin}>
+      <button className={classes.shoppingCart}>
          <span className={' position-relative'}>
          <img src={cart ? cartIconActive : cartIcon} onMouseEnter={()=>onHover()} onMouseLeave={()=>onHover()} alt="" />
-            <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-warning">
-    0
-    <span className="visually-hidden">непрочитанные сообщения</span>
-  </span>
+            <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-warning">0</span>
          </span>
          
      </button>
