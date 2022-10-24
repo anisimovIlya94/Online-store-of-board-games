@@ -1,0 +1,34 @@
+.slickMargin1{
+    margin: 10px 0 0 90px;
+    transform: translate(0,-5px);
+}
+.slickWrapper1{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.alice1{
+    width:730px;
+    display: flex;
+    align-items: center;
+}
+.rightButton1, .leftButton1{
+    /* border: 0px solid #fcf3ed; */
+    max-height: 25px;
+    cursor: pointer;
+    background-color: #fcf3ed;
+}
+.rightButton1{
+    margin: 0px 0px 0px 20px;
+}
+.leftButton1{
+    margin: 0px 20px 0px 0px;
+}
+.horisontalImage1{
+    padding: 10px 100px;
+    max-width: 730px;
+    /* max-height: 380px; */
+    background-color: #ffff;
+    display: inline-block;
+    border-radius: 15px;
+    overflow: hidden;
+}

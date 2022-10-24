@@ -9,6 +9,7 @@
    font-weight: 700;
    font-size: 16px;
    color: #2A2A2A;
+   white-space: nowrap;
 }
 .categorySpan:hover{
    color: #FB791B;
@@ -16,6 +17,7 @@
 .arrow{
    position: absolute;
    top: 0;
+   right: 0;
    content: '';
    right: 5%;
 }

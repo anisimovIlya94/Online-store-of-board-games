@@ -1,0 +1,216 @@
+.catalogBanner{
+    margin: 125px 0 30px 0;
+    max-width: 100%;
+    height: 234px;
+    background: url('../images/catalog/catalog_banner.png') no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.catalogBannerTitle{
+    position: absolute;
+    top: 88px;
+    left: 200px;
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 22px;
+    color: #FFFFFF;
+}
+.catalogBannerText{
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    position: absolute;
+    top: 128px;
+    left: 200px;
+}
+.title{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 32px;
+    color: #000000;
+    margin: 0 0 20px 50px;
+}
+.catalogBody{
+    display: flex;
+}
+.catalogSorting{
+    background-color: #FFFFFF;
+    width: 420px;
+    height: 100%;
+    border-radius: 15px;
+    margin-left: 55px;
+    margin-right: 20px;
+    /* flex: 0 1 35%; */
+    box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
+    overflow: hidden;
+}
+.catalogTable{
+    /* flex: 0 1 75%; */
+    /* padding-left: 20px; */
+    max-width: 1000px;
+}
+.catalogCard{
+    margin-bottom: 40px;
+}
+.accordeon{
+    transition: all 5s ease 0s;
+}
+.paginationButton{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 22px;
+    color: #2A2A2A;
+    padding: 4px 9px;
+    margin-right: 5px;
+    background-color: #fcf3ed;
+}
+.paginationWrapper{
+    max-width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+}
+.paginationMargin{
+    margin-bottom: 20px;
+}
+.active{
+    border: 2px solid #2A2A2A;
+    border-radius: 7px;
+    transform: translate(0,-2px);
+}
+.paginateText{
+    background-color: #fcf3ed;
+}
+.paginateText:hover{
+    color: #F9A43F;
+}
+.paginationButton:hover{
+    color: #F9A43F;
+}
+.activeText:hover{
+    color: #2A2A2A;
+}
+.accordeonHeader{
+    background-color: #fff;
+}
+.allCategoriasButton{
+    max-width: 258px;
+    margin-left: 15px;
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 19px;
+    color: #2A2A2A;
+    white-space: nowrap;
+}
+.catalogSortWrapper{
+    margin-bottom: 10px;
+}
+.sortingCategorias{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 15px;
+    color: #2A2A2A;
+}
+.borderBottom{
+    border-bottom: 1px solid rgba(42, 42, 42, 0.12);
+}
+.priceInput{
+    border: 1px solid rgba(0, 0, 0, 0.38);
+    max-width: 75px;
+    max-height: 27px;
+    border-radius: 15px;
+    transform: translate(0,-1px);
+    text-align: center;
+    padding: 5px;
+}
+.priceInput:focus{
+    border: 2px solid #000;
+}
+.range{
+    max-width: 220px;
+    margin: 0 auto;
+}
+.priceAllInputs{
+    max-width: 200px;
+    margin: 0 auto;
+}
+.label{
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    color: #2A2A2A;
+}
+.rouble{
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    color: #2A2A2A;
+}
+.buttonIcon{
+    transform: translate(4px,0);
+}
+.sortChackboxWrapper{
+    margin: 20px 0 0 25px;
+}
+.checkboxLabel{
+    margin-left: 10px;
+    transform: translate(0,-2px);
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    color: #2A2A2A;
+}
+.checkboxSpan{
+    font-size: 14px;
+    margin: 0px 0 0 5px;
+    color: rgba(0, 0, 0, 0.38);
+}
+.catalogViewWrapper{
+    max-width: 340px;
+    margin:  0 auto;
+    text-align: center;
+}
+.catalogViewButton{
+    background-color: #FFFFFF;
+    border: 1px solid #2A2A2A;
+    border-radius: 15px;
+    padding: 13px 98px;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    color: #2A2A2A;
+}
+.catalogViewButton:hover{
+    color: #F9A43F;
+    border: 1px solid #F9A43F;
+}
+.sortingCategoriasAncer{
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    color: rgba(42, 42, 42, 0.85);
+}
+.sortingCategoriasAncer:hover{
+    color: #F9A43F;
+}
+.quastionWrapper{
+    max-width: 95%;
+    margin-left: 20px;
+}
+.quastionHead{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 19px;
+    color: #2A2A2A;
+    background-color: #fcf3ed;
+}
+.questionBody{
+    margin-top: 10px;
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    line-height: 19px;
+    color: #2A2A2A;
+    background-color: #fcf3ed;
+}
+.questionbb{
+    background-color: #fcf3ed;
+    border-bottom: 2px solid rgba(42, 42, 42, 0.12);
+}

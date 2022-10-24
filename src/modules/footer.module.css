@@ -1,19 +1,15 @@
 .footer{
    background-color: #2A2A2A;
-   padding: 59px 15px 35px 15px;
-}
-.wrapper{
-   max-width: 1320px;
-   margin: 0 auto;
-   
+   padding: 59px 35px 35px 35px;
+   width: 100%;
 }
 .upDetail{
-   display: flex;
    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
    padding: 0 0 90px 0;
 }
 .iconAndAdress{
-   margin: 0px 0px 0px 45px;
+   margin: 0px 0px 0px 0px;
+   text-align: left;
 }
 .adress{
    font-family: 'Trebuchet MS';
@@ -29,7 +25,7 @@
    max-width: 151px;
 }
 .links,.catalog{
-   margin: 0px 0px 0px 91px;
+   text-align: left;
 }
 .link{
       font-family: 'Trebuchet MS';
@@ -56,7 +52,7 @@ color: #FFFFFF;
    text-decoration: underline;
 }
 .contacts{
-   margin: 20px 0px 0px 80px;
+   margin: 20px 0px 0px 0px;
 }
 .orderCall{
    margin: 0px 0px 15px 0px;
@@ -66,13 +62,13 @@ font-family: 'Trebuchet MS';
 font-style: normal;
 font-weight: 700;
 font-size: 19px;
-line-height: 22px;
-text-align: right;
+display: inline-block;
+white-space: nowrap;
 color: #F9A43F;
 border: 1px solid #F9A43F;
 border-radius: 9px;
 padding: 15px 38px;
-transform: translate(0,50%);
+transform: translate(0,-25%);
 }
 .orderCallStyle:hover{
    color: #2A2A2A;
@@ -86,7 +82,6 @@ transform: translate(0,50%);
    font-style: normal;
    font-weight: 700;
    font-size: 16px;
-   line-height: 19px;
 }
 .linkVk{
    text-align: right;
@@ -102,13 +97,7 @@ transform: translate(0,50%);
    transition: all 0.7s ease 0s;
 }
 .downDetail{
-   display: flex;
    margin: 30px 0px 0px 0px;
-   justify-content: center;
-   align-items: flex-start;
-}
-.middle{
-   margin: 0px 280px 0px 280px;
 }
 .visa{
    margin: 0px 12px;

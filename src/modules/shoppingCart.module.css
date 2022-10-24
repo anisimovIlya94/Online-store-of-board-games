@@ -1,0 +1,215 @@
+.title{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 32px;
+    color: #2A2A2A;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+.order{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0px 0 20px 50px;
+}
+.orderImage{
+    max-width: 95px;
+    max-height: 95px;
+    padding: 10px;
+    background-color: #FFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    margin-right: 33px;
+}
+.orderName{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 22px;
+    color: #2A2A2A;
+    background-color: #fcf3ed;
+    width: 232px;
+}
+.orderName:hover{
+    color: #FB791B;
+}
+.orderCurrentPtice{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 22px;
+    color: #2A2A2A;
+    background-color: #fcf3ed;
+    width: 132px;
+}
+.orderCount{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 22px;
+    color: #2A2A2A;
+    background-color: #fcf3ed;
+    padding: 0 10px;
+}
+.orderBigPrice{
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    color: #2A2A2A;
+    text-decoration: line-through;
+    margin-right: 30px;
+    margin-left: 44px;
+    width: 100px;
+}
+.orderBigPriceHiden{
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    color: #2A2A2A;
+    text-decoration: line-through;
+    margin-right: 30px;
+    margin-left: 44px;
+    width: 100px;
+    opacity: 0;
+}
+.countButtons{
+    display: flex;
+    align-items: center;
+    margin-right: 44px;
+}
+.countButton{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 22px;
+    color: #2A2A2A;
+    background-color: #fcf3ed;
+    transform: translate(0,-7px);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+.countButton:hover{
+    background-color:rgba(0, 0, 0, 0.08);
+}
+.deleteButton{
+    background-color: #fcf3ed;
+    transform: translate(0,-7px);
+    font-size: 22px;
+}
+.ff{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #2A2A2A;
+    padding-left: 10px;
+    overflow: hidden;
+}
+.buyingWrapper{
+    max-width: 250px;
+    background: #FFFFFF;
+    box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
+    border-radius: 15px;
+    padding: 35px;
+    margin-left: 250px;
+}
+.buyingSum{
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 15px;
+    color: #2A2A2A;
+}
+.buyingSpan{
+    font-size: 19px;
+}
+.buyingLabel{
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    color: #2A2A2A;
+}
+.buyingInputWrapper{
+    max-width: 285px;
+    height: 34px;
+    border: 1px solid rgba(42, 42, 42, 0.25);
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 7px 0 23px 0;
+    font-size: 20px;
+    position: relative;
+}
+.buyingInputWrapper:focus{
+    border: 1px solid rgba(42, 42, 42, 1);
+}
+.buyingInputButton{
+    position: absolute;
+    content: "";
+    top: 2px;
+    right: 4px;
+    font-size: 25px;
+    background-color: #FFFFFF;
+}
+.buyingInput{
+    padding: 0 0 0 10px;
+}
+.error{
+    color: red;
+    margin-left: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.buttonWrapper{
+    max-width: 170px;
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    font-family: 'Trebuchet MS';
+}
+.buttonOrange{
+    background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFFFFF;
+    border-radius: 9px;
+    padding: 9px 26px;
+    /* margin: 0 0 0 -11px; */
+    display: inline-block;
+    white-space: nowrap;
+}
+.buttonOrange:hover{
+    color: #F9A43F;
+    border: 2px solid #F9A43F;
+    background: #FFFFFF;
+    padding: 7px 24px;
+}
+.buttonWhite{
+    font-weight: 700;
+    font-size: 16px;
+    color: #F9A43F;
+    border: 2px solid #F9A43F;
+    border-radius: 9px;
+    padding: 7px 12px;
+    display: inline-block;
+    margin: 10px 0 0 0px;
+    
+}
+.buttonWhite:hover{
+    background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
+    color: #FFFFFF;
+}
+.emptyCartWrapper{
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+.emptyCartImage{
+    font-size: 150px;
+    color: #CACACA;
+}
+.emptyCartTitle{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 32px;
+    color: #CACACA;
+}
+.emptyCartLink, .emptyCartText{
+    color: #2A2A2A;
+    font-size: 17px;
+}
+.emptyCartLink:hover{
+    color: #FB791B;
+}

@@ -1,0 +1,215 @@
+.accountWrapper{
+    margin: 145px 0 30px 0;
+    font-family: 'Trebuchet MS';
+    color: #2A2A2A;
+}
+.title{
+    font-weight: 700;
+    font-size: 32px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+.accountPhoto{
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+}
+.icon{
+    font-size: 38px;
+    border: 1px solid #FB791B;
+    border-radius: 50%;
+    display: inline-block;
+    padding-right: 2px;
+    color: #FB791B;
+}
+.accountMainWrapper{
+    margin-left: 50px;
+    display: flex;
+}
+.accountRight{
+    flex: 0 1 75%;
+}
+.accountMainInfo{
+    
+    margin-left: 40px;
+}
+.accountUserInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.accountMainNavigation{
+    max-width: 250px;
+    max-height: 250px;
+    background-color: #fff;
+    padding: 30px 92px 46px 40px;
+    border-radius: 15px;
+    font-size: 16px;
+}
+.accountMainNavList li{
+    margin-bottom: 30px;
+}
+.accountMainNavButton{
+    background-color: #fff;
+    color: #2A2A2A;
+}
+.active{
+    font-size: 22px;
+    font-weight: 700;
+}
+.userName{
+    font-weight: 700;
+    font-size: 22px;
+    display: inline-block;
+    transform: translate(0, 25px);
+    margin-left: 28px;
+}
+.userStatus{
+    margin-left: 30px;
+    font-weight: 700;
+    font-size: 19px;
+    display: inline-block;
+    transform: translate(0, -9px);
+}
+.userCardTitle{
+    font-weight: 700;
+    font-size: 22px;
+}
+.userCardWrapper{
+    max-width: 440px;
+    max-height: 250px;
+    background-color: #2A2A2A;
+    border-radius: 15px;
+    padding: 10px 10px;
+}
+.userCardBoard{
+    box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
+    border-radius: 15px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 70px 90px 66px 90px;
+    max-width: 420px;
+    max-height: 230px;
+}
+.userCardProcent{
+    font-weight: 700;
+    font-size: 33px;
+}
+.accountUserCardWrapper{
+    display: flex;
+}
+.userRangs{
+    margin-left: 30px;
+    font-weight: 700;
+    font-size: 22px;
+}
+.rangsImageBronze{
+    padding: 0 7px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.rangeImageOther{
+    background-color: #fff;
+    padding: 0 2px;
+    border-radius: 15px;
+}
+.rangsImageBronze,.rangeImageOther{
+    margin-right: 30px;
+}
+.rangeItem{
+    margin-bottom: 23px;
+}
+.rangeProcents{
+    margin-right: 10px;
+}
+.rangeItemWrapper{
+    display: flex;
+    min-width: 350px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.disabled{
+    opacity: 0.4;
+}
+.shoppingLine{
+    width: 640px;
+    height: 17px;
+    background: #FFFFFF;
+    box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
+    border-radius: 14px;
+    margin-top: 3px;
+    margin-right: 74px;
+    position: relative;
+}
+.shoppingOrangeLine{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 17px;
+    background: #FB791B;
+    box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
+    border-radius: 14px;
+}
+.totalPurchased{
+    font-size: 22px;
+}
+.shoppingLineWrapper{
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 95px;
+}
+.myEventsWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 825px;
+    margin-top: 28px;
+}
+.myEventImage{
+    border-radius: 15px;
+}
+.myEventInfo{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.myEventInfoTitle{
+    font-weight: 700;
+    font-size: 22px;
+}
+.myEventInfoDate{
+    font-weight: 700;
+    font-size: 16px;
+}
+.myEventsButton{
+    width: 130px;
+}
+.allEventsWrapper{
+    max-width: 825px;
+    margin-bottom: 85px;
+}
+.recommendedWrapper{
+    max-width: 980px;
+    margin-top: 20px;
+    margin-left: -10px;
+}
+.recomendation{
+    margin-bottom: 30px;
+}
+.ordersTitle{
+    font-size: 28px;
+    margin-bottom: 30px;
+
+}
+.ordersTitle,.ordersLinkToCatalog{
+    margin-left: 30px;
+}
+.ordersLinkToCatalog{
+    font-size: 18px;
+    color: #2A2A2A;
+    
+}
+.ordersLinkToCatalog:hover{
+    color: #FB791B;
+}

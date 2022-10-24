@@ -1,14 +1,19 @@
 .wrapper{
    background-color: #f1f1f1;
-   padding: 17px 0px;
+   padding: 17px 10px;
    position: relative;
 }
 .navFlex{
    margin: 0 auto;
-   max-width: 1275px;
+   padding: 0 40px;
    display: flex;
    align-items: center;
    justify-content: space-between;
+}
+@media (min-width: 1500px) {
+   .navFlex{
+      padding: 0 70px;
+   }
 }
 .navLinks{
    font-family: 'Trebuchet MS';
@@ -30,19 +35,32 @@
    color: #FB791B
 }
 .burger{
-   margin: 0px 15px 0px 0px;
+   margin: 0px 15px 0px -20px;
    transform: translate(0,20%);
+}
+.openedCatalogWrapper{
+   /* position: fixed;
+   top: 0;
+   left: 0;
+   content: '';
+   width: 100%;
+   height: 100%;
+   background-color: rgba(242, 242, 242, 0.55);
+   overflow: hidden;
+   z-index: 2; */
 }
 .openedCatalog{
    width:100%;
-   height: 360px;
+   /* height: 360px; */
    background-color: #f1f1f1;
    position: absolute;
    content: '';
-   top: 0;
+   top: 70px;
    left: 0;
    display: flex;
    border-bottom: 2px solid rgba(42, 42, 42, 0.26);
+   overflow: hidden;
+   /* z-index: 50; */
 }
 .closeBtn{
    padding: 13px 82px 16px 30px;
@@ -67,6 +85,28 @@
    flex: 0 1 25%;
    border-right: 2px solid rgba(42, 42, 42, 0.26);
 }
+@media (max-width: 1100px) {
+   .leftColumn{
+      flex: 0 1 30%;
+   }
+}
 .categories{
    border-top: 2px solid rgba(42, 42, 42, 0.26);
+}
+.rightColumn{
+   flex: 0 1 75%;
+}
+.center{
+   /* margin: 120px 0px 0 0; */
+   /* transform: translate(0,-50%); */
+   /* width: 70%; */
+}
+.gg{
+   /* padding: 40px 0 0 30px; */
+   /* text-align: left; */
+   max-height: 100px;
+}
+.hh{
+   margin: 40px 0 0 0px;
+   /* text-align: left; */
 }
