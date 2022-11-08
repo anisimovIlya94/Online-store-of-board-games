@@ -6,6 +6,8 @@ import mir from '../images/footer/Mir.png'
 import visa from '../images/footer/Visa.png'
 import master from '../images/footer/cart_master.svg'
 import VkLogo from './vkLogo'
+import ModalWindow from './modalWindow/modalWindow'
+import AccountQuestions from './personalAccount/accountQuestions'
 
 const Footer = () => {
   return (
@@ -47,9 +49,12 @@ const Footer = () => {
                   <div className="col-auto">
                      <div className={classes.contacts}>
                         <div className={classes.orderCall}>
-                           <a href="#">
+                           <button type="button" data-bs-toggle="modal" data-bs-target="#question"  style={{background: "inherit"}}>
                               <span className={classes.orderCallStyle}>Заказать звонок</span>
-                           </a>
+                          </button>
+                          {<ModalWindow id="question">
+                             <AccountQuestions modal={true}/>
+                          </ModalWindow>}
                         </div>
                         <div className={classes.text}>
                            <p>+7 (495) 911-10-11</p>

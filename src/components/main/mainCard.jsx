@@ -4,47 +4,39 @@ import MainCardButton from "./buttons/mainCardButton";
 import { useShopping } from "../hooks/useShopping";
 import { useHistory } from "react-router-dom";
 
-const MainCard = () => {
+const MainCard = ({cardInformation}) => {
   const [hoverButton, setHoverButton] = useState(false);
   const history = useHistory();
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
     const { updateCartItems } = useShopping();
-  const cardInfo = {
-    src: "warhammer-card.jpg",
-    label: "Wharhammer40,000: Craftworlds Farseer",
-    name: "Wharhammer",
-    currentPrice: 5990,
-    bigPrice: 6490,
-    id: "ad2",
-    };
-    const handleRemove = () => {
-        updateCartItems(cardInfo);
-  }
+  //   const handleRemove = () => {
+  //       updateCartItems(cardInfo);
+  // }
   const handleGetToProductCard = () => {
-    history.push(`/catalog/${cardInfo.id}`)
+    history.push(`/catalog/${cardInformation.categories[0]}/${cardInformation.subcategories[0]}/${cardInformation._id}`)
   }
   return (
     <div
       className={"card border-light " + classes.mainCardWrapper}
       style={{ borderRadius: "15px" }}
     >
-      <img src={require(`../../images/catalog/${cardInfo.src}`)} className="card-img-top" alt="..." />
+      <img src={require(`../../images/product/productsLibrary/${cardInformation._id}/${cardInformation.images[0].link}`)} className={"card-img-top " + classes.imageSize} alt="..." />
       <div className="card-body">
-        <a href="" onClick={handleGetToProductCard}>
+        <a href="" className={classes.productLinkStyle} onClick={handleGetToProductCard}>
           <h5 className={classes.mainCardTitle}>
-            {cardInfo.label}
+          {cardInformation.name}
           </h5>
         </a>
-        <p className={classes.mainCardPrice}>{cardInfo.currentPrice} ₽</p>
+        <p className={classes.mainCardPrice}>{cardInformation.currentPrice} ₽</p>
         <MainCardButton
           title={"В корзину"}
           orange={true}
           onHoverButton={toggleHoverButton}
           hoverButton={hoverButton}
           icon={true}
-          onShopCart={handleRemove}
+          // onShopCart={handleRemove}
         />
         <MainCardButton title={"Купить в один клик"} orange={false} />
       </div>

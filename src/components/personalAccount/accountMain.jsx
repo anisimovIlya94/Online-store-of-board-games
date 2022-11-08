@@ -8,7 +8,7 @@ import AccountUserInfo from './accountUserInfo';
 
 const AccountMain = () => {
     let status;
-  const bought = 0;
+  const bought = 15100;
   if (bought <= 5000) {
     status = {name:"Новичок", discount: '5%', color: '#CD7F32', background: 'linear-gradient(#573716, #2A2A2A)'}
   } else if (bought > 5000 && bought <= 10000) {
@@ -57,7 +57,11 @@ const AccountMain = () => {
               />
               <span className={classes.userName}>Анисимов Илья</span>
             </div> */}
-          <AccountUserInfo/>
+          <div className='d-flex'>
+          <AccountUserInfo />
+          <span className={classes.userName}>Анисимов Илья</span>
+          </div>
+          
             <div>
               <span className={classes.icon}>
                 <i className="bi bi-check-lg"></i>
@@ -118,7 +122,7 @@ const AccountMain = () => {
               <div className={classes.recommendedWrapper}>
                 <div className="container text-center">
                   <div className="row row-cols-3">
-                    {recommendations.map((rec) => {
+                    {/* {recommendations.map((rec) => {
                       return (
                         <div
                           key={rec.id}
@@ -127,7 +131,7 @@ const AccountMain = () => {
                           <MainCard />
                         </div>
                       );
-                    })}
+                    })} */}
                   </div>
                 </div>
               </div>

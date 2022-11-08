@@ -31,7 +31,7 @@ const OpenedNavBar = ({onToggleCatalog}) => {
       warhammer: [
          {_id: "17", name: "Warhammer The Horus Heresy"},
          {_id: "18", name: "Warhammer: Underworlds"},
-         {_id: "19", name: "Blood Bowl"},
+         {_id: "19", name: "Warhammer: Underworlds"},
          {_id: "20", name: "Warhammer 40k"},
          {_id: "21", name: "Killteam"},
          {_id: "22", name: "Titanicus"},

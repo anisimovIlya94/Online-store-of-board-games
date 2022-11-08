@@ -151,15 +151,31 @@
     font-size: 14px;
     white-space: nowrap;
 }
-.buttonWrapper{
-    max-width: 170px;
+.buttonWrapper,.buttonWrapperAllWidth{
     margin: 0 auto;
     text-align: center;
     white-space: nowrap;
     font-family: 'Trebuchet MS';
 }
+.buttonWrapper{
+    max-width: 170px;
+}
+.buttonWrapperAllWidth{
+    width: 100%;
+}
 .buttonOrange{
     background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFFFFF;
+    border-radius: 9px;
+    padding: 9px 26px;
+    /* margin: 0 0 0 -11px; */
+    display: inline-block;
+    white-space: nowrap;
+}
+.buttonOrangeDisabled{
+    background: linear-gradient(184.53deg, #ffcf95 5.27%, #f6bd95 91.78%);
     font-weight: 700;
     font-size: 16px;
     color: #FFFFFF;

@@ -18,7 +18,7 @@ const ProductQuastion = ({ display, collapseRef, toggleDisplay, title, text }) =
             ></i>
           </div>
           <div className="collapse" ref={collapseRef} id={"name" + "title"}>
-            <p className={classes.questionBody}>{text}</p>
+            <div className={classes.questionBody}>{text}</div>
           </div>
         </div>
       </div> );

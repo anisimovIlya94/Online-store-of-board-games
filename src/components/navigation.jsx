@@ -1,24 +1,45 @@
-import React from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import classes from "../modules/catalog.module.css"
+import { Link, useHistory, useParams, useRouteMatch } from 'react-router-dom';
+import { getCategoryNameById } from '../fakeAPI/categories';
+import { getSubCategoryNameById } from '../fakeAPI/subcategories';
+// import { useCatalog } from './hooks/useCatalog';
 
 
-const Navigation = () => {
+const Navigation = ({ productName }) => {
+    const [names, setNames] = useState([])
     const history = useHistory();
-    const params = window.location.href.slice(22).split("/")
-    const namesOfLinks = {
-        catalog: {name: "Каталог", linkto: "/catalog", id:"nav1"},
-        shopping: {name: "Корзина", linkto: "/shopping",id:"nav2"},
-        edit: {name: "Edit", linkto: "/",id:"nav3"},
-        ad2: { name: "Wharhammer", linkto: "/catalog/ad2", id: "nav4" },
-        persaccount: { name: "Личный кабинет", linkto: "/persaccount", id: "nav5" },
-        orders: { name: "Мои заказы", linkto: "/persaccount/orders", id: "nav6" },
-        settings: { name: "Персональные данные", linkto: "/persaccount/settings", id: "nav7" },
-    }
-    const handleReturn = (e) => {
-        
-        // e.preventDefault()
-        // console.log(namesOfLinks[name].linkto)
-        history.replace(namesOfLinks[e.target.name].linkto)
+    const path = useRouteMatch().url.split("/")
+    const par = useParams()
+    useEffect(() => {
+        getArrayOfNames(path)
+    },[])
+    const getArrayOfNames = (path) => {
+        if (path[1] === "catalog") {
+            const arrayOfNames = [{name: "Каталог", path: "/catalog"}]
+            if (par.category) {
+                const categoryName = getCategoryNameById(par.category)
+                arrayOfNames.push({name: categoryName, path: `/catalog/${par.category}`})
+            }
+            if (par.sub) {
+                const subName = getSubCategoryNameById(par.sub)
+                arrayOfNames.push({name: subName, path: `/catalog/${par.category}/${par.sub}`})
+            } if (par.productId) {
+                arrayOfNames.push({name: productName, path: `/catalog/${par.category}/${par.sub}/${par.productId}`})
+            }
+            setNames(arrayOfNames) 
+        } else if (path[1] === "shopping") {
+            setNames([{name: "Корзина", path: "/shopping"}])
+        } else if (path[1] === "persaccount") {
+            const arrayOfNames = [{ name: "Личный кабинет", path: "/persaccount" }]
+            if (par.accountPage === "orders") {
+                arrayOfNames.push({name: "Заказы", path: `/persaccount/${par.accountPage}`})
+            }
+            if (par.accountPage === "settings") {
+                arrayOfNames.push({name: "Настройки", path: `/persaccount/${par.accountPage}`})
+            }
+            setNames(arrayOfNames) 
+        }
     }
     const handleReturnMain = () => {
         history.replace("/")
@@ -26,19 +47,17 @@ const Navigation = () => {
     const arrow = ">"
     return (
         <ul className='navigation-flex'>
-            <li><a onClick={handleReturnMain} className='navigation-button' href="">Главная</a></li>
+            <li><a onClick={handleReturnMain} className={classes.navigation} href="">Главная</a></li>
             <li className='navigation-button'>{arrow}</li>
-            {/* <li><button className='navigation-button disabled-button' style={{cursor: 'default'}} disabled href="">Каталог</button></li> */}
-            {params.map((param,index)=>{
-                const isLastIndex = index + 1 === params.length;
-                // console.log(isLastIndex)
-                if (namesOfLinks[param]) {
-                    // console.log(param)
-                    return (<div className='d-flex' key={param + "11"}>
-                <a onClick={handleReturn} name={param} className={'navigation-button ' + (isLastIndex ? 'disabled-button' : "")} disabled style={{cursor: (isLastIndex ? 'default' : 'cursor' )}} href="">{namesOfLinks[param].name}</a>
+            {names.length>0 &&names.map((param, index) => {
+                const isLastIndex = index + 1 === names.length;
+                if (param) {
+                    return (
+                        <div className='d-flex' key={param.name + "11"}>
+                            <Link to={param.path} className={isLastIndex ? classes.navigationDisabled : classes.navigation} style={{cursor: (isLastIndex ? 'default' : 'cursor' )}}>{param.name}</Link>
                         <li className='navigation-button'>{isLastIndex ? "" : arrow}</li>
-                        </div>)
-                // </div>
+                        </div>
+                    )
                 }
             })}
         </ul>

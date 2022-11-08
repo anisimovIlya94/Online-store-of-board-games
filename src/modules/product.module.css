@@ -30,6 +30,10 @@
     align-items: center;
     margin-bottom: 27px;
 }
+.cardInfoRight{
+    margin-bottom: 27px;
+    text-align: right;
+}
 .codeText{
     font-size: 12px;
     opacity: 0.74;

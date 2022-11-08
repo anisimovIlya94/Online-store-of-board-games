@@ -1,7 +1,4 @@
-import image3 from "../../images/catalog/warhammer-card.jpg"
-import arrowUp from "../../images/catalog/arrow-up.svg"
-import arrowDown from "../../images/catalog/arrow-down.svg"
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SwiperCore, { Virtual, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -16,50 +13,66 @@ import '../../modules/styles-vertical.css';
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
 
-const VerticalSlider = ({activeIndex, onChangeIndex}) => {
+const VerticalSlider = ({activeIndex, onChangeIndex, id, images}) => {
   const [swiperRef, setSwiperRef] = useState(null);
   const slideNext = () => {
+    if (activeIndex < images.length - 1) {
+      onChangeIndex(activeIndex + 1)
+    }
     swiperRef.slideNext(1000, false)
   };
   const slidePrev = () => {
+    if (activeIndex > 0) {
+      onChangeIndex(activeIndex - 1)
+    }
     swiperRef.slidePrev(1000, false)
   };
   const slideTo = (id) => {
-    console.log(id)
     swiperRef.slideTo(id)
   }
+  const imagesLength = images.length
   useEffect(() => {
-    console.log(activeIndex)
+    // console.log(activeIndex)
     if (activeIndex) {
       slideTo(activeIndex)
     }
     },[activeIndex])
   return (
     <div className="wrapper">
-      <p className="append-buttons">
-      <button onClick={() => slidePrev(1)} className="prepend-slide">
-          <img src={arrowUp}/>
+      <p className={"append-buttons"}>
+       <button disabled={imagesLength<4} onClick={() => slidePrev(1)} className={"prepend-slide " + (imagesLength < 4 ? "disabled" : "")}>
+       <i className="bi bi-chevron-up"></i>
         </button>
       </p>
       
       <Swiper
         direction={"vertical"}
         onSwiper={setSwiperRef}
-        slidesPerView={3}
+        slidesPerView={imagesLength > 3 ? 3 : imagesLength}
         centeredSlides={true}
         spaceBetween={30}
         centeredSlidesBounds={true}
         virtual
+        style={{height: "330px"}}
       >
-        <div className="swipewrap">
-        <SwiperSlide style={{padding: "10px"}}>
+        {/* <div className="swipewrap"> */}
+        {images.map((img, index) => {
+          return (
+            <SwiperSlide style={{padding: "10px"}} key={img._id}>
+          <button id={index} onClick={()=>{onChangeIndex(index)}} cursor={"pointer"} className="butt">
+          <img cursor={"pointer"} className={"image " + (activeIndex === index ? "active" : "")} src={require(`../../images/product/productsLibrary/${id}/${img.link}`)} alt="" />
+          </button>
+        </SwiperSlide>
+          )
+        })}
+        {/* <SwiperSlide style={{padding: "10px"}}>
           <button id={0} onClick={()=>{onChangeIndex(0)}} cursor={"pointer"} className="butt">
           <img cursor={"pointer"} className={"image " + (activeIndex === 0 ? "active" : "")} src={image3} alt="" />
           </button>
-        </SwiperSlide>
-        </div>
+        </SwiperSlide> */}
+        {/* </div> */}
         
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <button id={1} onClick={()=>{onChangeIndex(1)}} cursor={"pointer"} className="butt">
           <img cursor={"pointer"} className={"image " + (activeIndex === 1 ? "active" : "")} src={image3} alt="" />
           </button>
@@ -73,12 +86,12 @@ const VerticalSlider = ({activeIndex, onChangeIndex}) => {
         <button id={3} onClick={()=>{onChangeIndex(3)}} cursor={"pointer"} className="butt">
           <img cursor={"pointer"} className={"image " + (activeIndex === 3 ? "active" : "")} src={image3} alt="" />
           </button>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
 
       <p className="append-buttons">
-        <button onClick={() => slideNext(250)} className="prepend-slide">
-          <img src={arrowDown}/>
+        <button disabled={imagesLength<4} onClick={() => slideNext(250)} className={"prepend-slide " + (imagesLength < 4 ? "disabled" : "")}>
+          <i className="bi bi-chevron-down"></i>
         </button>
       </p>
     </div>

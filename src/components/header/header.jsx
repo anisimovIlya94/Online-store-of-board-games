@@ -7,6 +7,9 @@ import personalAccount from "../../images/header/account.png";
 import personalAccountActive from "../../images/header/account-active.png";
 import ShoppingCartButton from "./shoppingCartButton";
 import NavBar from "./navBar";
+import ModalWindow from "../modalWindow/modalWindow";
+import AccountEditUserPage from "../personalAccount/accountEditUserPage";
+import AccountQuestions from "../personalAccount/accountQuestions";
 import { useHistory } from "react-router-dom";
 
 const Header = ({ onToggleCatalog }) => {
@@ -14,6 +17,7 @@ const Header = ({ onToggleCatalog }) => {
   const [cart, setCart] = useState(false);
   const [burger, setBurger] = useState(false);
   const history = useHistory();
+  const isAuth = true
   const handleToggleAccount = () => {
     setAccount(!account);
   };
@@ -58,7 +62,7 @@ const Header = ({ onToggleCatalog }) => {
                 <p className={classes.telephoneNumber}>+7 (495) 911-10-11</p>
               </div>
               <div className="col">
-                <a href="" onClick={handleGoingToAccount} className={classes.personalAccount}>
+                {isAuth ? <a href="" onClick={handleGoingToAccount} className={classes.personalAccount}>
                   <img
                     src={account ? personalAccountActive : personalAccount}
                     onMouseEnter={() => handleToggleAccount()}
@@ -66,6 +70,19 @@ const Header = ({ onToggleCatalog }) => {
                     alt=""
                   />
                 </a>
+                  :
+                  <>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#login" className={classes.personalAccount}>
+                    <img
+                    src={account ? personalAccountActive : personalAccount}
+                    onMouseEnter={() => handleToggleAccount()}
+                    onMouseLeave={() => handleToggleAccount()}
+                    alt=""
+                      />
+                    </button>
+                    </>
+                }
+                
                 <ShoppingCartButton onHover={handleToggleCart} cart={cart} />
               </div>
             </div>

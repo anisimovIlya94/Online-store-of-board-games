@@ -3,9 +3,7 @@ import { Collapse as BsCollapse } from "bootstrap";
 import classes from "../../modules/catalog.module.css"
 
 const CatalogSortingTimeToPlay = ({name, data, onChange}) => {
-    // const initial = [10,30]
     const [display, setDisaplay] = useState(true);
-    // const [checkboxState, setCheckboxState] = useState([])
     const collapseRef = useRef();
     const toggleDisplay = () => {
         setDisaplay((prevState) => !prevState);

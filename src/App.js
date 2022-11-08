@@ -8,6 +8,9 @@ import { Switch, Redirect, Route } from "react-router-dom";
 import ShoppingCart from "./components/layouts/shoppingCart";
 import ShoppingProvider from "./components/hooks/useShopping";
 import PersonalAccount from "./components/layouts/personalAccount";
+import ModalWindow from "./components/modalWindow/modalWindow";
+import LoginWindow from "./components/personalAccount/loginWindow";
+import Acc from "./components/personalAccount/acc";
 
 function App() {
   const [openNavCatalog, setOpenNavCatalog] = useState(false);
@@ -34,11 +37,17 @@ function App() {
           <div className="header">
             <Header onToggleCatalog={toggleNavCatalog} />
           </div>
+          <ModalWindow id="login">
+            <LoginWindow />
+          </ModalWindow>
           <Switch>
             <Route exact path="/" component={Main} />
             <Route path="/shopping" component={ShoppingCart} />
-            <Route path="/catalog/:productId?" component={Catalog} />
-            <Route path="/persaccount/:accountPage?" component={PersonalAccount}/>
+            <Route path="/catalog/:category?/:sub?/:productId?" component={Catalog} />
+            <Route
+              path="/persaccount/:accountPage?"
+              component={PersonalAccount}
+            />
             <Redirect to="/" />
           </Switch>
           <Footer />

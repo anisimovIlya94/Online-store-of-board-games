@@ -5,6 +5,13 @@ import _ from "lodash";
 const Pagination = ({ itemCount, pageSize, onPageChange, currentPage }) => {
     const arrow = "<"
     const reverseArrow = ">"
+    const handleChangePage = (id, condition) => {
+        if (condition) {
+            onPageChange(id)
+        }
+        // window.scrollTo(0, 200)
+        
+    }
     const pageCount = Math.ceil(itemCount / pageSize);
     if (pageCount === 1) return null;
     const pages = _.range(1, pageCount + 1);
@@ -12,8 +19,8 @@ const Pagination = ({ itemCount, pageSize, onPageChange, currentPage }) => {
         <div className={classes.paginationMargin}>
           <ul className={classes.paginationWrapper}>
           <li className={classes.paginationButton}>
-            <button disabled={currentPage===1} className={currentPage === 1 ? "" : classes.paginateText}
-                    onClick={() => onPageChange(currentPage - 1)}>
+            <button className={currentPage === 1 ? classes.paginateDisabled : classes.paginateText}
+                    onClick={() => handleChangePage(currentPage - 1, currentPage!==1)}>
                     {arrow}
             </button>
             </li>
@@ -35,8 +42,8 @@ const Pagination = ({ itemCount, pageSize, onPageChange, currentPage }) => {
                     );
                 })}
           <li className={classes.paginationButton}>
-            <button disabled={currentPage===pages.length} className={currentPage === pages.length ? "" : classes.paginateText}
-                    onClick={() => onPageChange(currentPage + 1)}>
+            <button className={currentPage === pages.length ? classes.paginateDisabled : classes.paginateText}
+                    onClick={() => handleChangePage(currentPage + 1, currentPage !== pages.length)}>
                     {reverseArrow}
             </button>
             </li>

@@ -25,10 +25,11 @@
 }
 .horisontalImage1{
     padding: 10px 100px;
-    max-width: 730px;
-    /* max-height: 380px; */
-    background-color: #ffff;
+    width: 730px;
+    height: 430px;
     display: inline-block;
     border-radius: 15px;
-    overflow: hidden;
+    text-align: center;
+    background-color: #ffff;
+    /* overflow: hidden; */
 }

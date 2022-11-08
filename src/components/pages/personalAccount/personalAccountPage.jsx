@@ -8,14 +8,11 @@ import AccountSettings from "../../personalAccount/accountSettings";
 
 const PersonalAccountPage = () => {
   const { accountPage } = useParams()
+  // console.log(accountPage)
   const history = useHistory();
   const handleReturnToAccountPage = (page) => {
     history.push(`/persaccount${page}`)
   }
-  // const handleReturnToAccountOrder = () => {
-  //   history.push("/persaccount/orders")
-  // }
-  console.log(accountPage)
   return (
     <div className={classes.accountWrapper}>
       <Navigation />

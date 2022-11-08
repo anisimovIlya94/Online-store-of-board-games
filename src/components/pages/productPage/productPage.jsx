@@ -9,53 +9,60 @@ import MainCardButton from "../../main/buttons/mainCardButton";
 import Quastion from "../../catalog/quastion";
 import ProductInfo from "../../product/productInfo";
 import Slick from "../../main/slick";
+import { useCatalog } from "../../hooks/useCatalog";
 
 const ProductPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverButton, setHoverButton] = useState(false);
+  const {getProductById} = useCatalog()
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
   const handleChangeIndex = (id) => {
     setActiveIndex(id);
   };
+  const product = getProductById()
   return (
     <div className={classes.productWrapper}>
       <>
         <div className={classes.productNavigation}>
-          <Navigation />
+          <Navigation productName={product.name}/>
         </div>
-        <h2 className={classes.productTitle}>Wharhammer40,000: Craftworlds Farseer</h2>
+        <h2 className={classes.productTitle}>{product.name}</h2>
         <div style={{ display: "flex" }}>
           <VerticalSlider
+            id={product._id}
+            images={product.images}
             activeIndex={activeIndex}
             onChangeIndex={handleChangeIndex}
           />
           <HorisontalSlider
+            id={product._id}
+            images={product.images}
             activeIndex={activeIndex}
             onChangeIndex={handleChangeIndex}
           />
           <div className={classes.productCardWrapper}>
-            <p className={classes.codeText}>Код товара: 842672</p>
-            <div className={classes.cardInfo}>
-              <div>
+            <p className={classes.codeText}>Код товара: {product.code}</p>
+            <div className={product.quantity ? classes.cardInfo : classes.cardInfoRight}>
+              {product.quantity && <div>
                 <img src={usersQuantityImage} alt="" />
                 <span className={classes.cardText + " " + classes.quantity}>
-                  2 - 6
+                  {product.quantity.min} - {product.quantity.max}
                 </span>
-              </div>
-              <div>
+              </div>}
+              {product.time && <div>
                 <img src={productTimeImage} alt="" />
                 <span className={classes.cardText + " " + classes.time}>
-                  30 - 60
+                  {product.time.min} - {product.time.max} минут
                 </span>
-              </div>
+              </div>}
               <div>
-                <span className={classes.age}>6+</span>
+                <span className={classes.age}>{product.age}+</span>
               </div>
             </div>
-            <h2 className={classes.bigPrice}>2390₽</h2>
-            <h2 className={classes.currentPrice}>1790₽</h2>
+            {product.bigPrice && <h2 className={classes.bigPrice}>{product.bigPrice} ₽</h2>}
+            <h2 className={classes.currentPrice}>{product.currentPrice} ₽</h2>
             <MainCardButton
               title={"В корзину"}
               orange={true}
@@ -111,15 +118,15 @@ const ProductPage = () => {
             </button>
           </div>
         </div>
-        <ProductInfo />
-        <div className={classes.slickWrapper}>
+        <ProductInfo description={product.description || product.name}/>
+        {/* <div className={classes.slickWrapper}>
           <h2 className={classes.slickTitles}>C этим товаром покупают</h2>
           <Slick/>
         </div>
         <div className={classes.slickWrapper}>
           <h2 className={classes.slickTitles}>Просматривали</h2>
           <Slick/>
-        </div>
+        </div> */}
       </>
     </div>
   );

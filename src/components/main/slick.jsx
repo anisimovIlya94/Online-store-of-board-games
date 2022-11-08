@@ -15,16 +15,18 @@ const responsive = {
     1500: { items: currentItems },
 };
 
-const Slick = () => {
+const Slick = ({ cards }) => {
+    // console.log(cards)
     const [activeIndex, setActiveIndex] = useState(0);
-    const [items] = useState([<MainCard  role ="presentation"/>,
-    <MainCard  role ="presentation"/>,
-    <MainCard  role ="presentation"/>,
-    <MainCard  role ="presentation"/>,
-    <MainCard  role ="presentation"/>,
-    <MainCard  role ="presentation"/>,
-    <MainCard  role ="presentation"/>
-]);
+    const [items] = useState(
+        cards.map((card) => {
+            return <MainCard key={card._id} cardInformation={card} role="presentation" />
+        })
+    );
+    // const ff = cards.map((card) => {
+    //     console.log(card)
+    //     return <MainCard cardInfo={card}  role ="presentation"/>
+    // })
 const difference = items.length - currentItems;
     const slidePrev = () => setActiveIndex(activeIndex - 1);
     const slideNext = () => setActiveIndex(activeIndex + 1);

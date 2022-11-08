@@ -3,6 +3,7 @@ import burger from '../../images/header/бургер.png'
 import burgerActive from '../../images/header/бургер-active.png'
 import classes from '../../modules/navBar.module.css'
 import VkLogo from '../vkLogo'
+import { Link } from 'react-router-dom'
 // import closeIcon from '../images/header/close-icon.png'
 // import closeIconActive from '../images/header/close-icon — active.png'
 // import NavCategory from './navCategory'
@@ -19,12 +20,12 @@ const NavBar = ({ onHover, burgerState, onToggleCatalog }) => {
               <span className={burgerState ? classes.navLinkHover : classes.navLinks}>Каталог</span>
               </a>
            </li>
-           <li><a className={classes.navLinks} href="#">
+           <li><Link className={classes.navLinks} to="/catalog/cpTsuR96uA23cdM-mrghU003">
               <span>Warhammer</span>
-              </a></li>
-           <li><a className={classes.navLinks} href="#">
+              </Link></li>
+           <li><Link className={classes.navLinks} to="/catalog/cpTsuR96uA23cdM-mrghU002">
               <span>Magic:the Cathering</span>
-              </a></li>
+              </Link></li>
            <li><a className={classes.navLinks} href="#">
               <span>Мероприятия</span>
               </a></li>
