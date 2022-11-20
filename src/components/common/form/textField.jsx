@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import classes from "../../../modules/textField.module.css"
 
-const TextField = ({ label, type, name, value, onChange, error, placeholder, textarea }) => {
+const TextField = ({ label, type, name, value, onChange, error, placeholder, textarea, note }) => {
     const [showPassword, setShowPassword] = useState(false);
     const getInputClasses = () => {
         return "form-control " + (error ? "is-invalid" : "");
@@ -54,6 +54,7 @@ const TextField = ({ label, type, name, value, onChange, error, placeholder, tex
                       }
               </button>}
                     {error && booleanValue && <div className={classes.error}>{error}</div>}
+                    {note && <p style={{fontSize: "15px", margin:"10px 0 0 0"}}>{note}</p>}
                 </div>
             </div>
     )

@@ -3,14 +3,24 @@ import classes from "../../modules/main.module.css";
 import MainCardButton from "./buttons/mainCardButton";
 import { useShopping } from "../hooks/useShopping";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const MainCard = ({cardInformation}) => {
   const [hoverButton, setHoverButton] = useState(false);
+  const { updateUserData, currentUser } = useAuth()
+  const { getItemById } = useShopping()
+  const isInCart = getItemById(cardInformation._id)
   const history = useHistory();
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
-    const { updateCartItems } = useShopping();
+  // console.log(cardInformation)
+  const handleAddToCart = () => {
+    if (!isInCart) {
+      updateUserData({...currentUser,shoppingCart: [...currentUser.shoppingCart, cardInformation._id]})
+    }
+      
+  }
   //   const handleRemove = () => {
   //       updateCartItems(cardInfo);
   // }
@@ -22,7 +32,7 @@ const MainCard = ({cardInformation}) => {
       className={"card border-light " + classes.mainCardWrapper}
       style={{ borderRadius: "15px" }}
     >
-      <img src={require(`../../images/product/productsLibrary/${cardInformation._id}/${cardInformation.images[0].link}`)} className={"card-img-top " + classes.imageSize} alt="..." />
+      <img src={require(`../../images/product/productsLibrary/${cardInformation.images[0]}`)} className={"card-img-top " + classes.imageSize} alt="..." />
       <div className="card-body">
         <a href="" className={classes.productLinkStyle} onClick={handleGetToProductCard}>
           <h5 className={classes.mainCardTitle}>
@@ -31,12 +41,12 @@ const MainCard = ({cardInformation}) => {
         </a>
         <p className={classes.mainCardPrice}>{cardInformation.currentPrice} ₽</p>
         <MainCardButton
-          title={"В корзину"}
-          orange={true}
+          title={isInCart ? "В корзине" : "В корзину"}
+          orange={isInCart ? false : true}
           onHoverButton={toggleHoverButton}
           hoverButton={hoverButton}
           icon={true}
-          // onShopCart={handleRemove}
+          onShopCart={handleAddToCart}
         />
         <MainCardButton title={"Купить в один клик"} orange={false} />
       </div>

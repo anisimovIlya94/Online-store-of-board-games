@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import category from "../mockData/categories.json"
-import subcategory from "../mockData/subCategories.json"
-import product from "../mockData/products.json"
+// import category from "../mockData/categories.json"
+// import subcategory from "../mockData/subCategories.json"
+// import product from "../mockData/products.json"
+import timeToBuy from "../mockData/timeToBuy.json"
 import httpServices from "../components/services/http.service";
 
 const useMockData = () => {
@@ -15,7 +16,7 @@ const useMockData = () => {
     const [status, setStatus] = useState(statusConsts.idle);
     const [count, setCount] = useState(0);
     const [progress, setProgress] = useState(0);
-    const summaryProgress = category.length + subcategory.length + product.length;
+    const summaryProgress = timeToBuy.length;
     const updateProgress = () => {
         if (count !== 0 && status === statusConsts.idle) {
             setStatus(statusConsts.pending);
@@ -33,16 +34,16 @@ const useMockData = () => {
     }, [count]);
     const initialize = async () => {
         try {
-            for (const cat of category) {
-                await httpServices.put("profession/" + cat._id, cat);
-                setCount((prevState) => prevState + 1);
-            }
-            for (const sub of subcategory) {
-                await httpServices.put("user/" + sub._id, sub);
-                setCount((prevState) => prevState + 1);
-            }
-            for (const prod of product) {
-                await httpServices.put("quality/" + prod._id, prod);
+            // for (const cat of category) {
+            //     await httpServices.put("category/" + cat._id, cat);
+            //     setCount((prevState) => prevState + 1);
+            // }
+            // for (const sub of subcategory) {
+            //     await httpServices.put("subcategory/" + sub._id, sub);
+            //     setCount((prevState) => prevState + 1);
+            // }
+            for (const prod of timeToBuy) {
+                await httpServices.put("specialOffers/" + prod._id, prod);
                 setCount((prevState) => prevState + 1);
             }
         } catch (error) {

@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from "../../modules/account.module.css"
 import TextField from '../common/form/textField';
+import { useAuth } from '../hooks/useAuth';
 import ShoppingCardButton from '../shoppingCart/shoppingCartButton';
 
-const AccountQuestions = ({modal}) => {
-    const [data, setData] = useState({ name: "Илья", telephone: "+7 912 217 63 50", question: "" });
+
+// const initialState = { name: currentUser.name, telephone: currentUser.telephone, question: "" } || {name: "", telephone: "", question: ""}
+
+const AccountQuestions = ({ modal }) => {
+    const [data, setData] = useState({name: "", telephone: "", question: ""});
     const [errors, setErrors] = useState({});
     const [hoverButton, setHoverButton] = useState(false);
+    const {currentUser} = useAuth()
     const toggleHoverButton = () => {
       setHoverButton(!hoverButton);
     };
+    // const {currentUser} = useAuth()
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
@@ -37,6 +43,11 @@ const AccountQuestions = ({modal}) => {
             }
         },
     };
+    useEffect(() => {
+        if (currentUser) {
+            setData({name: currentUser.name, telephone: currentUser.telephone, question: ""})
+        }
+    },[])
     return (<div className={classes.questionsWrapper}>
         <h2 className={classes.questionsTitle}>Остались вопросы?</h2>
         <form onSubmit={handleSubmit} className={classes.formWrapper}>

@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "../common/form/textField";
 import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import classes from "../../modules/textField.module.css";
+import { validator } from "../../utils/validator";
+import { useAuth } from "../hooks/useAuth";
 
-const AccountEditUserPage = ({ modalName }) => {
+const AccountEditUserPage = ({ currentUser }) => {
   const [data, setData] = useState({
-    name: "Илья",
-    telephone: "+7 912 217 63 50",
-    secondName: "Анисимов",
-    email: "anisimov_ilya26@mail.ru",
+    name: currentUser.name,
+    telephone: currentUser.telephone,
+    secondName: currentUser.secondName,
+    email: currentUser.email,
   });
   const [errors, setErrors] = useState({});
   const [hoverButton, setHoverButton] = useState(false);
+  const { updateUserData } = useAuth()
+  useEffect(() => {
+    validate();
+  }, [data]);
+  // useEffect(() => {
+  //   console.log(errors)
+  // }, [errors]);
+  const validate = () => {
+    const errors = validator(data, validatorConfig);
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+};
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
@@ -21,9 +35,13 @@ const AccountEditUserPage = ({ modalName }) => {
       [target.name]: target.value,
     }));
   };
+  const isValid = Object.keys(errors).length === 0;
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+    const isValid = validate();
+    if (!isValid) return;
+    // console.log(currentUser)
+    updateUserData({...currentUser,...data})
   };
   const validatorConfig = {
     name: {
@@ -35,11 +53,18 @@ const AccountEditUserPage = ({ modalName }) => {
       isRequired: {
         message: `Поле обязательно для заполнения`,
       },
+      minSymbols: {
+        message: "Номер должен состоять минимум из 11 символов",
+        value: 11
+    }
     },
-    question: {
+    email: {
       isRequired: {
         message: `Поле обязательно для заполнения`,
       },
+      isEmail: {
+        message: "Email введен некорректно"
+    }
     },
   };
   return (
@@ -49,7 +74,7 @@ const AccountEditUserPage = ({ modalName }) => {
         <form onSubmit={handleSubmit} className={classes.formWrapper}>
           <TextField
             placeholder="Имя"
-            label="Ваше имя"
+            label="Ваше имя *"
             name="name"
             value={data.name}
             onChange={handleChange}
@@ -61,11 +86,10 @@ const AccountEditUserPage = ({ modalName }) => {
             name="secondName"
             value={data.secondName}
             onChange={handleChange}
-            error={errors.secondName}
           />
           <TextField
             placeholder="Телефон"
-            label="Ваш телефон"
+            label="Ваш телефон *"
             name="telephone"
             value={data.telephone}
             onChange={handleChange}
@@ -73,7 +97,7 @@ const AccountEditUserPage = ({ modalName }) => {
           />
           <TextField
             placeholder="Email"
-            label="Ваш email"
+            label="Ваш email *"
             name="email"
             value={data.email}
             onChange={handleChange}
@@ -88,7 +112,8 @@ const AccountEditUserPage = ({ modalName }) => {
               hoverButton={hoverButton}
               icon={false}
               buttonWidth={"250px"}
-              modal={true}
+            modal={true}
+            disabled={!isValid}
             />
           </div>
         </form>

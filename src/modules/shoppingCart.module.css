@@ -8,12 +8,13 @@
 }
 .order{
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
+    width: 950px;
     margin: 0px 0 20px 50px;
 }
 .orderImage{
-    max-width: 95px;
+    width: 95px;
     max-height: 95px;
     padding: 10px;
     background-color: #FFFF;
@@ -32,12 +33,13 @@
 .orderName:hover{
     color: #FB791B;
 }
-.orderCurrentPtice{
+.orderCurrentPrice{
     font-family: 'Trebuchet MS';
     font-weight: 700;
     font-size: 22px;
     color: #2A2A2A;
     background-color: #fcf3ed;
+    text-align: center;
     width: 132px;
 }
 .orderCount{
@@ -53,18 +55,18 @@
     font-size: 18px;
     color: #2A2A2A;
     text-decoration: line-through;
-    margin-right: 30px;
-    margin-left: 44px;
-    width: 100px;
+    /* margin-right: 30px;
+    margin-left: 44px; */
+    width: 50px;
 }
 .orderBigPriceHiden{
     font-family: 'Trebuchet MS';
     font-size: 18px;
     color: #2A2A2A;
     text-decoration: line-through;
-    margin-right: 30px;
-    margin-left: 44px;
-    width: 100px;
+    /* margin-right: 30px;
+    margin-left: 44px; */
+    width: 50px;
     opacity: 0;
 }
 .countButtons{
@@ -100,11 +102,12 @@
 }
 .buyingWrapper{
     max-width: 250px;
+    height: 260px;
     background: #FFFFFF;
     box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
     border-radius: 15px;
     padding: 35px;
-    margin-left: 250px;
+    margin-left: 100px;
 }
 .buyingSum{
     font-family: 'Trebuchet MS';
@@ -228,4 +231,11 @@
 }
 .emptyCartLink:hover{
     color: #FB791B;
+}
+.loading{
+    /* width: 100px; */
+    margin: 0 auto;
+    /* margin-left: 500px; */
+    /* margin-right: 500px; */
+    text-align: center;
 }

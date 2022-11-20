@@ -4,6 +4,7 @@ import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import CheckBoxField from "../common/form/checkBoxField";
 import { validator } from "../../utils/validator";
 import classes from "../../modules/textField.module.css";
+import { useAuth } from "../hooks/useAuth";
 
 const AccountRegisterForm = () => {
   const [data, setData] = useState({
@@ -18,6 +19,7 @@ const AccountRegisterForm = () => {
   const [errors, setErrors] = useState({});
   const [hoverButton, setHoverButton] = useState(false);
   const [submited, setSubmited] = useState(false)
+  const { signUp } = useAuth()
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
@@ -40,8 +42,11 @@ const isValid = Object.keys(errors).length === 0;
     e.preventDefault();
     setSubmited(true)
     const isValid = validate();
-        if (!isValid) return;
-    console.log(data);
+    if (!isValid) return;
+    const transformData = { ...data }
+    delete transformData.secondPassword
+    signUp(transformData)
+    // console.log(data);
   };
   const validatorConfig = {
     email: {

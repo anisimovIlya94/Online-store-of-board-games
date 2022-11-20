@@ -3,12 +3,19 @@ import TextField from "../common/form/textField";
 import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import { validator } from "../../utils/validator";
 import classes from "../../modules/textField.module.css";
+import { useAuth } from "../hooks/useAuth";
+import { useHistory } from "react-router-dom";
 
-const AccountLoginUserPage = () => {
+
+const AccountLoginUserPage = ({path}) => {
   const [data, setData] = useState({
     password: "",
     email: "",
   });
+  const history = useHistory()
+  // console.log(path.includes("login"))
+  const { error: loginError } = useAuth()
+  const {logIn} = useAuth()
   const [errors, setErrors] = useState({});
   const [hoverButton, setHoverButton] = useState(false);
   // const [submited, setSubmited] = useState(false)
@@ -23,7 +30,10 @@ const AccountLoginUserPage = () => {
   };
   useEffect(() => {
     validate();
-}, [data]);
+  }, [data]);
+//   useEffect(() => {
+//     console.log(loginError)
+// }, [loginError]);
 const validate = () => {
     const errors = validator(data, validatorConfig);
     setErrors(errors);
@@ -35,7 +45,13 @@ const isValid = Object.keys(errors).length === 0;
     // setSubmited(true)
     const isValid = validate();
         if (!isValid) return;
-    console.log(data);
+    const status = logIn(data)
+    status.then(() => {
+      if (path && path.includes("login")) {
+        // console.log(path)
+        history.replace("/main")
+        }
+    })
   };
   const validatorConfig = {
     email: {
@@ -71,6 +87,7 @@ const isValid = Object.keys(errors).length === 0;
           error={errors.password}
           // submited={submited}
         />
+        {loginError && <p style={{color: "red", fontSize: "15px"}}>{loginError}</p>}
         <div style={{ marginTop: "30px" }}>
           <ShoppingCardButton
             onClick={handleSubmit}
@@ -80,7 +97,7 @@ const isValid = Object.keys(errors).length === 0;
             hoverButton={hoverButton}
             icon={false}
             buttonWidth={"250px"}
-            modal={true}
+            modal={false}
             disabled={!isValid}
           />
         </div>

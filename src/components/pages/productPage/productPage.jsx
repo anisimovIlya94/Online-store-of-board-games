@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "../../../modules/product.module.css";
 import Navigation from "../../navigation";
 import HorisontalSlider from "../../product/horisontalSlider";
@@ -10,18 +10,52 @@ import Quastion from "../../catalog/quastion";
 import ProductInfo from "../../product/productInfo";
 import Slick from "../../main/slick";
 import { useCatalog } from "../../hooks/useCatalog";
+import { useParams } from "react-router-dom";
+import { useShopping } from "../../hooks/useShopping";
+import { useAuth } from "../../hooks/useAuth";
 
 const ProductPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverButton, setHoverButton] = useState(false);
-  const {getProductById} = useCatalog()
+  const { getProductById, getProductsByCategory } = useCatalog()
+  const { updateUserData, currentUser, isLoading } = useAuth()
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
+  const {productId} = useParams()
   const handleChangeIndex = (id) => {
     setActiveIndex(id);
   };
-  const product = getProductById()
+  const handleAddToViewed = () => {
+    const viewedArray = currentUser.viewed.includes("") ? currentUser.viewed.slice(1, 0) : currentUser.viewed
+    if (!viewedArray.includes(productId)) {
+      if (viewedArray.length < 10) {
+        updateUserData({ ...currentUser, viewed: [productId, ...viewedArray] })
+      } else {
+        updateUserData({ ...currentUser, viewed: [productId, ...viewedArray.slice(0,viewedArray.length-1)] })
+      }
+    }
+  }
+  useEffect(() => {
+    if (!isLoading) {
+      handleAddToViewed()
+    }
+  },[isLoading])
+  const { getItemById } = useShopping()
+  const isInCart = getItemById(productId)
+  const product = getProductById(productId)
+  const handleAddToCart = () => {
+    if (!isInCart && currentUser) {
+      updateUserData({...currentUser,shoppingCart: [...currentUser.shoppingCart, productId]})
+    }
+      
+  }
+  const viewedProducts = currentUser.viewed.map((prod) => {
+    return getProductById(prod)
+  })
+  if (!product) {
+    return "Loading..."
+  }
   return (
     <div className={classes.productWrapper}>
       <>
@@ -64,9 +98,10 @@ const ProductPage = () => {
             {product.bigPrice && <h2 className={classes.bigPrice}>{product.bigPrice} ₽</h2>}
             <h2 className={classes.currentPrice}>{product.currentPrice} ₽</h2>
             <MainCardButton
-              title={"В корзину"}
-              orange={true}
+              title={isInCart ? "В корзине" : "В корзину"}
+              orange={isInCart ? false : true}
               onHoverButton={toggleHoverButton}
+              onShopCart={handleAddToCart}
               hoverButton={hoverButton}
               icon={true}
             />
@@ -119,14 +154,14 @@ const ProductPage = () => {
           </div>
         </div>
         <ProductInfo description={product.description || product.name}/>
-        {/* <div className={classes.slickWrapper}>
+       { <div className={classes.slickWrapper}>
           <h2 className={classes.slickTitles}>C этим товаром покупают</h2>
-          <Slick/>
-        </div>
+          <Slick cards={getProductsByCategory(product.categories[0], "categories", true, product._id)}/>
+        </div>}
         <div className={classes.slickWrapper}>
           <h2 className={classes.slickTitles}>Просматривали</h2>
-          <Slick/>
-        </div> */}
+          <Slick cards={viewedProducts}/>
+        </div>
       </>
     </div>
   );

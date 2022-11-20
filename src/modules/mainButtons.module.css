@@ -1,6 +1,7 @@
 .buttonWrapper{
-    max-width: 170px;
-    margin: 0 auto;
+    max-width: 100%;
+    /* margin: 0 auto; */
+    margin-left: 10px;
     text-align: center;
     white-space: nowrap;
 }
@@ -13,16 +14,18 @@
     line-height: 19px;
     color: #FFFFFF;
     border-radius: 9px;
-    padding: 9px 38px 9px 48px;
-    margin: 0 0 0 -11px;
+    padding: 9px 38px 9px 38px;
+    margin: 0 0 10px -11px;
     display: inline-block;
     white-space: nowrap;
+    text-align: center;
+    width: 100%;
 }
 .buttonOrange:hover{
     color: #F9A43F;
     border: 2px solid #F9A43F;
     background: #FFFFFF;
-    padding: 7px 36px 7px 46px;
+    padding: 7px 36px;
 }
 .buttonWhite{
     font-family: 'Trebuchet MS';
@@ -33,10 +36,11 @@
     color: #F9A43F;
     border: 2px solid #F9A43F;
     border-radius: 9px;
-    padding: 7px 20px;
+    padding: 7px 0px;
     display: inline-block;
-    margin: 10px 0 0 -12px;
-    
+    margin: 0px 0 10px -12px;
+    text-align: center;
+    width: 100%;
 }
 .buttonWhite:hover{
     background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);

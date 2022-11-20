@@ -4,9 +4,11 @@ import AccountUserInfo from "./accountUserInfo";
 import AccountQuestions from "./accountQuestions";
 import AccountEditUserPage from "./accountEditUserPage";
 import ModalWindow from "../modalWindow/modalWindow";
+import { useAuth } from "../hooks/useAuth";
 
 const AccountSettings = () => {
   const [isModuleWindow, setModuleWindow] = useState(false)
+  const { currentUser } = useAuth()
   const handleOpenModule = () => {
     setModuleWindow((prevState)=>!prevState);
   }
@@ -16,16 +18,16 @@ const AccountSettings = () => {
         <AccountUserInfo edit={true} />
         <div className={classes.settingsLineWrapper}>
           <div className={classes.settingsLine}>
-            <span className={classes.settingsName}>Анисимов Илья</span>
+            <span className={classes.settingsName}>{currentUser.name + " " + currentUser.secondName}</span>
           </div>
           <div className={classes.settingsLine}>
             <span className={classes.settingsTitle}>Телефон:</span>
-            <span className={classes.settingsText}>+7 912 217 63 50</span>
+            <span className={classes.settingsText}>{currentUser.telephone}</span>
           </div>
           <div className={classes.settingsLine}>
             <span className={classes.settingsTitle}>Email:</span>
             <span className={classes.settingsText}>
-              anisimov_ilya26@mail.ru
+              {currentUser.email}
             </span>
           </div>
         </div>
@@ -36,9 +38,9 @@ const AccountSettings = () => {
           </button>
         </div>
           </div>
-      <AccountQuestions modal={false} />
+      <AccountQuestions modal={false} currentUser={currentUser} />
       <ModalWindow id="edit">
-      <AccountEditUserPage/>
+      <AccountEditUserPage currentUser={currentUser}/>
       </ModalWindow>
       
       

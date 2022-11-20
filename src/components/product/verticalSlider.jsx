@@ -60,7 +60,7 @@ const VerticalSlider = ({activeIndex, onChangeIndex, id, images}) => {
           return (
             <SwiperSlide style={{padding: "10px"}} key={img._id}>
           <button id={index} onClick={()=>{onChangeIndex(index)}} cursor={"pointer"} className="butt">
-          <img cursor={"pointer"} className={"image " + (activeIndex === index ? "active" : "")} src={require(`../../images/product/productsLibrary/${id}/${img.link}`)} alt="" />
+          <img cursor={"pointer"} className={"image " + (activeIndex === index ? "active" : "")} src={require(`../../images/product/productsLibrary/${img}`)} alt="" />
           </button>
         </SwiperSlide>
           )

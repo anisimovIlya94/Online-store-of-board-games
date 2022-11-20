@@ -8,11 +8,15 @@ import Pagination from "../../catalog/pagination";
 import Quastion from "../../catalog/quastion";
 import CatalogProductCards from "../../catalog/catalogProductCards";
 import { useCatalog } from "../../hooks/useCatalog";
+import { useParams } from "react-router-dom";
 
 const CatalogPage = () => {
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const { products } = useCatalog()
+  const { isLoading, getProducts} = useCatalog()
+  const { category, sub } = useParams()
+  const products = getProducts(category, sub)
+  // console.log(products)
   useEffect(() => {
     setCurrentPage(1)
     window.scrollTo(0, 200)
@@ -24,6 +28,12 @@ const CatalogPage = () => {
   const count = products.length;
   const pageSize = 12;
   const productsCrop = paginate(products, currentPage, pageSize);
+  // if (isLoading) {
+  //   return (<div class="spinner-border text-warning" role="status">
+  //   <span class="visually-hidden">Loading...</span>
+  // </div>)
+  // }
+
   return (
     <>
       <div className={classes.catalogBanner}>
@@ -41,7 +51,13 @@ const CatalogPage = () => {
         <div className={classes.catalogSorting}>
           <CatalogSort />
         </div>
-        <CatalogProductCards productsCrop={productsCrop}/>
+        {isLoading
+          ? <div className={classes.loading}>
+            <div style={{width: "5rem", height: "5rem"}} className="spinner-border text-warning" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+          </div>
+          :<CatalogProductCards productsCrop={productsCrop} />}
       </div>
       <Pagination
         itemCount={count}

@@ -55,11 +55,11 @@
    background-color: #f1f1f1;
    position: absolute;
    content: '';
-   top: 70px;
+   top: 0px;
    left: 0;
    display: flex;
    border-bottom: 2px solid rgba(42, 42, 42, 0.26);
-   overflow: hidden;
+   /* overflow: hidden; */
    /* z-index: 50; */
 }
 .closeBtn{
@@ -109,4 +109,7 @@
 .hh{
    margin: 40px 0 0 0px;
    /* text-align: left; */
+}
+.open{
+   margin-top: 70px;
 }

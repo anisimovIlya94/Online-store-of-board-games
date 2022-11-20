@@ -133,7 +133,7 @@
     padding: 20px;
 }
 .mainCardWrapper:hover{
-    box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
+    box-shadow: 5px 3px 16px rgba(42, 42, 42, 0.16);
 }
 .mainCardTitle{
     font-family: 'Trebuchet MS';

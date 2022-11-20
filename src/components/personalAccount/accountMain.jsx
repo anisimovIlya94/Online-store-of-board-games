@@ -5,10 +5,14 @@ import AccountUserRangs from './accountUserRangs';
 import MainCardButton from '../main/buttons/mainCardButton';
 import MainCard from '../main/mainCard';
 import AccountUserInfo from './accountUserInfo';
+import { useAuth } from '../hooks/useAuth';
+import { useCatalog } from '../hooks/useCatalog';
 
 const AccountMain = () => {
-    let status;
-  const bought = 15100;
+  let status;
+  const { currentUser } = useAuth()
+  const {getProductById, isLoading} = useCatalog()
+  const bought = currentUser.bought;
   if (bought <= 5000) {
     status = {name:"Новичок", discount: '5%', color: '#CD7F32', background: 'linear-gradient(#573716, #2A2A2A)'}
   } else if (bought > 5000 && bought <= 10000) {
@@ -59,7 +63,7 @@ const AccountMain = () => {
             </div> */}
           <div className='d-flex'>
           <AccountUserInfo />
-          <span className={classes.userName}>Анисимов Илья</span>
+            <span className={classes.userName}>{currentUser.name + " " + currentUser.secondName}</span>
           </div>
           
             <div>
@@ -118,20 +122,22 @@ const AccountMain = () => {
               })}
             </div>
             <div>
-              <p className={classes.userCardTitle}>Рекомендуем для вас</p>
+              <p className={classes.userCardTitle}>Ранее просматривали</p>
               <div className={classes.recommendedWrapper}>
                 <div className="container text-center">
                   <div className="row row-cols-3">
-                    {/* {recommendations.map((rec) => {
+                  {!isLoading && currentUser.viewed.map((prod) => {
+                    const product = getProductById(prod)
+                    // console.log(product)
                       return (
                         <div
-                          key={rec.id}
+                          key={product._id}
                           className={"col " + classes.recomendation}
                         >
-                          <MainCard />
+                          <MainCard cardInformation={product} />
                         </div>
                       );
-                    })} */}
+                    })}
                   </div>
                 </div>
               </div>

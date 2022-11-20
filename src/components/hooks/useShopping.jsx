@@ -1,31 +1,88 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from "react";
+import { useAuth } from "./useAuth";
+import { useCatalog } from "./useCatalog";
 
 const ShoppingContext = React.createContext();
 
 export const useShopping = () => {
-    return useContext(ShoppingContext)
-}
-const initialState = [{ src: "warhammer-card.jpg", label: "Вампирский Манчкин",name:"Vampir", currentPrice: 743, bigPrice: null, id: "ad1"},
-    { src: "warhammer-card.jpg", label: "Wharhammer40,000: Craftworlds Farseer",name:"Wharhammer", currentPrice: 5990, bigPrice: 6490,id: "ad2"}]
+  return useContext(ShoppingContext);
+};
 
 const ShoppingProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState(initialState)
-    const [promos, setPromos] = useState(["fdf", "123", "234"])
-    const updateCartItems = (item) => {
-        setCartItems((prevState) => ([...prevState, item]))
+  const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [prodsWithPrice, setProds] = useState([]);
+  const { currentUser, updateUserData } = useAuth();
+  const { getProductById, isLoading: catalogLoading } = useCatalog();
+  const handleGetItems = () => {
+    if (currentUser) {
+      const cart = currentUser.shoppingCart.reduce((acc, product, index) => {
+        if (index > 0) {
+          acc.push(getProductById(product));
+        }
+        return acc;
+      }, []);
+      setCartItems(cart);
+      setLoading(false);
     }
-    const getCartItemsCount = () => {
-        return cartItems.length
+    
+    };
+    const handleLoadProdsWithPrice = () => {
+        setProds(cartItems.map((prod) => {
+            return { name: prod.name, price: prod.currentPrice }
+        }))
+  }
+  const getItemById = (id) => {
+    if (currentUser) {
+      return currentUser.shoppingCart.includes(id)
     }
-    const removeItem = (itemId) => {
-        setCartItems((prevState) => {
-            return prevState.filter((item)=>item.id !== itemId)
-        })
-    }
-    return (<ShoppingContext.Provider value={{ updateCartItems, getCartItemsCount, cartItems, removeItem, promos }}>
-        {children}
-    </ShoppingContext.Provider>
+    return false
+  }
+    const handleChangePrice = (name, price) => {
+        setProds((prevState) =>
+          prevState.map((order) => {
+            if (order.name === name) {
+              return { ...order, price: price };
+            }
+            return order;
+          })
+        );
+      };
+    useEffect(() => {
+        handleLoadProdsWithPrice()
+    }, [cartItems])
+    const resultPrice = prodsWithPrice.reduce((acc, order) => {
+        return (acc += order.price);
+    }, 0);
+  const removeItem = (id) => {
+    const filteredItems = currentUser.shoppingCart.filter(
+      (prod) => prod !== id
     );
-}
+    setCartItems(cartItems.filter((item) => item._id !== id))
+      updateUserData({ ...currentUser, shoppingCart: filteredItems });
+  };
+  useEffect(() => {
+    if (!catalogLoading) {
+      handleGetItems();
+    }
+  }, [catalogLoading]);
+  // const [promos, setPromos] = useState(["fdf", "123", "234"])
+  // const updateCartItems = (item) => {
+  //     setCartItems((prevState) => ([...prevState, item]))
+  // }
+  // const getCartItemsCount = () => {
+  //     return cartItems.length
+  // }
+  // const removeItem = (itemId) => {
+  //     setCartItems((prevState) => {
+  //         return prevState.filter((item)=>item.id !== itemId)
+  //     })
+  // }
+  return (
+    <ShoppingContext.Provider value={{ cartItems, isLoading, removeItem, resultPrice, handleChangePrice, getItemById }}>
+      {children}
+    </ShoppingContext.Provider>
+  );
+};
 
-export default ShoppingProvider
+export default ShoppingProvider;

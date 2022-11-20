@@ -15,14 +15,6 @@
    position: relative;
    margin: 0 30px 0 0;
 }
-.input{
-   width:  555px;
-   min-height: 38px;
-   border-radius: 9px;
-   background-color:#f1f1f1;
-   padding: 0 0 0 12px;
-   font-size: 20px;
-}
 @media (max-width: 1200px) {
    .input{
       width: 355px;
@@ -70,4 +62,76 @@
    background-color: #2A2A2A;
    max-width: 100%;
    margin: 0 0 0 40px;
+}
+.fff{
+   background-color:#2A2A2A;
+   transform: translate(0,2px);
+   color: #FFFFFF;
+}
+.searchingDropdown{
+   width: 100%;
+}
+.searchingImage{
+   width: 80px;
+   height: 80px;
+   margin-left: 10px;
+}
+.searchingCardInfo{
+   margin-left: 30px;
+   color: #2A2A2A;
+}
+.searchingCardName{
+   font-size: 20px;
+   font-weight: 700;
+   color: #2A2A2A;
+}
+.searchingCardName:hover{
+   color:#FB791B;
+}
+.searchingCardPrice{
+   font-size: 17px;
+   font-weight: 500;
+   margin-top: 20px;
+   color: #2A2A2A;
+}
+.input{
+   width: 555px;
+   min-height: 38px;
+   border-radius: 9px;
+   background-color:#f1f1f1;
+   padding: 0 0 0 12px;
+   font-size: 20px;
+}
+.searchingLinkAll{
+   font-size: 17px;
+   font-weight: 500;
+   margin-top: 20px;
+   color: #2A2A2A;
+}
+.searchingLinkAll:hover{
+   color:#FB791B;
+}
+.adminButton{
+   font-size: 26px;
+   color: #FFFFFF;
+   display: inline-block;
+   transform: translate(0,5px);
+   background-color: inherit;
+}
+.adminButton:hover{
+   color:#FB791B;
+}
+.adminLink, .adminOut{
+   font-size: 18px;
+   padding: 10px;
+   /* margin-bottom: 20px; */
+   color: #2A2A2A;
+}
+.adminOut{
+   /* margin-top: 10px; */
+   margin: 10px 0 0 50px;
+   background-color: inherit;
+}
+.adminLink:hover, .adminOut:hover{
+   color: #FB791B;
 }

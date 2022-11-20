@@ -8,8 +8,12 @@ import master from '../images/footer/cart_master.svg'
 import VkLogo from './vkLogo'
 import ModalWindow from './modalWindow/modalWindow'
 import AccountQuestions from './personalAccount/accountQuestions'
+import { useCategory } from './hooks/useCategory'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
+   const { categories, isLoading } = useCategory()
+   // console.log(categories)
   return (
    <footer className={classes.footer}>
          <div className={classes.upDetail}>
@@ -22,13 +26,13 @@ const Footer = () => {
                      </div>
                   </div>
                   <div className="col">
-                     <div className={classes.catalog}>
-                        <FooterLink name='Каталог' styles={classes.link} />
-                        <FooterLink name='Настольные игры' styles={classes.miniLink} />
-                        <FooterLink name='Warhammer 40000' styles={classes.miniLink} />
-                        <FooterLink name='Аксессуары для игр' styles={classes.miniLink} />
-                        <FooterLink name='Краски' styles={classes.miniLink} />
-                        <FooterLink name='Аксессуары для моделизма' styles={classes.miniLink}/>
+                    <div className={classes.catalog}>
+                       <Link to={"/catalog"} className={classes.link}>Каталог</Link>
+                       {!isLoading && categories.map((category) => {
+                          return <div className={classes.category} key={category._id}>
+                             <Link className={classes.miniLink} to={`/catalog/${category._id}`}>{category.name}</Link>
+                          </div>
+                       })}
                      </div>
                   </div>
                   <div className="col">

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
 import classes from "../../../modules/account.module.css";
 import Navigation from "../../navigation";
 import AccountMain from "../../personalAccount/accountMain";
@@ -8,7 +8,6 @@ import AccountSettings from "../../personalAccount/accountSettings";
 
 const PersonalAccountPage = () => {
   const { accountPage } = useParams()
-  // console.log(accountPage)
   const history = useHistory();
   const handleReturnToAccountPage = (page) => {
     history.push(`/persaccount${page}`)
@@ -48,9 +47,12 @@ const PersonalAccountPage = () => {
           </ul>
         </div>
         <div className={classes.accountRight}>
-          {!accountPage && <AccountMain />}
-          {accountPage === "orders" && <AccountOrders />}
-          {accountPage === "settings" && <AccountSettings/>}
+          <Switch>
+            <Route exact path="/persaccount" component={AccountMain} />
+            <Route path="/persaccount/orders" component={AccountOrders} />
+            <Route path="/persaccount/settings" component={AccountSettings} />
+            <Redirect from="/persaccount/*" to="/persaccount"/>
+          </Switch>
         </div>
         
         

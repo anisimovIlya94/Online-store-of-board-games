@@ -1,15 +1,15 @@
 import React from "react";
 import classes from "../../modules/textField.module.css"
 
-const ModalWindow = ({ children, id }) => {
+const ModalWindow = ({ children, id, reference }) => {
   return (
     <div
       className="modal fade"
       id={id}
+      ref={reference ? reference : null}
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-      // style={{display: "block"}}
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className={"modal-content " + classes.editModuleWidth}>

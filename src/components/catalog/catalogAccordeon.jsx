@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
 import classes from "../../modules/catalog.module.css";
 import { Link } from "react-router-dom";
-import { getSubcategoriesByCategory } from "../../fakeAPI/subcategories";
+// import { getSubcategoriesByCategory } from "../../fakeAPI/subcategories";
+import { useCategory } from "../hooks/useCategory";
 
 const Accordeon = ({ displayName, onDisplay, name, title }) => {
   const display = name === displayName;
@@ -16,6 +17,7 @@ const Accordeon = ({ displayName, onDisplay, name, title }) => {
     });
     display ? newCollapse.show() : newCollapse.hide();
   }, [display]);
+  const {getSubcategoriesByCategory} = useCategory()
   const subcategories = getSubcategoriesByCategory(name);
   return (
     <div className={"card my-2 "} style={{ border: "1px solid #fff" }}>

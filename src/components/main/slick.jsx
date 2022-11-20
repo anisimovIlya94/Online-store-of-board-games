@@ -49,7 +49,6 @@ const difference = items.length - currentItems;
                         activeIndex={activeIndex}
                         responsive={responsive}
                         onSlideChanged={syncActiveIndex}
-                        direction={'column'}
                     />
                     <button className={classes.rightButton} style={{backgroundColor: "#fcf3ed"}} disabled={activeIndex===difference ? true : false} onClick={slideNext}>
                         <img src={arrowRight} alt="" />

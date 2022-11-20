@@ -17,7 +17,7 @@ const HorisontalSlider = ({ activeIndex, onChangeIndex, id, images }) => {
         <img
           key={index + 4555}
           className={classes.horisontalImage1}
-          src={require(`../../images/product/productsLibrary/${id}/${img.link}`)}
+          src={require(`../../images/product/productsLibrary/${img}`)}
           alt=""
         />
       );

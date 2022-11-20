@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
-import categories from "../../fakeAPI/categories";
+// import categories from "../../fakeAPI/categories";
 import Accordeon from "./catalogAccordeon";
 import classes from "../../modules/catalog.module.css"
 import { Link } from "react-router-dom";
+import { useCategory } from "../hooks/useCategory";
 
 
 const CatalogSortCategorias = () => {
 const [display, setDisaplay] = useState(true);
     const [displayName, setDisplayName] = useState('')
     const collapseRef = useRef();
+    const {categories, isLoading} = useCategory()
     const handleDisplayName = (name) => {
         if(name !== displayName){
             setDisplayName(name);
@@ -27,7 +29,9 @@ const [display, setDisaplay] = useState(true);
         });
         display ? newCollapse.show() : newCollapse.hide();
     }, [display]);
-
+    // if (isLoading) {
+    //     return "Loading..."
+    // }
     return (
         <div style={{border: "1px solid #fff"}} className={"card my-2 " + classes.catalogSortWrapper}>
             <div className={"card-body " + classes.borderBottom}>
@@ -43,7 +47,7 @@ const [display, setDisaplay] = useState(true);
                     ></i>
                 </div>
                 <div className="collapse" ref={collapseRef} id={"name" + "title"}>
-                    {categories.map((category) => {
+                    {!isLoading && categories.map((category) => {
                         return <Accordeon key={category._id} name={category._id} onDisplay={handleDisplayName} displayName={displayName} title={category.name}/>
                     })}
                     {/* <Accordeon name="1" onDisplay={handleDisplayName} displayName={displayName} title="Настольные игры"/>

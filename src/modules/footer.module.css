@@ -22,7 +22,7 @@
    margin: 16px 0 0 0;
 }
 .catalog{
-   max-width: 151px;
+   width: 171px;
 }
 .links,.catalog{
    text-align: left;
@@ -116,4 +116,7 @@ transform: translate(0,-25%);
 
 .right{
    text-align: right;
+}
+.category{
+   margin-top: 10px;
 }

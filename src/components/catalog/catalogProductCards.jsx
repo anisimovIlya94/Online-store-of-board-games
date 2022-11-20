@@ -7,7 +7,7 @@ const CatalogProductCards = ({ productsCrop }) => {
       return <h2>Товары не найдены</h2>
     }
     return (
-        <div className={"container text-center "}>
+        <div className={"container text-center " + classes.center}>
           <div className={"row row-cols-3 " + classes.catalogTable}>
             {productsCrop.map((product) => {
               return (
