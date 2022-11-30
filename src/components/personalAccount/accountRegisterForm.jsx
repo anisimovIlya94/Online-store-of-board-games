@@ -4,7 +4,9 @@ import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import CheckBoxField from "../common/form/checkBoxField";
 import { validator } from "../../utils/validator";
 import classes from "../../modules/textField.module.css";
-import { useAuth } from "../hooks/useAuth";
+import { signUp as signUpRedux } from "../../store/user";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const AccountRegisterForm = () => {
   const [data, setData] = useState({
@@ -19,7 +21,8 @@ const AccountRegisterForm = () => {
   const [errors, setErrors] = useState({});
   const [hoverButton, setHoverButton] = useState(false);
   const [submited, setSubmited] = useState(false)
-  const { signUp } = useAuth()
+  const dispatch = useDispatch()
+  const history = useHistory()
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
@@ -45,8 +48,11 @@ const isValid = Object.keys(errors).length === 0;
     if (!isValid) return;
     const transformData = { ...data }
     delete transformData.secondPassword
-    signUp(transformData)
-    // console.log(data);
+    dispatch(signUpRedux(data)).then(() => {
+      // setTimeout(() => {
+        history.replace("/")
+    //   },1000)
+    })
   };
   const validatorConfig = {
     email: {
@@ -180,7 +186,7 @@ const isValid = Object.keys(errors).length === 0;
             hoverButton={hoverButton}
             icon={false}
             buttonWidth={"250px"}
-            modal={true}
+            modal={false}
             disabled={!isValid}
           />
         </div>

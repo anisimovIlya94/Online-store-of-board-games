@@ -3,20 +3,20 @@ import TextField from "../common/form/textField";
 import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import { validator } from "../../utils/validator";
 import classes from "../../modules/textField.module.css";
-import { useAuth } from "../hooks/useAuth";
+import { getAuthError, logIn as logInRedux } from "../../store/user";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const AccountLoginUserPage = ({path}) => {
+const AccountLoginUserPage = ({path, closeModal}) => {
   const [data, setData] = useState({
     password: "",
     email: "",
   });
   const history = useHistory()
-  // console.log(path.includes("login"))
-  const { error: loginError } = useAuth()
-  const {logIn} = useAuth()
+  const loginError = useSelector(getAuthError())
   const [errors, setErrors] = useState({});
+  const dispatch = useDispatch()
   const [hoverButton, setHoverButton] = useState(false);
   // const [submited, setSubmited] = useState(false)
   const toggleHoverButton = () => {
@@ -44,13 +44,15 @@ const isValid = Object.keys(errors).length === 0;
     e.preventDefault();
     // setSubmited(true)
     const isValid = validate();
-        if (!isValid) return;
-    const status = logIn(data)
+    if (!isValid) return;
+    const status = dispatch(logInRedux(data))
     status.then(() => {
       if (path && path.includes("login")) {
-        // console.log(path)
-        history.replace("/main")
-        }
+        history.replace("/")
+      } else {
+        history.replace("/persaccount")
+      }
+      
     })
   };
   const validatorConfig = {

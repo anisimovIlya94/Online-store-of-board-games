@@ -3,21 +3,22 @@ import classes from "../../modules/main.module.css";
 import MainCardButton from "./buttons/mainCardButton";
 import { useShopping } from "../hooks/useShopping";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser, updateUser } from "../../store/user";
 
 const MainCard = ({cardInformation}) => {
   const [hoverButton, setHoverButton] = useState(false);
-  const { updateUserData, currentUser } = useAuth()
+  const currentUser = useSelector(getCurrentUser())
+  const dispatch = useDispatch()
   const { getItemById } = useShopping()
   const isInCart = getItemById(cardInformation._id)
   const history = useHistory();
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
-  // console.log(cardInformation)
   const handleAddToCart = () => {
     if (!isInCart) {
-      updateUserData({...currentUser,shoppingCart: [...currentUser.shoppingCart, cardInformation._id]})
+      dispatch(updateUser({...currentUser,shoppingCart: [...currentUser.shoppingCart, cardInformation._id]}))
     }
       
   }

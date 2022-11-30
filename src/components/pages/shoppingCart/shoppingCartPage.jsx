@@ -6,8 +6,8 @@ import ShoppingCardButton from "../../shoppingCart/shoppingCartButton";
 // import { useShopping } from "../../hooks/useShopping";
 import { useHistory } from "react-router-dom";
 import { useShopping } from "../../hooks/useShopping";
-import { useAuth } from "../../hooks/useAuth";
-// import { useAuth } from "../../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { getCurrentUser } from "../../../store/user";
 // import { useCatalog } from "../../hooks/useCatalog";
 
 const ShoppingCart = () => {
@@ -17,13 +17,12 @@ const ShoppingCart = () => {
   const [error, setError] = useState("");
   // const [data, setData] = useState({});
   // const [allPrice, setAllPrice] = useState([]);
-  // const { currentUser } = useAuth()
   const history = useHistory();
   const { cartItems,
     isLoading,
     resultPrice } = useShopping()
   // const isLoading = true
-  const {currentUser} = useAuth()
+  const currentUser = useSelector(getCurrentUser())
   // const { getProductById, isLoading } = useCatalog()
   // const handleGetItems = () => {
   //   const cart = currentUser.shoppingCart.filter((product) => {

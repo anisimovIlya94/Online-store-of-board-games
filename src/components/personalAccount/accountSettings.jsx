@@ -4,13 +4,17 @@ import AccountUserInfo from "./accountUserInfo";
 import AccountQuestions from "./accountQuestions";
 import AccountEditUserPage from "./accountEditUserPage";
 import ModalWindow from "../modalWindow/modalWindow";
-import { useAuth } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { getCurrentUser } from "../../store/user";
 
 const AccountSettings = () => {
   const [isModuleWindow, setModuleWindow] = useState(false)
-  const { currentUser } = useAuth()
+  const currentUser = useSelector(getCurrentUser())
   const handleOpenModule = () => {
     setModuleWindow((prevState)=>!prevState);
+  }
+  if (!currentUser) {
+    return "Loading..."
   }
   return (
     <div style={{margin: "0 0 30px 50px"}}>

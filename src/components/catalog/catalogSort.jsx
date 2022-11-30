@@ -4,15 +4,19 @@ import CatalogSortRanges from "./catalogSortRanges";
 import CatalogSortingTimeToPlay from "./catalogSortTimeToPlay";
 import { useCatalog } from "../hooks/useCatalog";
 import classes from "../../modules/catalog.module.css"
+import { useDispatch, useSelector } from "react-redux";
+import { editFilters, getFilters } from "../../store/catalog";
 
 const CatalogSort = () => {
-    const { filters, handleChangeFilters } = useCatalog()
+    // const { filters, handleChangeFilters } = useCatalog()
+    const filters = useSelector(getFilters())
+    const dispatch = useDispatch()
     const [data, setData] = useState(filters)
     const handleChange = (name, content) => {
         setData((prevState)=>({...prevState, [name]:content}))
     }
     const handleSubmit = () => {
-        handleChangeFilters(data)
+        dispatch(editFilters(data))
     }
     return (
         <>

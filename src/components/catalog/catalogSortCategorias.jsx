@@ -3,7 +3,7 @@ import { Collapse as BsCollapse } from "bootstrap";
 // import categories from "../../fakeAPI/categories";
 import Accordeon from "./catalogAccordeon";
 import classes from "../../modules/catalog.module.css"
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useCategory } from "../hooks/useCategory";
 
 
@@ -36,7 +36,7 @@ const [display, setDisaplay] = useState(true);
         <div style={{border: "1px solid #fff"}} className={"card my-2 " + classes.catalogSortWrapper}>
             <div className={"card-body " + classes.borderBottom}>
                 <div className={"d-flex justify-content-between " + classes.allCategoriasButton}>
-                    <Link className={classes.accordeonNavlinkAll} to={"/catalog"}>{"Все категории"}</Link>
+                    <NavLink activeClassName={classes.accordeonNavlinkAllActive} className={classes.accordeonNavlinkAll} to={"/catalog"}>{"Все категории"}</NavLink>
                     <i
                         className={
                             "bi bi-caret-" +

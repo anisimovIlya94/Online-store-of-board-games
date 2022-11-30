@@ -5,14 +5,16 @@ import AccountUserRangs from './accountUserRangs';
 import MainCardButton from '../main/buttons/mainCardButton';
 import MainCard from '../main/mainCard';
 import AccountUserInfo from './accountUserInfo';
-import { useAuth } from '../hooks/useAuth';
 import { useCatalog } from '../hooks/useCatalog';
+import { useSelector } from 'react-redux';
+import { getCurrentUser, getLoadingStatus } from '../../store/user';
 
 const AccountMain = () => {
   let status;
-  const { currentUser } = useAuth()
+  const currentUser = useSelector(getCurrentUser())
+  const userLoading = useSelector(getLoadingStatus())
   const {getProductById, isLoading} = useCatalog()
-  const bought = currentUser.bought;
+  const bought = currentUser ? currentUser.bought : 0;
   if (bought <= 5000) {
     status = {name:"Новичок", discount: '5%', color: '#CD7F32', background: 'linear-gradient(#573716, #2A2A2A)'}
   } else if (bought > 5000 && bought <= 10000) {
@@ -61,10 +63,13 @@ const AccountMain = () => {
               />
               <span className={classes.userName}>Анисимов Илья</span>
             </div> */}
-          <div className='d-flex'>
-          <AccountUserInfo />
-            <span className={classes.userName}>{currentUser.name + " " + currentUser.secondName}</span>
-          </div>
+          { currentUser && !userLoading &&
+            <div className='d-flex'>
+            <AccountUserInfo />
+              <span className={classes.userName}>{currentUser.name + " " + currentUser.secondName}</span>
+            </div>
+          }
+          
           
             <div>
               <span className={classes.icon}>
@@ -120,7 +125,8 @@ const AccountMain = () => {
                   </div>
                 );
               })}
-            </div>
+          </div>
+          {currentUser && !userLoading && currentUser.viewed.length > 1 &&
             <div>
               <p className={classes.userCardTitle}>Ранее просматривали</p>
               <div className={classes.recommendedWrapper}>
@@ -128,7 +134,6 @@ const AccountMain = () => {
                   <div className="row row-cols-3">
                   {!isLoading && currentUser.viewed.map((prod) => {
                     const product = getProductById(prod)
-                    // console.log(product)
                       return (
                         <div
                           key={product._id}
@@ -142,6 +147,7 @@ const AccountMain = () => {
                 </div>
               </div>
             </div>
+          }
           </div>
         </div>
      );

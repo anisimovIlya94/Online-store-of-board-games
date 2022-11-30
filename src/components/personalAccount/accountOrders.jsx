@@ -5,7 +5,7 @@ import classes from "../../modules/account.module.css"
 const AccountOrders = () => {
     const history = useHistory();
     const handleReturnToCatalog = () => {
-        history.push('/catalog');
+        // history.push('/catalog');
     }
     return ( 
         <div>

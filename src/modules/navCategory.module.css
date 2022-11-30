@@ -3,13 +3,18 @@
    position: relative;
    max-width: 100%;
 }
-.link{
+.link, .activeLink{
    font-family: 'Trebuchet MS';
    font-style: normal;
    font-weight: 700;
    font-size: 16px;
-   color: #2A2A2A;
    white-space: nowrap;
+}
+.link{
+   color: #2A2A2A;
+}
+.activeLink{
+   color: #FB791B;
 }
  .link:hover{
    color: #FB791B;

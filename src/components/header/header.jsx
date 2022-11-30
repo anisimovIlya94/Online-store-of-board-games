@@ -12,20 +12,29 @@ import ModalWindow from "../modalWindow/modalWindow";
 import AccountEditUserPage from "../personalAccount/accountEditUserPage";
 import AccountQuestions from "../personalAccount/accountQuestions";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { useCatalog } from "../hooks/useCatalog";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser, getLoadingStatus, getLoggedInStatus, logOut as logOutRedux } from "../../store/user";
 
 const Header = ({ onToggleCatalog }) => {
+  
   const [account, setAccount] = useState(false);
   const [cart, setCart] = useState(false);
   const [burger, setBurger] = useState(false);
   const [searchShow, setSearchShow] = useState(false)
   const [searchingInput, setInput] = useState('')
   const [searchingProducts, setSearchingProducts] = useState([])
-  const { logOut, isAdmin } = useAuth()
-  const {getProductsByName} = useCatalog()
+  const { getProductsByName } = useCatalog()
+  const dispatch = useDispatch()
   const history = useHistory();
-  const isAuth = localStorage.getItem("user-id-key");
+  const currentUser = useSelector(getCurrentUser())
+  const userLoading = useSelector(getLoadingStatus())
+  // console.log(currentUser)
+  const isLoggedIn = useSelector(getLoggedInStatus())
+  // useEffect(() => {
+  //   console.log(userLoading)
+  //   console.log(isLoggedIn)
+  // },[currentUser])
   const handleToggleAccount = () => {
     setAccount(!account);
   };
@@ -39,7 +48,8 @@ const Header = ({ onToggleCatalog }) => {
     history.replace("/");
   };
   const handleLogOut = () => {
-    logOut()
+    dispatch(logOutRedux())
+    // logOut()
   }
   const handleGoingToAccount = (adress) => {
     history.replace(`/persaccount/${adress}`);
@@ -109,8 +119,8 @@ const Header = ({ onToggleCatalog }) => {
                 <p className={classes.telephoneNumber}>+7 (495) 911-10-11</p>
               </div>
               <div className="col">
-                {isAuth ? (
-                  isAdmin
+                {!userLoading && isLoggedIn ? (
+                  currentUser && currentUser.isAdmin
                     ? <div className="col">
                     <button className={classes.adminButton} data-bs-toggle="dropdown"
                       aria-expanded="false">

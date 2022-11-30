@@ -221,8 +221,20 @@
     color: rgba(42, 42, 42, 0.85);
     display: inline-block;
 }
+.accordeonNavlinkAllActive{
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    display: inline-block;
+    color: #FB791B;
+}
 .accordeonNavlink{
     margin-top: 10px;
+}
+.accordeonNavlinkActive{
+    font-family: 'Trebuchet MS';
+    font-size: 16px;
+    display: inline-block;
+    color: #FB791B;
 }
 .accordeonNavlink:hover, .accordeonNavlinkAll:hover{
     color: #FB791B;

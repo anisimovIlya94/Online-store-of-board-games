@@ -1,17 +1,18 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 // import PropTypes from "prop-types";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { getLoggedInStatus } from "../../store/users";
-import { useAuth } from "../hooks/useAuth";
+import { getCurrentUser, getLoadingStatus } from "../../store/user";
 
 function ProtectedAdminRoute({ component: Component, children, ...rest }) {
-    const {isAdmin} = useAuth();
+    const currentUser = useSelector(getCurrentUser())
+    const isLoading = useSelector(getLoadingStatus())
     return (
         <Route
             {...rest}
             render={(props) => {
-                if (!isAdmin) {
+                if ((!currentUser && !isLoading) || (!isLoading && !currentUser.isAdmin )) {
                     return (
                         <Redirect
                             to={{

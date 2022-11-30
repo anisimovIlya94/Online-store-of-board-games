@@ -1,24 +1,79 @@
 import React, { useState, useEffect } from "react";
 import classes from "../../../modules/catalog.module.css";
 import Navigation from "../../navigation";
-// import MainCard from "../../main/mainCard";
 import CatalogSort from "../../catalog/catalogSort";
 import { paginate } from "../../../utils/paginate";
 import Pagination from "../../catalog/pagination";
 import Quastion from "../../catalog/quastion";
 import CatalogProductCards from "../../catalog/catalogProductCards";
-import { useCatalog } from "../../hooks/useCatalog";
 import { useParams } from "react-router-dom";
+import { getCatalogLoadingStatus, getFilteredStatus, getFilters, getProductsRedux } from "../../../store/catalog";
+import { useSelector } from "react-redux";
 
 const CatalogPage = () => {
-  const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const { isLoading, getProducts} = useCatalog()
   const { category, sub } = useParams()
-  const products = getProducts(category, sub)
-  // console.log(products)
+  const productsRedux = useSelector(getProductsRedux())
+  const filtered = useSelector(getFilteredStatus())
+  const filters = useSelector(getFilters())
+  const catalogLoading = useSelector(getCatalogLoadingStatus())
+
+  const getProductsByCategory = (categoryId, categoryName, isRecomendation, prodId) => {
+    const ii = productsRedux.filter((prod) => {
+      return prod[categoryName].includes(categoryId);
+    });
+  if (isRecomendation) {
+      return ii.filter((prod)=>prod._id !== prodId).slice(0,7)
+    }
+  return ii;
+};
+  
+  const getProductsAllRedux = (category, sub) => {
+    let result;
+      if (category) {
+        if (sub) {
+          result = getProductsByCategory(sub, "subcategories");
+          return (filtered ? handleFilter(result) : result)
+        }
+        result = getProductsByCategory(category, "categories");
+        return (filtered ? handleFilter(result) : result)
+      } else {
+        result = productsRedux
+        return (filtered ? handleFilter(result) : result)
+    }
+    
+  };
+  
+  const handleFilter = (products) => {
+    const resultArray = []
+    const timeChecked = filters.time.filter((t) => t.checked === true)
+    let filterTime;
+    if (timeChecked.length > 0) {
+      filterTime = timeChecked.length > 1 ? 60 : timeChecked[0].time
+    }
+        if (!catalogLoading) {
+            for (const prod of products) {
+                const isAdult = prod.age >= filters.age.min && prod.age <= filters.age.max
+                const isCorrectPrice = prod.currentPrice >= filters.currentPrice.min && prod.currentPrice <= filters.currentPrice.max
+                const isCorrectTime = (prod.time && timeChecked.length > 0) ? (prod.time.max >= filterTime) : true
+              const isCorrectQuantity = prod.quantity ? (prod.quantity.min <= filters.quantity.min && prod.quantity.max >= filters.quantity.max) : true
+                if (isAdult && isCorrectPrice && isCorrectQuantity && isCorrectTime) {
+                    resultArray.push(prod)
+                }
+          }
+          return resultArray
+        } else {
+          return []
+        }
+        
+  }
+  
+  const products = catalogLoading ? [] : getProductsAllRedux(category, sub)
   useEffect(() => {
     setCurrentPage(1)
+},[category, sub])
+
+  useEffect(() => {
     window.scrollTo(0, 200)
   },[products])
   const handlePageChange = (pageIndex) => {
@@ -28,11 +83,6 @@ const CatalogPage = () => {
   const count = products.length;
   const pageSize = 12;
   const productsCrop = paginate(products, currentPage, pageSize);
-  // if (isLoading) {
-  //   return (<div class="spinner-border text-warning" role="status">
-  //   <span class="visually-hidden">Loading...</span>
-  // </div>)
-  // }
 
   return (
     <>
@@ -51,7 +101,7 @@ const CatalogPage = () => {
         <div className={classes.catalogSorting}>
           <CatalogSort />
         </div>
-        {isLoading
+        {catalogLoading
           ? <div className={classes.loading}>
             <div style={{width: "5rem", height: "5rem"}} className="spinner-border text-warning" role="status">
           <span className="visually-hidden">Loading...</span>

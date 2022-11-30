@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import TextField from "../common/form/textField";
 import classes from "../../modules/admin.module.css";
-import { useRecomendations } from "../hooks/useRecomendations";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSpecialOffers, changeTimeToBuy, getRecomendationsStatus, getSpecialOffers, getTimeToBuy } from "../../store/recomendations";
 
 const AdminRecomendations = () => {
   const [data, setData] = useState({
     timeToBuy: "",
     specialOffers: "",
   });
+  const dispatch = useDispatch()
   const handleChangeData = () => {
     setData({
       timeToBuy: timeToBuy.map((code) => code.value).join(","),
@@ -16,7 +18,9 @@ const AdminRecomendations = () => {
     });
   };
   const [selectedRecomendation, setSelectedRecomendation] = useState();
-  const { timeToBuy, specialOffers, isLoading, handleChangeTimeToBuy, handleChangeSpecialOffers } = useRecomendations();
+  const timeToBuy = useSelector(getTimeToBuy())
+  const specialOffers = useSelector(getSpecialOffers())
+  const isLoading = useSelector(getRecomendationsStatus())
   useEffect(() => {
     if (!isLoading) {
       handleChangeData();
@@ -32,21 +36,11 @@ const AdminRecomendations = () => {
         const resultArray = data[recName].split(",").map((code) => {
             return {_id: nanoid(), value: +code}
         })
-        recName === "timeToBuy" ? handleChangeTimeToBuy(resultArray) : handleChangeSpecialOffers(resultArray)
+      recName === "timeToBuy"
+        ? dispatch(changeTimeToBuy(resultArray))
+        : dispatch(changeSpecialOffers(resultArray))
         setSelectedRecomendation()
     }
-    // const handleSubmitSpecialOffers = () => {
-    //     const resultArray = data.specialOffers.split(",").map((code) => {
-    //         return {_id: nanoid(), value: +code}
-    //     })
-    //     handleChangeSpecialOffers(resultArray)
-    // }
-  // const getTimeToByCodes = () => {
-  //     return timeToBuy.map((code)=>code.value).join(",")
-  // }
-  // const getSpecialOffersCodes = () => {
-  //     return specialOffers.map((code)=>code.value).join(",")
-  // }
   return (
     <div className={classes.adminAddWrapper}>
       <table className="table mb-5">
@@ -64,7 +58,6 @@ const AdminRecomendations = () => {
               <td style={{ transform: "translate(0,-20px)" }}>
                 <TextField
                   placeholder="Введите коды"
-                  //   label="Название товара *"
                   name="timeToBuy"
                   value={data.timeToBuy}
                   onChange={handleChange}
@@ -115,7 +108,6 @@ const AdminRecomendations = () => {
               <td style={{ transform: "translate(0,-20px)" }}>
                 <TextField
                   placeholder="Введите коды"
-                  //   label="Название товара *"
                   name="specialOffers"
                   value={data.specialOffers}
                   onChange={handleChange}

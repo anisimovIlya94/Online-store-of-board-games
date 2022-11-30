@@ -1,12 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
+import { getLoadingStatus, getLoggedInStatus } from "../../store/user";
 // import PropTypes from "prop-types";
-// import { useSelector } from "react-redux";
-// import { getLoggedInStatus } from "../../store/users";
-import { useAuth } from "../hooks/useAuth";
 
 function ProtectedLoginRoute({ component: Component, children, ...rest }) {
-    const { currentUser, isLoading } = useAuth();
+    const currentUser = useSelector(getLoggedInStatus())
+    const isLoading = useSelector(getLoadingStatus())
+    console.log(currentUser)
+    console.log(isLoading)
     // console.log(currentUser)
     return (
         <Route

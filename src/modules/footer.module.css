@@ -39,13 +39,27 @@
 .link:hover{
    color: #FB791B;
 }
-.miniLink{
+.activeLink{
+   margin: 0px 0px 10px 0px;
+   color: #FB791B;
+   font-family: 'Trebuchet MS';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 19px;
+      line-height: 22px;
+}
+.miniLink, .miniActiveLink{
 font-family: 'Trebuchet MS';
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
 line-height: 20px;
-color: #FFFFFF;
+}
+.miniLink{
+   color: #FFFFFF;
+}
+.miniActiveLink{
+   color: #FB791B;
 }
 .miniLink:hover{
    color: #FB791B;

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import configFile from "../../config.json";
-import { useAuth } from "../hooks/useAuth";
 import { authService } from "./auth.service";
 import localStorageService, { setTokens } from "./localStorage.service";
 

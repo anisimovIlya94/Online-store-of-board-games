@@ -12,13 +12,16 @@ import Slick from "../../main/slick";
 import { useCatalog } from "../../hooks/useCatalog";
 import { useParams } from "react-router-dom";
 import { useShopping } from "../../hooks/useShopping";
-import { useAuth } from "../../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser, getLoadingStatus, updateUser } from "../../../store/user";
 
 const ProductPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverButton, setHoverButton] = useState(false);
   const { getProductById, getProductsByCategory } = useCatalog()
-  const { updateUserData, currentUser, isLoading } = useAuth()
+  const currentUser = useSelector(getCurrentUser())
+  const isLoading = useSelector(getLoadingStatus())
+  const dispatch = useDispatch()
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
@@ -30,14 +33,16 @@ const ProductPage = () => {
     const viewedArray = currentUser.viewed.includes("") ? currentUser.viewed.slice(1, 0) : currentUser.viewed
     if (!viewedArray.includes(productId)) {
       if (viewedArray.length < 10) {
-        updateUserData({ ...currentUser, viewed: [productId, ...viewedArray] })
+        dispatch(updateUser({ ...currentUser, viewed: [productId, ...viewedArray] }))
+        // updateUserData({ ...currentUser, viewed: [productId, ...viewedArray] })
       } else {
-        updateUserData({ ...currentUser, viewed: [productId, ...viewedArray.slice(0,viewedArray.length-1)] })
+        dispatch(updateUser({ ...currentUser, viewed: [productId, ...viewedArray.slice(0,viewedArray.length-1)] }))
+        // updateUserData({ ...currentUser, viewed: [productId, ...viewedArray.slice(0,viewedArray.length-1)] })
       }
     }
   }
   useEffect(() => {
-    if (!isLoading) {
+    if (currentUser && !isLoading) {
       handleAddToViewed()
     }
   },[isLoading])
@@ -46,13 +51,16 @@ const ProductPage = () => {
   const product = getProductById(productId)
   const handleAddToCart = () => {
     if (!isInCart && currentUser) {
-      updateUserData({...currentUser,shoppingCart: [...currentUser.shoppingCart, productId]})
+      dispatch(updateUser({...currentUser,shoppingCart: [...currentUser.shoppingCart, productId]}))
+      // updateUserData({...currentUser,shoppingCart: [...currentUser.shoppingCart, productId]})
     }
       
   }
-  const viewedProducts = currentUser.viewed.map((prod) => {
+  const viewedProducts = currentUser
+    ? currentUser.viewed.map((prod) => {
     return getProductById(prod)
-  })
+    })
+    : []
   if (!product) {
     return "Loading..."
   }
@@ -158,10 +166,10 @@ const ProductPage = () => {
           <h2 className={classes.slickTitles}>C этим товаром покупают</h2>
           <Slick cards={getProductsByCategory(product.categories[0], "categories", true, product._id)}/>
         </div>}
-        <div className={classes.slickWrapper}>
+        {currentUser && <div className={classes.slickWrapper}>
           <h2 className={classes.slickTitles}>Просматривали</h2>
           <Slick cards={viewedProducts}/>
-        </div>
+        </div>}
       </>
     </div>
   );

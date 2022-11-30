@@ -5,7 +5,7 @@ import AccountRegisterForm from "./accountRegisterForm";
 import { useRouteMatch } from "react-router-dom";
 import classes from "../../modules/account.module.css";
 
-const LoginWindow = ({margin}) => {
+const LoginWindow = ({margin, closeModal}) => {
   const [state, setState] = useState("login");
   const handleChange = (name) => {
     setState(name);
@@ -23,7 +23,7 @@ const LoginWindow = ({margin}) => {
       </div>
       
           {state === "login" &&
-        <AccountLoginUserPage path={path} />}
+        <AccountLoginUserPage path={path} closeModal={closeModal} />}
           {state === "register" && 
               <AccountRegisterForm/>
           }

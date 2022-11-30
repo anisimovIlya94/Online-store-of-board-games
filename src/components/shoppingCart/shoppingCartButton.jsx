@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 import whiteCart from "../../images/catalog/clarity_shopping-cart-line.png"
 import orangeCart from "../../images/catalog/clarity_shopping-cart-line-orange.png"
 import classes from "../../modules/shoppingCart.module.css"
-import { useAuth } from '../hooks/useAuth';
 
 const ShoppingCardButton = ({ title, orange, onHoverButton, hoverButton, icon, onClick, buttonWidth, modal, disabled, background }) => {
     return (

@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import classes from "../../modules/account.module.css"
+import { getCurrentUser } from '../../store/user';
 import TextField from '../common/form/textField';
-import { useAuth } from '../hooks/useAuth';
 import ShoppingCardButton from '../shoppingCart/shoppingCartButton';
-
-
-// const initialState = { name: currentUser.name, telephone: currentUser.telephone, question: "" } || {name: "", telephone: "", question: ""}
 
 const AccountQuestions = ({ modal }) => {
     const [data, setData] = useState({name: "", telephone: "", question: ""});
     const [errors, setErrors] = useState({});
     const [hoverButton, setHoverButton] = useState(false);
-    const {currentUser} = useAuth()
+    const currentUser = useSelector(getCurrentUser())
     const toggleHoverButton = () => {
       setHoverButton(!hoverButton);
     };
-    // const {currentUser} = useAuth()
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
@@ -47,7 +44,7 @@ const AccountQuestions = ({ modal }) => {
         if (currentUser) {
             setData({name: currentUser.name, telephone: currentUser.telephone, question: ""})
         }
-    },[])
+    },[currentUser])
     return (<div className={classes.questionsWrapper}>
         <h2 className={classes.questionsTitle}>Остались вопросы?</h2>
         <form onSubmit={handleSubmit} className={classes.formWrapper}>

@@ -4,18 +4,17 @@ import MainCatalog from "../../main/mainCatalog";
 import MainButton from "../../main/buttons/mainButton";
 import Slick from "../../main/slick";
 import MainEvents from "../../main/mainEvents";
-import { getBuying } from "../../../fakeAPI/products";
 import InitializeData from "../../initializeMockData";
-import { useRecomendations } from "../../hooks/useRecomendations";
 import { useCatalog } from "../../hooks/useCatalog";
+import { getRecomendationsStatus, getSpecialOffers, getTimeToBuy } from "../../../store/recomendations";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
-  const {
-    timeToBuy,
-    specialOffers,
-    isLoading: recomendationsLoading,
-  } = useRecomendations();
+  const timeToBuy = useSelector(getTimeToBuy())
+  const specialOffers = useSelector(getSpecialOffers())
+  const recomendationsLoading = useSelector(getRecomendationsStatus())
   const { getProductByCode, isLoading: productsLoading } = useCatalog();
+  
   const getTimeToBuingProducts = () => {
     return timeToBuy.map((code) => {
       return getProductByCode(code.value);
@@ -26,11 +25,6 @@ const MainPage = () => {
       return getProductByCode(code.value);
     });
   };
-  useEffect(() => {
-    console.log(getTimeToBuingProducts());
-    console.log(getSpecialOffersProducts());
-  }, [productsLoading]);
-  const bying = getBuying();
   return (
     <div style={{ padding: "0 0 85px 0" }}>
       <MainWrapper title="Каталог" marginTop="190px">

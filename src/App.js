@@ -1,7 +1,7 @@
 import Header from "./components/header/header";
 import Footer from "./components/footer";
 import OpenedNavBar from "./components/header/openedNavBar";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Main from "./components/layouts/main";
 import Catalog from "./components/layouts/catalog";
 import { Switch, Redirect, Route } from "react-router-dom";
@@ -12,13 +12,18 @@ import ShoppingProvider from "./components/hooks/useShopping";
 import PersonalAccount from "./components/layouts/personalAccount";
 import ModalWindow from "./components/modalWindow/modalWindow";
 import LoginWindow from "./components/personalAccount/loginWindow";
-import AuthProvider from "./components/hooks/useAuth";
+// import AuthProvider from "./components/hooks/useAuth";
 import CategoryProvider from "./components/hooks/useCategory";
 import CatalogProvider from "./components/hooks/useCatalog";
-import RecomendationsProvider from "./components/hooks/useRecomendations";
+// import RecomendationsProvider from "./components/hooks/useRecomendations";
 import Login from "./components/layouts/login";
 import ProtectedAdminRoute from "./components/common/protectedAdminRoute";
 import ProtectedLoginRoute from "./components/common/protectedLoginRoute";
+import { useDispatch } from "react-redux";
+import { loadRecomendationsList } from "./store/recomendations";
+import { loadUser } from "./store/user";
+import localStorageService from "./components/services/localStorage.service";
+import { loadProductsList } from "./store/catalog";
 
 function App() {
   // const [openNavCatalog, setOpenNavCatalog] = useState(false);
@@ -31,25 +36,31 @@ function App() {
   //   }
   // };
   const closeModalRef = useRef();
+  const closeModal = () => {
+    closeModalRef.current.click()
+  }
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadRecomendationsList())
+    dispatch(loadProductsList())
+    if (localStorageService.getUserIdToken()) {
+      dispatch(loadUser())
+    }
+  },[])
   return (
     <>
       <CategoryProvider>
-        {/* {openNavCatalog ? (
-        <div className="openedNavBar">
-          <OpenedNavBar onToggleCatalog={toggleNavCatalog} />
-        </div>
-      ) : null} */}
         <div className="App">
-          <AuthProvider reference={closeModalRef}>
+          {/* <AuthProvider> */}
             <CatalogProvider>
               <ShoppingProvider>
                 <div className="header">
                   <Header />
                 </div>
                 <ModalWindow reference={closeModalRef} id="login">
-                  <LoginWindow  margin="0 0 30px -28px"/>
+                  <LoginWindow  margin="0 0 30px -28px" closeModal={closeModal}/>
                 </ModalWindow>
-                <RecomendationsProvider>
+                {/* <RecomendationsProvider> */}
                   <Switch>
                     <Route exact path="/" component={Main} />
                     <Route path="/shopping" component={ShoppingCart} />
@@ -72,11 +83,11 @@ function App() {
                     {/* <Route path="/admin/:adminPage?" component={Admin}/> */}
                     <Redirect from="*" to="/" />
                   </Switch>
-                </RecomendationsProvider>
+                {/* </RecomendationsProvider> */}
                 <Footer />
               </ShoppingProvider>
             </CatalogProvider>
-          </AuthProvider>
+          {/* </AuthProvider> */}
         </div>
       </CategoryProvider>
     </>

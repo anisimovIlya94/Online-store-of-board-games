@@ -127,11 +127,9 @@ const CatalogProvider = ({ children }) => {
       const ii = products.filter((prod) => prod._id === productId);
       if (ii.length === 0 ) {
         // return {}
-        history.replace("/catalog")
+        // history.replace("/catalog")
       }
       return ii[0];
-    } else {
-      // console.log(products)
     }
   };
   const getProductsByName = (name) => {

@@ -1,22 +1,30 @@
 import React, { useEffect, useRef } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
 import classes from "../../modules/catalog.module.css";
-import { Link } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 // import { getSubcategoriesByCategory } from "../../fakeAPI/subcategories";
 import { useCategory } from "../hooks/useCategory";
 
 const Accordeon = ({ displayName, onDisplay, name, title }) => {
+  const {category} = useParams()
   const display = name === displayName;
   const collapseRef = useRef();
   const toggleShow = () => {
     onDisplay(name);
   };
   useEffect(() => {
+    if (category === name) {
+      toggleShow()
+    }
+  },[])
+  useEffect(() => {
     const newCollapse = new BsCollapse(collapseRef.current, {
       toggle: false,
     });
+    // category === name ? newCollapse.show() : newCollapse.hide()
     display ? newCollapse.show() : newCollapse.hide();
   }, [display]);
+
   const {getSubcategoriesByCategory} = useCategory()
   const subcategories = getSubcategoriesByCategory(name);
   return (
@@ -28,9 +36,9 @@ const Accordeon = ({ displayName, onDisplay, name, title }) => {
           }
         >
           {
-            <Link className={classes.sortingCategoriasAncer} to={`/catalog/${name}`}>
+            <NavLink activeClassName={classes.accordeonNavlinkAllActive} className={classes.sortingCategoriasAncer} to={`/catalog/${name}`}>
               {title}
-            </Link>
+            </NavLink>
           }
           <i
             className={
@@ -45,7 +53,7 @@ const Accordeon = ({ displayName, onDisplay, name, title }) => {
         <div className="collapse" ref={collapseRef} id={"name" + "title"}>
           {subcategories.map((sub) => {
             return (<div key={sub._id}>
-              <Link className={classes.accordeonNavlink} to={`/catalog/${name}/${sub._id}`}>{sub.name}</Link>
+              <NavLink activeClassName={classes.accordeonNavlinkActive} className={classes.accordeonNavlink} to={`/catalog/${name}/${sub._id}`}>{sub.name}</NavLink>
             </div>)
           })}
         </div>

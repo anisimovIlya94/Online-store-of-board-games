@@ -3,12 +3,11 @@ import cartIcon from '../../images/header/shopping-cart.png'
 import cartIconActive from '../../images/header/shopping-cart-active.png'
 import classes from '../../modules/header.module.css'
 import { useHistory } from 'react-router-dom'
-// import { useShopping } from '../hooks/useShopping'
-import { useAuth } from '../hooks/useAuth'
+import { useSelector } from 'react-redux'
+import { getCurrentUser } from '../../store/user'
 
 const ShoppingCartButton = ({ onHover, cart }) => {
-   // const { getCartItemsCount } = useShopping();
-   const { currentUser } = useAuth()
+   const currentUser = useSelector(getCurrentUser())
    let count
    if (currentUser) {
       count = currentUser.shoppingCart.length - 1

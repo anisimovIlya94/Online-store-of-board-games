@@ -3,7 +3,8 @@ import TextField from "../common/form/textField";
 import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import classes from "../../modules/textField.module.css";
 import { validator } from "../../utils/validator";
-import { useAuth } from "../hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../store/user";
 
 const AccountEditUserPage = ({ currentUser }) => {
   const [data, setData] = useState({
@@ -12,9 +13,9 @@ const AccountEditUserPage = ({ currentUser }) => {
     secondName: currentUser.secondName,
     email: currentUser.email,
   });
+  const dispatch = useDispatch()
   const [errors, setErrors] = useState({});
   const [hoverButton, setHoverButton] = useState(false);
-  const { updateUserData } = useAuth()
   useEffect(() => {
     validate();
   }, [data]);
@@ -41,7 +42,8 @@ const AccountEditUserPage = ({ currentUser }) => {
     const isValid = validate();
     if (!isValid) return;
     // console.log(currentUser)
-    updateUserData({...currentUser,...data})
+    dispatch(updateUser({...currentUser,...data}))
+    // updateUserData({...currentUser,...data})
   };
   const validatorConfig = {
     name: {

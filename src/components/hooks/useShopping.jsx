@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useAuth } from "./useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser, updateUser } from "../../store/user";
 import { useCatalog } from "./useCatalog";
 
 const ShoppingContext = React.createContext();
@@ -12,7 +13,8 @@ const ShoppingProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [prodsWithPrice, setProds] = useState([]);
-  const { currentUser, updateUserData } = useAuth();
+  const currentUser = useSelector(getCurrentUser());
+  const dispatch = useDispatch();
   const { getProductById, isLoading: catalogLoading } = useCatalog();
   const handleGetItems = () => {
     if (currentUser) {
@@ -25,41 +27,43 @@ const ShoppingProvider = ({ children }) => {
       setCartItems(cart);
       setLoading(false);
     }
-    
-    };
-    const handleLoadProdsWithPrice = () => {
-        setProds(cartItems.map((prod) => {
-            return { name: prod.name, price: prod.currentPrice }
-        }))
-  }
+  };
+  const handleLoadProdsWithPrice = () => {
+    setProds(
+      cartItems.map((prod) => {
+        return { name: prod.name, price: prod.currentPrice };
+      })
+    );
+  };
   const getItemById = (id) => {
     if (currentUser) {
-      return currentUser.shoppingCart.includes(id)
+      return currentUser.shoppingCart.includes(id);
     }
-    return false
-  }
-    const handleChangePrice = (name, price) => {
-        setProds((prevState) =>
-          prevState.map((order) => {
-            if (order.name === name) {
-              return { ...order, price: price };
-            }
-            return order;
-          })
-        );
-      };
-    useEffect(() => {
-        handleLoadProdsWithPrice()
-    }, [cartItems])
-    const resultPrice = prodsWithPrice.reduce((acc, order) => {
-        return (acc += order.price);
-    }, 0);
+    return false;
+  };
+  const handleChangePrice = (name, price) => {
+    setProds((prevState) =>
+      prevState.map((order) => {
+        if (order.name === name) {
+          return { ...order, price: price };
+        }
+        return order;
+      })
+    );
+  };
+  useEffect(() => {
+    handleLoadProdsWithPrice();
+  }, [cartItems]);
+  const resultPrice = prodsWithPrice.reduce((acc, order) => {
+    return (acc += order.price);
+  }, 0);
   const removeItem = (id) => {
     const filteredItems = currentUser.shoppingCart.filter(
       (prod) => prod !== id
     );
-    setCartItems(cartItems.filter((item) => item._id !== id))
-      updateUserData({ ...currentUser, shoppingCart: filteredItems });
+    setCartItems(cartItems.filter((item) => item._id !== id));
+    dispatch(updateUser({ ...currentUser, shoppingCart: filteredItems }));
+    // updateUserData({ ...currentUser, shoppingCart: filteredItems });
   };
   useEffect(() => {
     if (!catalogLoading) {
@@ -79,7 +83,16 @@ const ShoppingProvider = ({ children }) => {
   //     })
   // }
   return (
-    <ShoppingContext.Provider value={{ cartItems, isLoading, removeItem, resultPrice, handleChangePrice, getItemById }}>
+    <ShoppingContext.Provider
+      value={{
+        cartItems,
+        isLoading,
+        removeItem,
+        resultPrice,
+        handleChangePrice,
+        getItemById,
+      }}
+    >
       {children}
     </ShoppingContext.Provider>
   );
