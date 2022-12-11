@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "../../modules/admin.module.css";
-import { useCatalog } from "../hooks/useCatalog";
 import { useCategory } from "../hooks/useCategory";
 import TextField from "../common/form/textField";
 import ModalWindow from "../modalWindow/modalWindow";
 import AdminEditProduct from "./adminEditProduct";
 import _ from "lodash";
+import { useSelector } from "react-redux";
+import { getCatalogLoadingStatus, getProductsRedux } from "../../store/catalog";
 
 const AdminMain = () => {
   const [inputData, setData] = useState("");
   const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" });
   const [selectProd, setSelectprod] = useState()
-  const { getProducts, isLoading } = useCatalog();
   const { getCategoryById, getSubCategoryById } = useCategory();
-  const products = getProducts();
+  const products = useSelector(getProductsRedux());
+  const isLoading = useSelector(getCatalogLoadingStatus())
   const filteredProducts = inputData
     ? products.filter(
         (prod) =>

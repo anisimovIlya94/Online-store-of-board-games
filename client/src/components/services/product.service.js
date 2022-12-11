@@ -11,8 +11,8 @@ const productService = {
         const { data } = await httpServices.patch(productEndpoint + prodId, product)
         return data
     },
-    create: async (prodId, product) => {
-        const { data } = await httpServices.put(productEndpoint + prodId, product)
+    create: async ( product) => {
+        const { data } = await httpServices.put(productEndpoint, product)
         return data
     },
     delete: async (prodId) => {

@@ -20,7 +20,10 @@ const MainCard = ({cardInformation}) => {
     if (!isInCart) {
       dispatch(updateUser({...currentUser,shoppingCart: [...currentUser.shoppingCart, cardInformation._id]}))
     }
-      
+  }
+  const handleGoToCart = () => {
+    window.scrollTo(0,0)
+    history.push("/shopping")
   }
   //   const handleRemove = () => {
   //       updateCartItems(cardInfo);
@@ -41,14 +44,21 @@ const MainCard = ({cardInformation}) => {
           </h5>
         </a>
         <p className={classes.mainCardPrice}>{cardInformation.currentPrice} ₽</p>
-        <MainCardButton
-          title={isInCart ? "В корзине" : "В корзину"}
-          orange={isInCart ? false : true}
+        {isInCart
+        ? <MainCardButton
+        title={"В корзине"}
+        ancer={true}
+        onHoverButton={toggleHoverButton}
+        hoverButton={hoverButton}
+        />
+        : <MainCardButton
+          title={"В корзину"}
+          orange={true}
           onHoverButton={toggleHoverButton}
           hoverButton={hoverButton}
           icon={true}
           onShopCart={handleAddToCart}
-        />
+        />}
         <MainCardButton title={"Купить в один клик"} orange={false} />
       </div>
     </div>

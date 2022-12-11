@@ -12,32 +12,35 @@ import ModalWindow from "../modalWindow/modalWindow";
 import AccountEditUserPage from "../personalAccount/accountEditUserPage";
 import AccountQuestions from "../personalAccount/accountQuestions";
 import { Link, useHistory } from "react-router-dom";
-import { useCatalog } from "../hooks/useCatalog";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentUser, getLoadingStatus, getLoggedInStatus, logOut as logOutRedux } from "../../store/user";
+import {
+  getCurrentUser,
+  getLoadingStatus,
+  getLoggedInStatus,
+  logOut as logOutRedux,
+} from "../../store/user";
+import { getProductsRedux } from "../../store/catalog";
 
-const Header = ({ onToggleCatalog }) => {
-  
-  const [account, setAccount] = useState(false);
+const Header = () => {
+  // const [account, setAccount] = useState(false);
   const [cart, setCart] = useState(false);
   const [burger, setBurger] = useState(false);
-  const [searchShow, setSearchShow] = useState(false)
-  const [searchingInput, setInput] = useState('')
-  const [searchingProducts, setSearchingProducts] = useState([])
-  const { getProductsByName } = useCatalog()
-  const dispatch = useDispatch()
+  const [searchShow, setSearchShow] = useState(false);
+  const [searchingInput, setInput] = useState("");
+  const [searchingProducts, setSearchingProducts] = useState([]);
+  const products = useSelector(getProductsRedux());
+  const dispatch = useDispatch();
   const history = useHistory();
-  const currentUser = useSelector(getCurrentUser())
-  const userLoading = useSelector(getLoadingStatus())
-  // console.log(currentUser)
-  const isLoggedIn = useSelector(getLoggedInStatus())
+  const currentUser = useSelector(getCurrentUser());
+  const userLoading = useSelector(getLoadingStatus());
+  const isLoggedIn = useSelector(getLoggedInStatus());
   // useEffect(() => {
   //   console.log(userLoading)
   //   console.log(isLoggedIn)
   // },[currentUser])
-  const handleToggleAccount = () => {
-    setAccount(!account);
-  };
+  // const handleToggleAccount = () => {
+  //   setAccount(!account);
+  // };
   const handleToggleCart = () => {
     setCart(!cart);
   };
@@ -48,26 +51,34 @@ const Header = ({ onToggleCatalog }) => {
     history.replace("/");
   };
   const handleLogOut = () => {
-    dispatch(logOutRedux())
-    // logOut()
-  }
+    dispatch(logOutRedux());
+  };
   const handleGoingToAccount = (adress) => {
-    history.replace(`/persaccount/${adress}`);
+    window.scrollTo(0,0)
+    // history.replace(`/persaccount/${adress}`);
   };
   const handleChangeInput = (e) => {
-    const { value } = e.target
-    setInput(value)
+    const { value } = e.target;
+    setInput(value);
     if (value) {
-      setSearchingProducts(getProductsByName(value))
-      setSearchShow(true)
+      const currentName = value.toLowerCase().trim();
+      setSearchingProducts(
+        products.filter((prod) => {
+          return prod.name.toLowerCase().includes(currentName);
+        })
+      );
+
+      setSearchShow(true);
     } else {
-      setSearchingProducts([])
-      setSearchShow(false)
+      setSearchingProducts([]);
+      setSearchShow(false);
     }
-  }
-  // useEffect(() => {
-  //   console.log(searchingProducts)
-  // },[searchingProducts])
+  };
+  const handleCloseSearch = () => {
+    setSearchingProducts([]);
+    setSearchShow(false);
+    setInput("");
+  };
   return (
     <div className={classes.header}>
       <div className={classes.wrapper}>
@@ -86,32 +97,77 @@ const Header = ({ onToggleCatalog }) => {
                     className={"nav-link dropdown-toggle " + classes.input}
                     type="text"
                     placeholder="Найти игру"
-                    style={{color: "#2A2A2A"}}
+                    style={{ color: "#2A2A2A" }}
                     onChange={handleChangeInput}
+                    value={searchingInput}
                   />
-                  <Link to={`/search/${searchingInput}`} className={classes.magnifier}>
+
+                  {searchingInput && (
+                    <button
+                      onClick={handleCloseSearch}
+                      className={classes.close}
+                    >
+                      <i className="bi bi-x-lg"></i>
+                    </button>
+                  )}
+                  <Link
+                    onClick={handleCloseSearch}
+                    to={`/search/${searchingInput}`}
+                    className={classes.magnifier}
+                  >
                     <img src={magnifier} alt="" />
                   </Link>
-                  <div className={"w-100 dropdown-menu " + (searchShow ? "show" : "")}>
-                    {searchingInput && searchingProducts.length === 0
-                      ? <li style={{margin: "0 0 0 10px"}} className={classes.searchingCardName}>Товары не найдены</li>
-                      : <ul>
-                       { searchingProducts.slice(0, 4).map((prod) => {
-                      return (<li key={prod._id + "search"}>
-                        <div className='d-flex align-items-center'>
-                            <img className={classes.searchingImage} src={require(`../../images/product/productsLibrary/${prod.images[0]}`)} alt="" />
-                            <div className={classes.searchingCardInfo}>
-                                <Link to={`/catalog/${prod.categories[0]}/${prod.subcategories[0]}/${prod._id}`} className={classes.searchingCardName}>{prod.name}</Link>
-                                <p className={classes.searchingCardPrice}>{prod.currentPrice} ₽</p>
-                            </div>
-                        </div>
-                        <hr className="dropdown-divider"/>
-                    </li>)
-                       })}
-                        <Link to={`/search/${searchingInput}`} className={classes.searchingLinkAll}>Все результаты</Link>
-                      </ul>}
+                  <div
+                    className={
+                      "w-100 dropdown-menu " + (searchShow ? "show" : "")
+                    }
+                  >
+                    {searchingInput && searchingProducts.length === 0 ? (
+                      <li
+                        style={{ margin: "0 0 0 10px" }}
+                        className={classes.searchingCardName}
+                      >
+                        Товары не найдены
+                      </li>
+                    ) : (
+                      <ul>
+                        {searchingProducts.slice(0, 4).map((prod) => {
+                          return (
+                            <li key={prod._id + "search"}>
+                              <div className="d-flex align-items-center">
+                                <img
+                                  className={classes.searchingImage}
+                                  src={require(`../../images/product/productsLibrary/${prod.images[0]}`)}
+                                  alt=""
+                                />
+                                <div className={classes.searchingCardInfo}>
+                                  <a
+                                    onClick={handleCloseSearch}
+                                    href={`/catalog/${prod.categories[0]}/${prod.subcategories[0]}/${prod._id}`}
+                                    className={classes.searchingCardName}
+                                  >
+                                    {prod.name}
+                                  </a>
+                                  <p className={classes.searchingCardPrice}>
+                                    {prod.currentPrice} ₽
+                                  </p>
+                                </div>
+                              </div>
+                              <hr className="dropdown-divider" />
+                            </li>
+                          );
+                        })}
+                        <a
+                          // onClick={handleCloseSearch}
+                          href={`/search/${searchingInput}`}
+                          className={classes.searchingLinkAll}
+                        >
+                          Все результаты
+                        </a>
+                      </ul>
+                    )}
                     {/* <li><a className="dropdown-item" href="#">Something else here</a></li> */}
-          </div>
+                  </div>
                 </div>
               </div>
               <div className="col d-flex">
@@ -120,73 +176,111 @@ const Header = ({ onToggleCatalog }) => {
               </div>
               <div className="col">
                 {!userLoading && isLoggedIn ? (
-                  currentUser && currentUser.isAdmin
-                    ? <div className="col">
-                    <button className={classes.adminButton} data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <i className="bi bi-gear-fill"></i>
+                  currentUser && currentUser.isAdmin ? (
+                    <div className="col">
+                      <button
+                        className={classes.adminButton}
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i className="bi bi-gear-fill"></i>
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                        <Link className={classes.adminLink} to="/admin">
+                          <Link className={classes.adminLink} to="/admin">
                             Администрирование
-                             </Link>
+                          </Link>
                         </li>
-                      <li>
-                        <button className={classes.adminOut} style={{cursor: "pointer"}} onClick={handleLogOut}>
-                          Выход
-                        </button>
-                      </li>
+                        <li>
+                          <button
+                            className={classes.adminOut}
+                            style={{ cursor: "pointer" }}
+                            onClick={handleLogOut}
+                          >
+                            Выход
+                          </button>
+                        </li>
                       </ul>
-                  </div>
-                   : 
-                  <>
-                    <button
-                      className={classes.fff}
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <img
-                        src={account ? personalAccountActive : personalAccount}
-                        onMouseEnter={() => handleToggleAccount()}
-                        onMouseLeave={() => handleToggleAccount()}
-                        alt=""
-                      />
-                      <i className="bi bi-caret-down"></i>
-                    </button>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>handleGoingToAccount("")}>
-                          Профиль
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>handleGoingToAccount("orders")}>
-                          Заказы
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" style={{cursor: "pointer"}}> 
-                          Мероприятия
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>handleGoingToAccount("settings")}>
-                          Настройки
-                        </a>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={handleLogOut}>
-                          Выход
-                        </a>
-                      </li>
-                    </ul>
-                  </>
+                    </div>
+                  ) : (
+                    <>
+                      <button
+                        className={classes.fff}
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        {/* <img
+                          src={
+                            account ? personalAccountActive : personalAccount
+                          }
+                          onMouseEnter={() => handleToggleAccount()}
+                          onMouseLeave={() => handleToggleAccount()}
+                          alt=""
+                        />
+                        <i className="bi bi-caret-down"></i> */}
+                        {/* <span  className={classes.accountIcon}> */}
+                        <i className="bi bi-person-gear"></i>
+                        {/* </span> */}
+                      </button>
+                      <ul className={"dropdown-menu "}>
+                        <li>
+                            <Link
+                              to={"/persaccount"}
+                            className={classes.menuLink}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleGoingToAccount()}
+                          >
+                            Профиль
+                          </Link>
+                        </li>
+                        <li>
+                            <Link
+                              to={"/persaccount/orders"}
+                            className={classes.menuLink}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleGoingToAccount()}
+                          >
+                            Заказы
+                          </Link>
+                        </li>
+                        <li>
+                            <Link
+                              to={"/"}
+                            className={classes.menuLink}
+                              style={{ cursor: "pointer" }}
+                              onClick={() => handleGoingToAccount()}
+                          >
+                            Мероприятия
+                          </Link>
+                        </li>
+                        <li>
+                            <Link
+                              to={"/persaccount/settings"}
+                            className={classes.menuLink}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleGoingToAccount()}
+                          >
+                            Настройки
+                          </Link>
+                        </li>
+                        <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                        <li>
+                          <a
+                            className={classes.menuLink}
+                            style={{ cursor: "pointer" }}
+                            onClick={handleLogOut}
+                            href="/"
+                          >
+                            Выход
+                          </a>
+                        </li>
+                      </ul>
+                    </>
+                  )
                 ) : (
                   <>
                     <button
@@ -195,12 +289,15 @@ const Header = ({ onToggleCatalog }) => {
                       data-bs-target="#login"
                       className={classes.personalAccount}
                     >
-                      <img
+                      {/* <img
                         src={account ? personalAccountActive : personalAccount}
                         onMouseEnter={() => handleToggleAccount()}
                         onMouseLeave={() => handleToggleAccount()}
                         alt=""
-                      />
+                      /> */}
+                      <span className={classes.fff}>
+                        <i className="bi bi-person-fill-slash"></i>
+                      </span>
                     </button>
                   </>
                 )}
@@ -210,18 +307,14 @@ const Header = ({ onToggleCatalog }) => {
                   <i className="bi bi-gear-fill"></i>
                 </Link>
               </div>} */}
-                <div className="col">
-                  <ShoppingCartButton onHover={handleToggleCart} cart={cart} />
+              <div className="col mt-1">
+                <ShoppingCartButton onHover={handleToggleCart} cart={cart} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <NavBar
-        onHover={handleToggleBurger}
-        burgerState={burger}
-        onToggleCatalog={onToggleCatalog}
-      />
+      <NavBar onHover={handleToggleBurger} burgerState={burger} />
     </div>
   );
 };

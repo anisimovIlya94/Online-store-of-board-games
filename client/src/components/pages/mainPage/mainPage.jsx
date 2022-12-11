@@ -5,15 +5,20 @@ import MainButton from "../../main/buttons/mainButton";
 import Slick from "../../main/slick";
 import MainEvents from "../../main/mainEvents";
 import InitializeData from "../../initializeMockData";
-import { useCatalog } from "../../hooks/useCatalog";
 import { getRecomendationsStatus, getSpecialOffers, getTimeToBuy } from "../../../store/recomendations";
 import { useSelector } from "react-redux";
+import { getCatalogLoadingStatus, getProductsRedux } from "../../../store/catalog";
 
 const MainPage = () => {
   const timeToBuy = useSelector(getTimeToBuy())
   const specialOffers = useSelector(getSpecialOffers())
   const recomendationsLoading = useSelector(getRecomendationsStatus())
-  const { getProductByCode, isLoading: productsLoading } = useCatalog();
+  const productsLoading = useSelector(getCatalogLoadingStatus())
+  const products = useSelector(getProductsRedux())
+
+  const getProductByCode = (code) => {
+    return products.find((prod) => prod.code === code);
+  }
   
   const getTimeToBuingProducts = () => {
     return timeToBuy.map((code) => {
@@ -44,7 +49,7 @@ const MainPage = () => {
       <MainWrapper title="Ближайшие мероприятия" marginTop="110px">
         <MainEvents />
       </MainWrapper>
-      <InitializeData />
+      {/* <InitializeData /> */}
     </div>
   );
 };

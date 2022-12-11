@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from "../modules/catalog.module.css"
 import { Link, useHistory, useParams, useRouteMatch } from 'react-router-dom';
-// import { getCategoryNameById } from '../fakeAPI/categories';
-// import { getSubCategoryNameById } from '../fakeAPI/subcategories';
 import { useCategory } from './hooks/useCategory';
-// import { useCatalog } from './hooks/useCatalog';
 
 
 const Navigation = ({ productName }) => {
@@ -17,7 +14,7 @@ const Navigation = ({ productName }) => {
         if (!isLoading) {
             getArrayOfNames(path)
             }
-    },[isLoading])
+    },[isLoading, par])
     const getArrayOfNames = (path) => {
             if (path[1] === "catalog") {
                 const arrayOfNames = [{name: "Каталог", path: "/catalog"}]

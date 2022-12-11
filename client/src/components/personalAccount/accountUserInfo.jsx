@@ -7,7 +7,7 @@ const AccountUserInfo = ({ edit }) => {
       <div className={classes.accountPhotoWrapper}>
       <img
         className={classes.accountPhoto}
-        src={require("../../images/account/account-photo.jpg")}
+        src={require("../../images/account/account-photo.png")}
         alt=""
         />
         {edit ? (

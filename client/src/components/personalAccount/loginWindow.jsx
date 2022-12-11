@@ -25,7 +25,7 @@ const LoginWindow = ({margin, closeModal}) => {
           {state === "login" &&
         <AccountLoginUserPage path={path} closeModal={closeModal} />}
           {state === "register" && 
-              <AccountRegisterForm/>
+              <AccountRegisterForm closeModal={closeModal}/>
           }
     </div>
   );

@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import CatalogSortCategorias from "./catalogSortCategorias";
 import CatalogSortRanges from "./catalogSortRanges";
 import CatalogSortingTimeToPlay from "./catalogSortTimeToPlay";
-import { useCatalog } from "../hooks/useCatalog";
 import classes from "../../modules/catalog.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { editFilters, getFilters } from "../../store/catalog";
 
 const CatalogSort = () => {
-    // const { filters, handleChangeFilters } = useCatalog()
     const filters = useSelector(getFilters())
     const dispatch = useDispatch()
     const [data, setData] = useState(filters)

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import whiteCart from "../../images/catalog/clarity_shopping-cart-line.png"
 import orangeCart from "../../images/catalog/clarity_shopping-cart-line-orange.png"
 import classes from "../../modules/shoppingCart.module.css"

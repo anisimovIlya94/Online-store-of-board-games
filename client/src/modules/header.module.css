@@ -41,6 +41,13 @@
    top: 9px;
    right: 10px;
 }
+.close{
+   position: absolute;
+   content: '';
+   top: 9px;
+   right: 50px;
+   font-size: 20px;
+}
 .telephone{
    margin: 5px 10px 0px 0px;
    max-width: 100%;
@@ -61,12 +68,16 @@
 .shoppingCart{
    background-color: #2A2A2A;
    max-width: 100%;
-   margin: 0 0 0 40px;
+   margin: 0px 0 0 40px;
 }
 .fff{
    background-color:#2A2A2A;
-   transform: translate(0,2px);
+   transform: translate(0,-2px);
    color: #FFFFFF;
+   font-size: 40px;
+}
+.fff:hover{
+   color:#FB791B;
 }
 .searchingDropdown{
    width: 100%;
@@ -132,6 +143,20 @@
    margin: 10px 0 0 50px;
    background-color: inherit;
 }
-.adminLink:hover, .adminOut:hover{
+.adminLink:hover, .adminOut:hover, .cartIcon:hover,.menuLink:hover{
    color: #FB791B;
 }
+.cartIcon{
+   color: #FFFFFF;
+   font-size: 32px;
+}
+.menuLink{
+   font-size: 18px;
+   margin: 5px 0 5px 10px;
+   display: inline-block;
+   color: #2A2A2A;
+   text-align: center;
+}
+/* .shoppingCart{
+   margin-top: 12px;
+} */

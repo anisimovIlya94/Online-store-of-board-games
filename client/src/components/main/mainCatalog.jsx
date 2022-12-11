@@ -12,7 +12,7 @@ const MainCatalog = () => {
 
     return(
         <div className={"d-flex " + classes.flex}>
-                <Link to="/catalog/cpTsuR96uA23cdM-mrghU001">
+                <Link to="/catalog/638af9ce4fb10b01b6808624">
                     <div className={"card border-light " + classes.bigCardWrapper} style={{borderRadius:'15px'}}>
                         <img src={boardGames} className={"card-img-top " + classes.cardImage}/>
                         <div className={"card-body " + classes.cardBody}>
@@ -22,7 +22,7 @@ const MainCatalog = () => {
                 </Link>
         <div className={"row row-cols-1 row-cols-md-2 g-4 " + classes.cardGrid}>
             <div className={"col "}>
-                <Link to="/catalog/cpTsuR96uA23cdM-mrghU002">
+                <Link to="/catalog/638af9ce4fb10b01b6808625">
                 <div className={"card border-light " + classes.cardWrapper} style={{borderRadius:'15px'}}>
                     <img src={magicImage} className={"card-img-top " + classes.cardImage}/>
                     <div className={"card-body " + classes.cardBody}>
@@ -32,7 +32,7 @@ const MainCatalog = () => {
                 </Link>
             </div>
             <div className={"col "}>
-                <Link to="/catalog/cpTsuR96uA23cdM-mrghU003">
+                <Link to="/catalog/638af9ce4fb10b01b6808626">
                 <div className={"card border-light " + classes.cardWrapper} style={{borderRadius:'15px'}}>
                     <img src={warGameImage} className={"card-img-top " + classes.cardImage}/>
                     <div className={"card-body " + classes.cardBody}>
@@ -42,7 +42,7 @@ const MainCatalog = () => {
                 </Link>
             </div>
             <div className={"col "}>
-                <Link to="/catalog/cpTsuR96uA23cdM-mrghU004">
+                <Link to="/catalog/638af9ce4fb10b01b6808627">
                     <div className={"card border-light " + classes.cardWrapper} style={{borderRadius:'15px'}}>
                         <img src={paintsImage} className={"card-img-top " + classes.cardImage}/>
                         <div className={"card-body " + classes.cardBody}>
@@ -52,7 +52,7 @@ const MainCatalog = () => {
                 </Link>
             </div>
             <div className={"col "}>
-                <Link to="/catalog/cpTsuR96uA23cdM-mrghU005">
+                <Link to="/catalog/638af9ce4fb10b01b6808628">
                     <div className={"card border-light " + classes.cardWrapper} style={{borderRadius:'15px'}}>
                         <img src={acsessuarsImage} className={"card-img-top " + classes.cardImage}/>
                         <div className={"card-body " + classes.cardBody}>

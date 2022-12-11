@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import burger from "../../images/header/бургер.png";
 import burgerActive from "../../images/header/бургер-active.png";
 import classes from "../../modules/navBar.module.css";
@@ -10,14 +10,13 @@ import { NavLink } from "react-router-dom";
 // import NavCategory from './navCategory'
 // import OpenedNavBar from './openedNavBar'
 
-const NavBar = ({ onHover, burgerState, onToggleCatalog }) => {
+const NavBar = ({ onHover, burgerState }) => {
   return (
     <div className={classes.wrapper}>
       <ul className={classes.navFlex}>
         <li
           onMouseEnter={() => onHover()}
           onMouseLeave={() => onHover()}
-          onClick={() => onToggleCatalog()}
         >
           <button
             type="button"
@@ -41,7 +40,7 @@ const NavBar = ({ onHover, burgerState, onToggleCatalog }) => {
           <NavLink
             activeClassName={classes.activeNavLinks}
             className={classes.navLinks}
-            to="/catalog/cpTsuR96uA23cdM-mrghU003"
+            to="/catalog/638af9ce4fb10b01b6808626"
           >
             <span>Warhammer</span>
           </NavLink>
@@ -50,7 +49,7 @@ const NavBar = ({ onHover, burgerState, onToggleCatalog }) => {
           <NavLink
             activeClassName={classes.activeNavLinks}
             className={classes.navLinks}
-            to="/catalog/cpTsuR96uA23cdM-mrghU002"
+            to="/catalog/638af9ce4fb10b01b6808625"
           >
             <span>Magic:the Cathering</span>
           </NavLink>
@@ -82,7 +81,7 @@ const NavBar = ({ onHover, burgerState, onToggleCatalog }) => {
           aria-labelledby="offcanvasTopLabel"
         >
           <div className="offcanvas-header">
-            <OpenedNavBar />
+            <OpenedNavBar/>
           </div>
         </div>
       </div>}

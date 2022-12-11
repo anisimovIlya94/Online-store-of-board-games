@@ -88,7 +88,7 @@ const CatalogPage = () => {
     <>
       <div className={classes.catalogBanner}>
         <p className={classes.catalogBannerTitle}>
-          Октябрьский турнир Warhammer 40000
+          Декабрьский турнир Warhammer 40000
         </p>
         <p className={classes.catalogBannerText}>
           У тебя есть команда и вы готовы принять участие в турнире Warhammer

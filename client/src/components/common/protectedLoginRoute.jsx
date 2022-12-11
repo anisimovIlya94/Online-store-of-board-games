@@ -7,8 +7,6 @@ import { getLoadingStatus, getLoggedInStatus } from "../../store/user";
 function ProtectedLoginRoute({ component: Component, children, ...rest }) {
     const currentUser = useSelector(getLoggedInStatus())
     const isLoading = useSelector(getLoadingStatus())
-    console.log(currentUser)
-    console.log(isLoading)
     // console.log(currentUser)
     return (
         <Route

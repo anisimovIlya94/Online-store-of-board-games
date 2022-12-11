@@ -2,7 +2,7 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 import { authService } from "../components/services/auth.service";
 import localStorageService from "../components/services/localStorage.service";
 import userService from "../components/services/user.service";
-// import { generateAuthError } from "../utils/generateAuthError";
+import { generateAuthError } from "../utils/generateAuthError";
 // import history from "../utils/history";
 
 const initialState = localStorageService.getAccessToken()
@@ -98,25 +98,27 @@ export const logOut = () => (dispatch) => {
 };
 
 export const signUp =
-  ({ email, password, ...rest }) =>
+  (payload) =>
   async (dispatch) => {
     dispatch(authRequested());
     try {
-        const data = await authService.register({ email, password });
-        localStorageService.setTokens(data);
+      const data = await authService.register(payload);
+      localStorageService.setTokens(data);
+      // const transformUserData = {...payload}
       dispatch(authRequestSuccess());
-        dispatch(
-            createUser({
-              _id: data.localId,
-              email,
-              bought: 0,
-              shoppingCart: [""],
-              viewed: [""],
-              orders: [""],
-              isAdmin: false,
-              ...rest,
-            })
-        );
+      dispatch(userCreated({...payload, _id: data.userId}));
+      //   dispatch(
+      //       createUser({
+      //         _id: data.localId,
+      //         email,
+      //         bought: 0,
+      //         shoppingCart: [""],
+      //         viewed: [""],
+      //         orders: [""],
+      //         isAdmin: false,
+      //         ...rest,
+      //       })
+      //   );
     } catch (error) {
       dispatch(authRequestFailed(error.message));
     }
@@ -135,33 +137,34 @@ export const logIn = (payload) => async (dispatch) => {
     const { content } = await userService.getCurrentUser();
     dispatch(authRequestSuccess());
     dispatch(userRecived(content));
+    return data
     // payload.reference.current.click()
   } catch (error) {
     const { message, code } = error.response.data.error;
     if (code === 400) {
-      // const errorMessage = generateAuthError(message);
+      const errorMessage = generateAuthError(message);
       console.log(message);
-      // console.log(errorMessage);
-      // dispatch(authRequestFailed(errorMessage));
+      console.log(errorMessage);
+      dispatch(authRequestFailed(errorMessage));
     }
-    // else {
-    //     dispatch(authRequestFailed(error.message));
-    // }
+    else {
+        dispatch(authRequestFailed(error.message));
+    }
   }
 };
 
-function createUser(data) {
-    return async function (dispatch) {
-        dispatch(userCreateRequested());
-        try {
-            const { content } = await userService.create(data);
-            dispatch(userCreated(content));
-            // history.push("/users");
-        } catch (error) {
-            dispatch(userCreateFailed());
-        }
-    };
-}
+// function createUser(data) {
+//     return async function (dispatch) {
+//         dispatch(userCreateRequested());
+//         try {
+//             const { content } = await userService.create(data);
+//             dispatch(userCreated(content));
+//             // history.push("/users");
+//         } catch (error) {
+//             dispatch(userCreateFailed());
+//         }
+//     };
+// }
 
 export const loadUser = () => async (dispatch) => {
   dispatch(userRequested());

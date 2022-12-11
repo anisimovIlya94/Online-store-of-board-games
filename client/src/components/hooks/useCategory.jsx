@@ -28,7 +28,6 @@ const CategoryProvider = ({ children }) => {
       setTimeout(() => {
         setLoading(false)
       },100)
-      
     } catch (error) {
       console.log(error);
       // errorCatcher(error);

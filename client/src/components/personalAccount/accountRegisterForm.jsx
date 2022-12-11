@@ -8,7 +8,7 @@ import { signUp as signUpRedux } from "../../store/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-const AccountRegisterForm = () => {
+const AccountRegisterForm = ({closeModal}) => {
   const [data, setData] = useState({
     name: "",
     telephone: "",
@@ -20,9 +20,9 @@ const AccountRegisterForm = () => {
   });
   const [errors, setErrors] = useState({});
   const [hoverButton, setHoverButton] = useState(false);
-  const [submited, setSubmited] = useState(false)
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const [submited, setSubmited] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const toggleHoverButton = () => {
     setHoverButton(!hoverButton);
   };
@@ -34,58 +34,65 @@ const AccountRegisterForm = () => {
   };
   useEffect(() => {
     validate();
-}, [data]);
-const validate = () => {
+  }, [data]);
+  const validate = () => {
     const errors = validator(data, validatorConfig);
     setErrors(errors);
     return Object.keys(errors).length === 0;
-};
-const isValid = Object.keys(errors).length === 0;
+  };
+  const isValid = Object.keys(errors).length === 0;
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmited(true)
+    setSubmited(true);
     const isValid = validate();
     if (!isValid) return;
-    const transformData = { ...data }
-    delete transformData.secondPassword
-    dispatch(signUpRedux(data)).then(() => {
-      // setTimeout(() => {
-        history.replace("/")
-    //   },1000)
-    })
+    const transformData = {
+      ...data,
+      bought: 0,
+      shoppingCart: [],
+      viewed: [],
+      orders: [],
+      isAdmin: false,
+    };
+    delete transformData.secondPassword;
+    dispatch(signUpRedux(transformData))
+      setTimeout(() => {
+      closeModal()
+      history.replace("/persaccount");
+        },1000)
   };
   const validatorConfig = {
     email: {
-        // isRequired: {
-        //     message: "Электронная почта обязательна для заполнения"
-        // },
-        isEmail: {
-            message: "Email введен некорректно"
-        }
+      // isRequired: {
+      //     message: "Электронная почта обязательна для заполнения"
+      // },
+      isEmail: {
+        message: "Email введен некорректно",
+      },
     },
     name: {
-        // isRequired: {
-        //     message: "Имя обязательно для заполнения"
-        // },
-        minSymbols: {
-            message: "Имя должно состоять минимум из 3 символов",
-            value: 3
-        }
+      // isRequired: {
+      //     message: "Имя обязательно для заполнения"
+      // },
+      minSymbols: {
+        message: "Имя должно состоять минимум из 3 символов",
+        value: 3,
+      },
     },
     password: {
-        // isRequired: {
-        //     message: "Пароль обязателен для заполнения"
-        // },
-        isCapitalSymbol: {
-            message: "Пароль должен содержать хотя бы одну заглавную букву"
-        },
-        isContainDigital: {
-            message: "Пароль должен содержать хотя бы одно число"
-        },
-        minSymbols: {
-            message: "Пароль должен состоять минимум из 8 символов",
-            value: 8
-        }
+      // isRequired: {
+      //     message: "Пароль обязателен для заполнения"
+      // },
+      isCapitalSymbol: {
+        message: "Пароль должен содержать хотя бы одну заглавную букву",
+      },
+      isContainDigital: {
+        message: "Пароль должен содержать хотя бы одно число",
+      },
+      minSymbols: {
+        message: "Пароль должен состоять минимум из 8 символов",
+        value: 8,
+      },
     },
     telephone: {
       //   isRequired: {
@@ -93,8 +100,8 @@ const isValid = Object.keys(errors).length === 0;
       // },
       minSymbols: {
         message: "Номер должен состоять минимум из 11 символов",
-        value: 11
-    }
+        value: 11,
+      },
     },
     secondPassword: {
       // isRequired: {
@@ -102,16 +109,16 @@ const isValid = Object.keys(errors).length === 0;
       // },
       isDifference: {
         message: "Пароли не совпадают",
-        passwordValue: data.password
-      }
-  },
+        passwordValue: data.password,
+      },
+    },
     licence: {
-        isRequired: {
-            message:
-                "Вы не можете использовать наш сервис без подтверждения лицензионного соглашения"
-        }
-    }
-};
+      isRequired: {
+        message:
+          "Вы не можете использовать наш сервис без подтверждения лицензионного соглашения",
+      },
+    },
+  };
   return (
     // <ModalWindow id={id}>
     <>

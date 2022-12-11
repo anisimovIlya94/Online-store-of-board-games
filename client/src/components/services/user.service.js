@@ -13,7 +13,7 @@ const userService = {
     },
     getCurrentUser: async () => {
         const { data } = await httpService.get(
-            userEndpoint + localStorageService.getUserIdToken()
+            userEndpoint
         );
         return data;
     },

@@ -3,7 +3,7 @@ import TextField from "../common/form/textField";
 import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import { validator } from "../../utils/validator";
 import classes from "../../modules/textField.module.css";
-import { getAuthError, logIn as logInRedux } from "../../store/user";
+import { getAuthError, getCurrentUser, logIn as logInRedux } from "../../store/user";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -46,10 +46,12 @@ const isValid = Object.keys(errors).length === 0;
     const isValid = validate();
     if (!isValid) return;
     const status = dispatch(logInRedux(data))
-    status.then(() => {
-      if (path && path.includes("login")) {
-        history.replace("/")
-      } else {
+    status.then((data) => {
+      if (data) {
+        if (path && path.includes("login")) {
+          history.replace("/")
+        }
+        closeModal()
         history.replace("/persaccount")
       }
       

@@ -7,8 +7,9 @@ import ShoppingCardButton from "../shoppingCart/shoppingCartButton";
 import MultiSelectField from "../common/form/multiSelectField";
 import { useCategory } from "../hooks/useCategory";
 import { nanoid } from "nanoid";
-import { useCatalog } from "../hooks/useCatalog";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleChangeProduct, handleCreateProduct, handleRemoveProduct } from "../../store/catalog";
 
 const initialState = {
     name: "",
@@ -30,10 +31,8 @@ const AdminEditProduct = ({ prod }) => {
   const [changedStatus, setChangedStatus] = useState()
   const [deleteStatus, setDeleteStatus] = useState(false)
   const history = useHistory()
-    const {handleChangeProduct, handleCreateProduct, handleRemoveProduct} = useCatalog()
   const { getCategoryById, getSubCategoryById } = useCategory();
-
-  // const prod = getProductById(prodId)
+  const dispatch = useDispatch()
     useEffect(() => { 
       if (prod) {
         setChangedStatus(false)
@@ -71,7 +70,7 @@ const AdminEditProduct = ({ prod }) => {
     setHoverButton(!hoverButton);
   };
   const handleDelete = () => {
-    const status = handleRemoveProduct(prod._id)
+    const status = dispatch(handleRemoveProduct(prod._id))
     status.then((data) => {
       if (!data) {
         setDeleteStatus(true)
@@ -160,7 +159,7 @@ const AdminEditProduct = ({ prod }) => {
       categories: data.categories,
       subcategories: data.subcategories,
     }
-    const status = prod ? handleChangeProduct(prod._id, transformedData) : handleCreateProduct(nanoid(), transformedData)
+    const status = prod ? dispatch(handleChangeProduct(prod._id, transformedData)) : dispatch(handleCreateProduct(nanoid(), transformedData))
     status.then(() => { setChangedStatus(true) })
     // console.log();
     // setData(tra)
@@ -282,7 +281,7 @@ const AdminEditProduct = ({ prod }) => {
             hoverButton={hoverButton}
             icon={false}
             buttonWidth={"250px"}
-            modal={false}
+            modal={true}
             disabled={!isValid}
         />}
       </form>

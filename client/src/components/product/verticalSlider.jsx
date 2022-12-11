@@ -46,6 +46,7 @@ const VerticalSlider = ({activeIndex, onChangeIndex, id, images}) => {
       </p>
       
       <Swiper
+        key={images[0] + "11"}
         direction={"vertical"}
         onSwiper={setSwiperRef}
         slidesPerView={imagesLength > 3 ? 3 : imagesLength}
@@ -58,7 +59,7 @@ const VerticalSlider = ({activeIndex, onChangeIndex, id, images}) => {
         {/* <div className="swipewrap"> */}
         {images.map((img, index) => {
           return (
-            <SwiperSlide style={{padding: "10px"}} key={img._id}>
+            <SwiperSlide style={{padding: "10px"}} key={img}>
           <button id={index} onClick={()=>{onChangeIndex(index)}} cursor={"pointer"} className="butt">
           <img cursor={"pointer"} className={"image " + (activeIndex === index ? "active" : "")} src={require(`../../images/product/productsLibrary/${img}`)} alt="" />
           </button>

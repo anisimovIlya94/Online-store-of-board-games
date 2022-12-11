@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 const initialData = { name: "" };
 
-const OpenedNavBar = ({onToggleCatalog}) => {
+const OpenedNavBar = () => {
    const [hoverClose,setHoverClose] = useState(false)
    const [data, setData] = useState(initialData);
    const { categories, subcategories, isLoading } = useCategory()
@@ -24,7 +24,7 @@ const OpenedNavBar = ({onToggleCatalog}) => {
    {/* <div className={classes.openedCatalogWrapper}> */}
       <div className={classes.openedCatalog}>
       <div className={classes.leftColumn}>
-         <button data-bs-dismiss="offcanvas" aria-label="Close" className={classes.closeBtn} onClick={onToggleCatalog} onMouseEnter={()=>setHoverClose(true)} onMouseLeave={()=>setHoverClose(false)}>
+         <button data-bs-dismiss="offcanvas" aria-label="Close" className={classes.closeBtn} onMouseEnter={()=>setHoverClose(true)} onMouseLeave={()=>setHoverClose(false)}>
              <img src={hoverClose ? closeIconActive : closeIcon} />
              <span className={hoverClose ? classes.closeBtnSpanHover : classes.closeBtnSpan}>Закрыть</span>
          </button>
@@ -43,10 +43,11 @@ const OpenedNavBar = ({onToggleCatalog}) => {
             <div className='container text-center'>
             <ul className='row row-cols-4 mw-100 '>
             {subs.map((subcategory)=>(
-               <div className={classes.gg}>
-               <li key={subcategory._id} className={"col mb-5 " + classes.hh}>
-                  <NavLink activeClassName={classes.activeNavLinks} to={`/catalog/${subcategory.category}/${subcategory._id}`} className={classes.navLinks} href="#">
-                     {subcategory.name}
+               <div className={classes.gg} key={subcategory._id}>
+               <li className={"col mb-5 " + classes.hh}>
+                     <NavLink activeClassName={classes.activeNavLinks} to={`/catalog/${subcategory.category}/${subcategory._id}`} className={classes.navLinks}>
+                        <span data-bs-dismiss="offcanvas">{subcategory.name}</span>
+                     
                   </NavLink>
                </li>
                 </div>

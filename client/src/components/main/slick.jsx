@@ -16,11 +16,13 @@ const responsive = {
 };
 
 const Slick = ({ cards }) => {
-    // console.log(cards)
     const [activeIndex, setActiveIndex] = useState(0);
     const [items] = useState(
         cards.map((card) => {
-            return <MainCard key={card._id} cardInformation={card} role="presentation" />
+            if (card) {
+                return <MainCard key={card._id} cardInformation={card} role="presentation" />
+            }
+           
         })
     );
     // const ff = cards.map((card) => {
@@ -32,7 +34,7 @@ const difference = items.length - currentItems;
     const slideNext = () => setActiveIndex(activeIndex + 1);
     const syncActiveIndex = ({ item }) => setActiveIndex(item);
     return [
-        <div className={classes.slickMargin}>
+        <div className={classes.slickMargin} key={cards[0]._id}>
             <div className={classes.slickWrapper}>
                     {/* <button className={classes.leftButton} style={{backgroundColor: "#fcf3ed", margin: "0px 20px 0px 0px"}} disabled={activeIndex===0} onClick={slidePrev}>
                         <img src={arrowLeft} alt="" />

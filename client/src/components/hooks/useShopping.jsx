@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getCatalogLoadingStatus, getProductsRedux } from "../../store/catalog";
 import { getCurrentUser, updateUser } from "../../store/user";
-import { useCatalog } from "./useCatalog";
 
 const ShoppingContext = React.createContext();
 
@@ -15,13 +15,12 @@ const ShoppingProvider = ({ children }) => {
   const [prodsWithPrice, setProds] = useState([]);
   const currentUser = useSelector(getCurrentUser());
   const dispatch = useDispatch();
-  const { getProductById, isLoading: catalogLoading } = useCatalog();
+  const catalogLoading = useSelector(getCatalogLoadingStatus())
+  const products = useSelector(getProductsRedux())
   const handleGetItems = () => {
     if (currentUser) {
       const cart = currentUser.shoppingCart.reduce((acc, product, index) => {
-        if (index > 0) {
-          acc.push(getProductById(product));
-        }
+          acc.push(products.find((prod) => prod._id === product));
         return acc;
       }, []);
       setCartItems(cart);

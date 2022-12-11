@@ -5,16 +5,27 @@ import AccountUserRangs from './accountUserRangs';
 import MainCardButton from '../main/buttons/mainCardButton';
 import MainCard from '../main/mainCard';
 import AccountUserInfo from './accountUserInfo';
-import { useCatalog } from '../hooks/useCatalog';
 import { useSelector } from 'react-redux';
 import { getCurrentUser, getLoadingStatus } from '../../store/user';
+import { getCatalogLoadingStatus, getProductsRedux } from '../../store/catalog';
+import { useHistory } from 'react-router-dom';
 
 const AccountMain = () => {
   let status;
+  const history = useHistory()
   const currentUser = useSelector(getCurrentUser())
+  if (currentUser?.isAdmin) {
+    history.replace("/admin")
+  }
   const userLoading = useSelector(getLoadingStatus())
-  const {getProductById, isLoading} = useCatalog()
+  const isLoading = useSelector(getCatalogLoadingStatus())
+  const products = useSelector(getProductsRedux())
   const bought = currentUser ? currentUser.bought : 0;
+
+  const getProductById = (id) => {
+    return products.find((prod) => prod._id === id);
+  }
+
   if (bought <= 5000) {
     status = {name:"Новичок", discount: '5%', color: '#CD7F32', background: 'linear-gradient(#573716, #2A2A2A)'}
   } else if (bought > 5000 && bought <= 10000) {
@@ -46,12 +57,6 @@ const AccountMain = () => {
       img: "event3",
     },
   ];
-  const recommendations = [
-    { id: "rc1" },
-    { id: "rc2" },
-    { id: "rc3" },
-    {id: "rc4"},
-  ]
     return ( 
         <div className={classes.accountMainInfo}>
           <div className={classes.accountUserInfo}>
@@ -132,8 +137,9 @@ const AccountMain = () => {
               <div className={classes.recommendedWrapper}>
                 <div className="container text-center">
                   <div className="row row-cols-3">
-                  {!isLoading && currentUser.viewed.map((prod) => {
+                  {!userLoading && !isLoading && currentUser.viewed.length > 0 && currentUser.viewed.map((prod) => {
                     const product = getProductById(prod)
+                    if (product) {
                       return (
                         <div
                           key={product._id}
@@ -142,6 +148,8 @@ const AccountMain = () => {
                           <MainCard cardInformation={product} />
                         </div>
                       );
+                    }
+                      
                     })}
                   </div>
                 </div>

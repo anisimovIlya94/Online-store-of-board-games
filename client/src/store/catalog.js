@@ -1,8 +1,6 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
-import { useCategory } from "../components/hooks/useCategory";
 import productService from "../components/services/product.service";
 import { isOutdated } from "../utils/outDated";
-import { useSelector } from "react-redux";
 
 const catalogSlice = createSlice({
   name: "products",
@@ -48,8 +46,9 @@ const catalogSlice = createSlice({
         if (prod._id === action.payload.id) {
           return { _id: action.payload.id, ...action.payload.data };
         }
-        state.entities = result;
+        return prod
       });
+      state.entities = result;
       },
       productRemoveRecived: (state, action) => { 
           const result = state.entities.filter((prod) => prod._id !== action.payload)
@@ -97,8 +96,8 @@ export const loadProductsList = () => async (dispatch, getState) => {
 export const handleCreateProduct = (_id, data) => async (dispatch) => {
   dispatch(productCreateRequested);
   try {
-    await productService.create(_id, { _id, ...data });
-    dispatch(productCreateRecived({ _id, ...data }));
+    const {content} = await productService.create({ ...data });
+    dispatch(productCreateRecived(content));
     // history.push(`/catalog/${data.categories[0]}/${data.subcategories[0]}/${_id}`)
   } catch (error) {
     dispatch(productCreateFailed);
@@ -120,7 +119,7 @@ export const handleRemoveProduct = (prodId) => async (dispatch) => {
     dispatch(productRemoveRequested);
     try {
         const { content } = await productService.delete(prodId);
-        if (content === null) {
+        if (!content) {
             dispatch(productRemoveRecived(prodId))
         //   setProducts(products.filter((prod)=>prod._id !== prodId))
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import classes from "../../modules/horisontalSlider.module.css";
@@ -27,8 +27,8 @@ const HorisontalSlider = ({ activeIndex, onChangeIndex, id, images }) => {
   const slidePrev = () => onChangeIndex(activeIndex - 1);
   const slideNext = () => onChangeIndex(activeIndex + 1);
   const syncActiveIndex = ({ item }) => onChangeIndex(item);
-  return [
-    <div className={classes.slickMargin1}>
+  return (
+    <div className={classes.slickMargin1} key={images[0]}>
       <div className={classes.slickWrapper1}>
         <div className={classes.alice1}>
           <button
@@ -38,7 +38,8 @@ const HorisontalSlider = ({ activeIndex, onChangeIndex, id, images }) => {
           >
             <img src={arrowLeft} alt="" />
           </button>
-            <AliceCarousel
+          <AliceCarousel
+            
               mouseTracking
               disableDotsControls
               disableButtonsControls
@@ -61,7 +62,7 @@ const HorisontalSlider = ({ activeIndex, onChangeIndex, id, images }) => {
           </button>
         </div>
       </div>
-    </div>,
-  ];
+    </div>
+  );
 };
 export default HorisontalSlider;
