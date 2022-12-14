@@ -21,6 +21,7 @@ import {
   getCatalogLoadingStatus,
   getProductsRedux,
 } from "../../../store/catalog";
+import MainCard from "../../main/mainCard";
 
 const ProductPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -28,7 +29,7 @@ const ProductPage = () => {
   const products = useSelector(getProductsRedux());
   const currentUser = useSelector(getCurrentUser());
   const isLoading = useSelector(getLoadingStatus());
-  const history = useHistory()
+  const history = useHistory();
   const productsLoading = useSelector(getCatalogLoadingStatus());
   const dispatch = useDispatch();
   const { productId } = useParams();
@@ -59,11 +60,11 @@ const ProductPage = () => {
     setActiveIndex(id);
   };
   const handleGoToCart = () => {
-    window.scrollTo(0,0)
-    history.replace("/shopping")
-  }
+    window.scrollTo(0, 0);
+    history.replace("/shopping");
+  };
   const handleAddToViewed = () => {
-    const viewedArray = currentUser.viewed
+    const viewedArray = currentUser.viewed;
     if (!viewedArray.includes(productId)) {
       if (viewedArray.length < 10) {
         dispatch(
@@ -83,7 +84,7 @@ const ProductPage = () => {
         // updateUserData({ ...currentUser, viewed: [productId, ...viewedArray.slice(0,viewedArray.length-1)] })
       }
     } else {
-      const filteredViewed = viewedArray.filter((v) => v !== productId)
+      const filteredViewed = viewedArray.filter((v) => v !== productId);
       dispatch(
         updateUser({ ...currentUser, viewed: [productId, ...filteredViewed] })
       );
@@ -116,11 +117,15 @@ const ProductPage = () => {
       : [];
   if (productsLoading) {
     return (
-        <div className={"d-flex justify-content-center " + classes.load}>
-          <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
+      <div className={"d-flex justify-content-center " + classes.load}>
+        <div
+          className="spinner-border"
+          style={{ width: "3rem", height: "3rem" }}
+          role="status"
+        >
+          <span className="visually-hidden">Loading...</span>
         </div>
+      </div>
     );
   }
   return (
@@ -175,22 +180,23 @@ const ProductPage = () => {
                 <h2 className={classes.bigPrice}>{product.bigPrice} ₽</h2>
               )}
               <h2 className={classes.currentPrice}>{product.currentPrice} ₽</h2>
-              {isInCart
-                ? <MainCardButton
-                title={"В корзине"}
-                ancer={true}
-                onHoverButton={toggleHoverButton}
-                hoverButton={hoverButton}
+              {isInCart ? (
+                <MainCardButton
+                  title={"В корзине"}
+                  ancer={true}
+                  onHoverButton={toggleHoverButton}
+                  hoverButton={hoverButton}
                 />
-                : <MainCardButton
-                title={"В корзину"}
-                orange={true}
-                onHoverButton={toggleHoverButton}
-                onShopCart={handleAddToCart}
-                hoverButton={hoverButton}
-                icon={true}
-              />
-            }
+              ) : (
+                <MainCardButton
+                  title={"В корзину"}
+                  orange={true}
+                  onHoverButton={toggleHoverButton}
+                  onShopCart={handleAddToCart}
+                  hoverButton={hoverButton}
+                  icon={true}
+                />
+              )}
               <MainCardButton title={"Купить в один клик"} orange={false} />
               <div className={classes.quastionsWrapper}>
                 <Quastion
@@ -250,12 +256,36 @@ const ProductPage = () => {
               />
             </div>
           }
-          {currentUser && !isLoading && (
-            <div className={classes.slickWrapper}>
-              <h2 className={classes.slickTitles}>Просматривали</h2>
-              <Slick cards={viewedProducts} />
-            </div>
-          )}
+          <h2 className={classes.slickTitles}>Просматривали</h2>
+          {viewedProducts.length > 3
+            ? currentUser &&
+              !isLoading && (
+                <div className={classes.slickWrapper}>
+                  
+                  <Slick cards={viewedProducts} />
+                </div>
+              )
+            : !isLoading && viewedProducts.length > 0 &&(
+                <div className={classes.recommendedWrapper}>
+                  <div className="container text-center">
+                    <div className="row row-cols-3">
+                      {currentUser.viewed.map((prod) => {
+                        const product = getProductById(prod);
+                        if (product) {
+                          return (
+                            <div
+                              key={product._id}
+                              className={"col " + classes.recomendation}
+                            >
+                              <MainCard cardInformation={product} />
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
         </>
       </div>
     )

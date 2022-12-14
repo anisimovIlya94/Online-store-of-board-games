@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "../../modules/main.module.css";
 import MainCardButton from "./buttons/mainCardButton";
 import { useShopping } from "../hooks/useShopping";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser, updateUser } from "../../store/user";
 
@@ -11,6 +11,7 @@ const MainCard = ({cardInformation}) => {
   const currentUser = useSelector(getCurrentUser())
   const dispatch = useDispatch()
   const { getItemById } = useShopping()
+  const { productId } = useParams()
   const isInCart = getItemById(cardInformation._id)
   const history = useHistory();
   const toggleHoverButton = () => {
@@ -29,7 +30,7 @@ const MainCard = ({cardInformation}) => {
   //       updateCartItems(cardInfo);
   // }
   const handleGetToProductCard = () => {
-    history.push(`/catalog/${cardInformation.categories[0]}/${cardInformation.subcategories[0]}/${cardInformation._id}`)
+    window.scrollTo(0,0)
   }
   return (
     <div
@@ -38,11 +39,21 @@ const MainCard = ({cardInformation}) => {
     >
       <img src={require(`../../images/product/productsLibrary/${cardInformation.images[0]}`)} className={"card-img-top " + classes.imageSize} alt="..." />
       <div className="card-body">
-        <a href="" className={classes.productLinkStyle} onClick={handleGetToProductCard}>
+        {productId
+          ? 
+          <a onClick={handleGetToProductCard} href={`/catalog/${cardInformation.categories[0]}/${cardInformation.subcategories[0]}/${cardInformation._id}`} className={classes.productLinkStyle}>
           <h5 className={classes.mainCardTitle}>
           {cardInformation.name}
           </h5>
         </a>
+          :
+          <Link onClick={handleGetToProductCard} to={`/catalog/${cardInformation.categories[0]}/${cardInformation.subcategories[0]}/${cardInformation._id}`} className={classes.productLinkStyle}>
+          <h5 className={classes.mainCardTitle}>
+          {cardInformation.name}
+          </h5>
+        </Link>
+        }
+        
         <p className={classes.mainCardPrice}>{cardInformation.currentPrice} ₽</p>
         {isInCart
         ? <MainCardButton

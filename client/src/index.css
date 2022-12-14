@@ -60,12 +60,17 @@ body{
 	color: #363636;
 	margin: 0 0 0 30px;
 }
-@media (max-width: 1920px) {
+@media (max-width: 1800px) {
 	.title{
-		margin-left: calc(30px + (300 - 30) * ((100vw - 1400px) / (1920 - 1440)))
+		margin-left: calc(30px + (220 - 30) * ((100vw - 1320px) / (1800 - 1320)))
 	}
 }
-@media (max-width: 1440px) {
+@media (min-width: 1800px) {
+	.title{
+		margin-left: 100px
+	}
+}
+@media (max-width: 1320px) {
 	.title{
 		margin-left: 75px;
 	}

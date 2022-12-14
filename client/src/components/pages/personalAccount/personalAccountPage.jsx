@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
+import { Link, Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
 import classes from "../../../modules/account.module.css";
 import Navigation from "../../navigation";
 import AccountMain from "../../personalAccount/accountMain";
@@ -9,8 +9,8 @@ import AccountSettings from "../../personalAccount/accountSettings";
 const PersonalAccountPage = () => {
   const { accountPage } = useParams()
   const history = useHistory();
-  const handleReturnToAccountPage = (page) => {
-    history.push(`/persaccount${page}`)
+  const handleReturnToAccountPage = () => {
+    window.scrollTo(0,0)
   }
   return (
     <div className={classes.accountWrapper}>
@@ -20,18 +20,18 @@ const PersonalAccountPage = () => {
         <div className={classes.accountMainNavigation}>
           <ul className={classes.accountMainNavList}>
             <li>
-              <a href="" onClick={()=>handleReturnToAccountPage("")}
+              <Link to={"/persaccount"} onClick={handleReturnToAccountPage}
                 
               >
                 <span className={classes.accountMainNavButton + " " + (accountPage ? null : classes.active)}>Профиль</span>
                 
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="" onClick={()=>handleReturnToAccountPage("/orders")} className={classes.accountMainNavButton}>
+              <Link to={`/persaccount/orders`} onClick={handleReturnToAccountPage()} className={classes.accountMainNavButton}>
                 <span className={classes.accountMainNavButton + " " + (accountPage !== "orders" ? null : classes.active)}>Заказы</span>
                 
-              </a>
+              </Link>
             </li>
             <li>
               <button className={classes.accountMainNavButton}>
@@ -39,10 +39,10 @@ const PersonalAccountPage = () => {
               </button>
             </li>
             <li>
-            <a href="" onClick={()=>handleReturnToAccountPage("/settings")} className={classes.accountMainNavButton}>
+            <Link to={`/persaccount/settings`} href="" onClick={handleReturnToAccountPage()} className={classes.accountMainNavButton}>
                 <span className={classes.accountMainNavButton + " " + (accountPage !== "settings" ? null : classes.active)}>Настройки</span>
                 
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

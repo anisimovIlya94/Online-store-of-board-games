@@ -1,5 +1,5 @@
 .adminWrapper{
-    margin: 145px 0 0px 0;
+    margin: 165px 0 0px 0;
     width: 100%;
 }
 .adminWrapper, .adminAddWrapper{
@@ -31,6 +31,11 @@
     border-radius: 15px;
     font-size: 16px;
     flex: 0 1 20%;
+}
+@media (max-width: 1246px) {
+    .adminMainNavigation{
+        height: 220px;
+    }
 }
 .adminMainNavList li{
     margin-bottom: 30px;

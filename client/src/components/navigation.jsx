@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import classes from "../modules/catalog.module.css"
-import { Link, useHistory, useParams, useRouteMatch } from 'react-router-dom';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import { useCategory } from './hooks/useCategory';
 
 
 const Navigation = ({ productName }) => {
     const [names, setNames] = useState([])
-    const history = useHistory();
     const path = useRouteMatch().url.split("/")
     const par = useParams()
     const {getCategoryById, getSubCategoryById, isLoading} = useCategory()
@@ -54,15 +53,16 @@ const Navigation = ({ productName }) => {
         
     }
     const handleReturnMain = () => {
-        history.replace("/")
+        window.scrollTo(0,0)
     }
     const arrow = ">"
         return (
             <ul className='navigation-flex'>
-                <li><a onClick={handleReturnMain} className={classes.navigation} href="">Главная</a></li>
+                <li><Link to={"/"} onClick={handleReturnMain} className={classes.navigation}>Главная</Link></li>
                 <li className='navigation-button'>{arrow}</li>
                 {names.length > 0 && names.map((param, index) => {
                     const isLastIndex = index + 1 === names.length;
+                    console.log(isLastIndex)
                     if (param) {
                         return (
                             <div className='d-flex' key={param.name + "11"}>

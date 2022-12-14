@@ -96,6 +96,7 @@
     font-weight: 700;
     font-size: 33px;
 }
+
 .accountUserCardWrapper{
     display: flex;
 }
@@ -129,6 +130,7 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+
 .disabled{
     opacity: 0.4;
 }
@@ -159,6 +161,23 @@
     display: flex;
     margin-top: 60px;
     margin-bottom: 95px;
+}
+@media (max-width:1270px) {
+    .userCardWrapper{
+        max-width: 340px;
+    }
+    .userCardBoard{
+        padding: 70px 90px 66px 45px;
+    }
+    .userCardProcent{
+        margin-left: 50px;
+    }
+    .rangeItemWrapper{
+        min-width: 210px;
+    }
+    .shoppingLine{
+        width: 500px;
+    }
 }
 .myEventsWrapper{
     display: flex;

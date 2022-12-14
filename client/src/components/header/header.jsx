@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import classes from "../../modules/header.module.css";
 import logo from "../../images/header/header-logo.png";
 import magnifier from "../../images/header/Vector.png";
@@ -211,18 +211,7 @@ const Header = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        {/* <img
-                          src={
-                            account ? personalAccountActive : personalAccount
-                          }
-                          onMouseEnter={() => handleToggleAccount()}
-                          onMouseLeave={() => handleToggleAccount()}
-                          alt=""
-                        />
-                        <i className="bi bi-caret-down"></i> */}
-                        {/* <span  className={classes.accountIcon}> */}
                         <i className="bi bi-person-gear"></i>
-                        {/* </span> */}
                       </button>
                       <ul className={"dropdown-menu "}>
                         <li>
@@ -301,14 +290,7 @@ const Header = () => {
                     </button>
                   </>
                 )}
-              </div>
-              {/* {isAdmin && <div className="col">
-                <Link to="/admin" className={classes.adminButton}>
-                  <i className="bi bi-gear-fill"></i>
-                </Link>
-              </div>} */}
-              <div className="col mt-1">
-                <ShoppingCartButton onHover={handleToggleCart} cart={cart} />
+                {!currentUser?.isAdmin && <ShoppingCartButton onHover={handleToggleCart} cart={cart} />}
               </div>
             </div>
           </div>

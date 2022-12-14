@@ -1,18 +1,14 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classes from "../../../modules/main.module.css"
 
 const MainButton = ({ title }) => {
-    const history = useHistory()
-    const handleToCatalog = () => {
-        history.push("/catalog")
-    }
     return (
         <div className={classes.buttonMargin}>
         <div className={classes.buttonWrapper}>
-            <a onClick={handleToCatalog} href="">
+            <Link to={"/catalog"}>
             <span className={classes.buttonSpan}>{title}</span>
-        </a>
+        </Link>
         </div>
         </div>
     );

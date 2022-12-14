@@ -4,7 +4,7 @@ import burgerActive from "../../images/header/бургер-active.png";
 import classes from "../../modules/navBar.module.css";
 import VkLogo from "../vkLogo";
 import OpenedNavBar from "./openedNavBar";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 // import closeIcon from '../images/header/close-icon.png'
 // import closeIconActive from '../images/header/close-icon — active.png'
 // import NavCategory from './navCategory'
@@ -55,19 +55,19 @@ const NavBar = ({ onHover, burgerState }) => {
           </NavLink>
         </li>
         <li>
-          <a className={classes.navLinks} href="#">
+          <Link to="/process" className={classes.navLinks} >
             <span>Мероприятия</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a className={classes.navLinks} href="#">
+          <Link className={classes.navLinks} to="/process">
             <span>О центре</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a className={classes.navLinks} href="#">
+          <Link className={classes.navLinks} to="/process">
             <span>Контакты</span>
-          </a>
+          </Link>
         </li>
         <li>
           <VkLogo />

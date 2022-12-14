@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "../../modules/shoppingCart.module.css";
 import { useShopping } from "../hooks/useShopping";
 
-const ShoppingCartItem = ({ cart, onChangeAllPrice }) => {
+const ShoppingCartItem = ({ cart }) => {
   // console.log(cart)
   const [count, setCount] = useState(1);
   const { removeItem, handleChangePrice } = useShopping();

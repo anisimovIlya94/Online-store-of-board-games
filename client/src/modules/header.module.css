@@ -10,17 +10,21 @@
    max-height: 82px;
    margin: 0 0 0 10px;
 }
+.input{
+   width: 555px;
+   min-height: 38px;
+   border-radius: 9px;
+   background-color:#f1f1f1;
+   padding: 0 0 0 12px;
+   font-size: 20px;
+}
 
 .search{
    position: relative;
    margin: 0 30px 0 0;
 }
-@media (max-width: 1200px) {
-   .input{
-      width: 355px;
-   }
-}
-@media (min-width: 1400px) {
+
+/* @media (min-width: 1400px) {
    .input{
       width: 655px;
    }
@@ -34,7 +38,7 @@
    .input{
       width: 1055px;
    }
-}
+} */
 .magnifier{
    position: absolute;
    content: '';
@@ -105,14 +109,7 @@
    margin-top: 20px;
    color: #2A2A2A;
 }
-.input{
-   width: 555px;
-   min-height: 38px;
-   border-radius: 9px;
-   background-color:#f1f1f1;
-   padding: 0 0 0 12px;
-   font-size: 20px;
-}
+
 .searchingLinkAll{
    font-size: 17px;
    font-weight: 500;
@@ -149,6 +146,8 @@
 .cartIcon{
    color: #FFFFFF;
    font-size: 32px;
+   transform: translate(0,-5px);
+   display: inline-block;
 }
 .menuLink{
    font-size: 18px;
@@ -157,6 +156,39 @@
    color: #2A2A2A;
    text-align: center;
 }
-/* .shoppingCart{
-   margin-top: 12px;
-} */
+@media (max-width: 1200px) {
+   .input{
+      width: 455px;
+   }
+}
+@media (max-width: 1100px) {
+   .input{
+      width: 390px;
+   }
+   .search{
+      margin: 0 10px 0 0;
+   }
+   .telephoneNumber{
+      margin: 7px 5px 0 0px;
+   }
+}
+@media (max-width: 1000px) {
+   .input{
+      width: 325px;
+   }
+}
+@media (max-width: 915px) {
+   .input{
+      width: 290px;
+   }
+}
+@media (min-width: 1600px) {
+   .input{
+      width: 855px;
+   }
+}
+@media (min-width: 1800px) {
+   .input{
+      width: 1055px;
+   }
+}

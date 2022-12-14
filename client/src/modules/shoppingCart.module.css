@@ -13,6 +13,7 @@
     width: 950px;
     margin: 0px 0 20px 50px;
 }
+
 .orderImage{
     width: 95px;
     max-height: 95px;
@@ -109,6 +110,7 @@
     padding: 35px;
     margin-left: 100px;
 }
+
 .buyingSum{
     font-family: 'Trebuchet MS';
     font-weight: 700;
@@ -194,6 +196,7 @@
     background: #FFFFFF;
     padding: 7px 24px;
 }
+
 .buttonWhite{
     font-weight: 700;
     font-size: 16px;
@@ -208,6 +211,43 @@
 .buttonWhite:hover{
     background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
     color: #FFFFFF;
+}
+@media (max-width: 1360px) {
+    .order{
+        width: 800px;
+    }
+    .buyingWrapper{
+        margin-left: 50px;
+    }
+}
+@media (max-width: 1170px) {
+    .order{
+        width: 758px;
+    }
+    .buyingWrapper{
+        margin-left: 30px;
+        max-width: 200px;
+    }
+    .buttonOrange, .buttonWhite{
+        width: 150px;
+        padding: 9px 12px;
+    }
+    .buttonWhite{
+        font-size: 14px;
+        padding: 9px 8px;
+    }
+}
+@media (max-width: 1055px) {
+    .orderBigPrice,.orderBigPriceHiden{
+        display: none;
+    }
+    .order{
+        width: 710px;
+    }
+    .buyingWrapper{
+        margin-left: 15px;
+        max-width: 200px;
+    }
 }
 .emptyCartWrapper{
     max-width: 350px;

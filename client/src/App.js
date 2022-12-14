@@ -21,6 +21,7 @@ import { loadRecomendationsList } from "./store/recomendations";
 import { loadUser } from "./store/user";
 import localStorageService from "./components/services/localStorage.service";
 import { loadProductsList } from "./store/catalog";
+import InProcess from "./components/pages/processing/process";
 
 function App() {
   const closeModalRef = useRef();
@@ -58,7 +59,8 @@ function App() {
                       path="/catalog/:category?/:sub?/:productId?"
                       component={Catalog}
                     />
-                    <Route path="/search/:name?" component={Search} />
+              <Route path="/search/:name?" component={Search} />
+              <Route path="/process" component={InProcess} />
                     <ProtectedLoginRoute path="/persaccount/:accountPage?"
                       component={PersonalAccount}/>
                     <ProtectedAdminRoute

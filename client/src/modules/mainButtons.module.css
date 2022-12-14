@@ -46,3 +46,12 @@
     background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
     color: #FFFFFF;
 }
+
+@media (max-width:1140px) {
+    .buttonOrange{
+        padding: 9px 20px 9px 28px;
+    }
+    .buttonWhite{
+        font-size: 14px;
+    }
+}

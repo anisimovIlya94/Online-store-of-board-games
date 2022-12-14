@@ -1,27 +1,15 @@
 import React from "react";
-import cartIcon from "../../images/header/shopping-cart.png";
-import cartIconActive from "../../images/header/shopping-cart-active.png";
 import classes from "../../modules/header.module.css";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCurrentUser } from "../../store/user";
 
-const ShoppingCartButton = ({ onHover, cart }) => {
+const ShoppingCartButton = () => {
   const currentUser = useSelector(getCurrentUser());
-  let count;
-  if (currentUser) {
-    count = currentUser.shoppingCart.length || 0;
-  } else {
-    count = 0;
-  }
-  const history = useHistory();
-  const handleClick = () => {
-    history.replace("/shopping");
-  };
+  let count = currentUser?.shoppingCart.length || 0;
   return (
-    <a className={classes.shoppingCart} onClick={handleClick} href="">
+    <Link to={"/shopping"} className={classes.shoppingCart}>
       <span className="position-relative">
-        {/* <img src={cart ? cartIconActive : cartIcon} onMouseEnter={()=>onHover()} onMouseLeave={()=>onHover()} alt="" /> */}
         <span className={classes.cartIcon}>
           <i className="bi bi-cart3"></i>
         </span>
@@ -29,7 +17,7 @@ const ShoppingCartButton = ({ onHover, cart }) => {
           {count}
         </span>
       </span>
-    </a>
+    </Link>
   );
 };
 

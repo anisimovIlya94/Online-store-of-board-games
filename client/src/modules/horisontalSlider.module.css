@@ -33,3 +33,41 @@
     background-color: #ffff;
     /* overflow: hidden; */
 }
+@media (max-width:1420px) {
+    .horisontalImage1{
+        width: 630px;
+        padding: 10px 50px 10px 40px;
+    }
+    .alice1{
+        width:630px;
+    }
+    .slickMargin1{
+        margin: 10px 0 0 70px;
+    }
+}
+@media (max-width:1279px) {
+    .horisontalImage1{
+        width: 580px;
+        padding: 10px 60px 10px 20px;
+    }
+    .alice1{
+        width:530px;
+    }
+    .slickMargin1{
+        margin: 10px 0 0 30px;
+    }
+}
+
+@media (max-width:1120px) {
+    .horisontalImage1{
+        width: 450px;
+    }
+    .alice1{
+        width:400px;
+    }
+}
+@media (min-width:1800px) {
+    .slickMargin1{
+        margin: 10px 0 0 150px;
+    }
+}

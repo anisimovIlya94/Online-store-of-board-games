@@ -131,13 +131,13 @@ const AccountMain = () => {
                 );
               })}
           </div>
-          {currentUser && !userLoading && currentUser.viewed.length > 1 &&
+          {currentUser && !userLoading && currentUser.viewed.length > 0 &&
             <div>
               <p className={classes.userCardTitle}>Ранее просматривали</p>
               <div className={classes.recommendedWrapper}>
                 <div className="container text-center">
                   <div className="row row-cols-3">
-                  {!userLoading && !isLoading && currentUser.viewed.length > 0 && currentUser.viewed.map((prod) => {
+                  {!isLoading && currentUser.viewed.map((prod) => {
                     const product = getProductById(prod)
                     if (product) {
                       return (

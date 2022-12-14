@@ -10,9 +10,10 @@ const currentItems = 4
 const responsive = {
     0: { items: 1 },
     568: { items: 2 },
-    1024: { items: 3 },
+    1070: { items: 3 },
     1400: { items: 3 },
-    1500: { items: currentItems },
+    1500: { items: 4 },
+    1800: { items: 5 },
 };
 
 const Slick = ({ cards }) => {
@@ -33,7 +34,7 @@ const difference = items.length - currentItems;
     const slidePrev = () => setActiveIndex(activeIndex - 1);
     const slideNext = () => setActiveIndex(activeIndex + 1);
     const syncActiveIndex = ({ item }) => setActiveIndex(item);
-    return [
+    return (
         <div className={classes.slickMargin} key={cards[0]._id}>
             <div className={classes.slickWrapper}>
                     {/* <button className={classes.leftButton} style={{backgroundColor: "#fcf3ed", margin: "0px 20px 0px 0px"}} disabled={activeIndex===0} onClick={slidePrev}>
@@ -61,6 +62,6 @@ const difference = items.length - currentItems;
                     </button> */}
             </div>
         </div>
-    ];
+    );
 };
 export default Slick;

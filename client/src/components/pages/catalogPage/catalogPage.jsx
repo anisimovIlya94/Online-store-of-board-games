@@ -9,9 +9,11 @@ import CatalogProductCards from "../../catalog/catalogProductCards";
 import { useParams } from "react-router-dom";
 import { getCatalogLoadingStatus, getFilteredStatus, getFilters, getProductsRedux } from "../../../store/catalog";
 import { useSelector } from "react-redux";
+import _ from "lodash";
 
 const CatalogPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState("asc");
   const { category, sub } = useParams()
   const productsRedux = useSelector(getProductsRedux())
   const filtered = useSelector(getFilteredStatus())
@@ -27,7 +29,9 @@ const CatalogPage = () => {
     }
   return ii;
 };
-  
+  const handleChangeSortingDirection = () => {
+    setSortBy((prevState) =>  prevState === "asc" ? "desc" : "asc")
+  }
   const getProductsAllRedux = (category, sub) => {
     let result;
       if (category) {
@@ -82,7 +86,12 @@ const CatalogPage = () => {
   };
   const count = products.length;
   const pageSize = 12;
-  const productsCrop = paginate(products, currentPage, pageSize);
+  const sortedProducts = _.orderBy(
+    products,
+    "currentPrice",
+    [sortBy]
+  );
+  const productsCrop = paginate(sortedProducts, currentPage, pageSize);
 
   return (
     <>
@@ -107,7 +116,7 @@ const CatalogPage = () => {
           <span className="visually-hidden">Loading...</span>
         </div>
           </div>
-          :<CatalogProductCards productsCrop={productsCrop} />}
+          : <CatalogProductCards productsCrop={productsCrop} sortBy={sortBy} onChangeSort={handleChangeSortingDirection}/>}
       </div>
       <Pagination
         itemCount={count}
