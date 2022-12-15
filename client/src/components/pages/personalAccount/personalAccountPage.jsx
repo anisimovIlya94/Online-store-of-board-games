@@ -34,9 +34,11 @@ const PersonalAccountPage = () => {
               </Link>
             </li>
             <li>
-              <button className={classes.accountMainNavButton}>
-                Мероприятия
-              </button>
+              <Link to="/process" className={classes.accountMainNavButton}>
+                <span className={classes.accountMainNavButton}>
+                  Мероприятия
+                  </span>
+              </Link>
             </li>
             <li>
             <Link to={`/persaccount/settings`} href="" onClick={handleReturnToAccountPage()} className={classes.accountMainNavButton}>

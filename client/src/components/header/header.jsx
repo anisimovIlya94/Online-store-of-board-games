@@ -236,7 +236,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                              to={"/"}
+                              to={"/process"}
                             className={classes.menuLink}
                               style={{ cursor: "pointer" }}
                               onClick={() => handleGoingToAccount()}

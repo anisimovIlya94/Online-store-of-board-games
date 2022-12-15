@@ -75,8 +75,8 @@ const AccountRegisterForm = ({closeModal}) => {
       //     message: "Имя обязательно для заполнения"
       // },
       minSymbols: {
-        message: "Имя должно состоять минимум из 3 символов",
-        value: 3,
+        message: "Имя должно состоять минимум из 2 символов",
+        value: 2,
       },
     },
     password: {
