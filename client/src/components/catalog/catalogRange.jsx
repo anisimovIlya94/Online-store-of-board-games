@@ -3,8 +3,8 @@ import { Slider } from "@material-ui/core";
 import PropTypes from "prop-types";
 
 const DoubleRangeSlider = ({ value, onChange, min, max }) => {
-    const updateRange = (data) => {
-        onChange(data);
+    const updateRange = (data, newvalue) => {
+        onChange(newvalue);
     };
     return (
         <>
@@ -15,6 +15,7 @@ const DoubleRangeSlider = ({ value, onChange, min, max }) => {
                     onChange={updateRange}
                     min={min}
                     max={max}
+                    valueLabelDisplay="auto"
                 />
             </div>
         </>
