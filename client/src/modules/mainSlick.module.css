@@ -1,69 +1,68 @@
-.slickMargin{
+.slickMargin {
     margin: 20px 0 0 90px;
 }
-.slickWrapper{
+.slickWrapper {
     max-width: 1400px;
     margin: 0 auto;
 }
-.alice{
-    width:1400px;
+.alice {
+    width: 1400px;
     position: relative;
 }
-.rightButton{
+.rightButton {
     position: absolute;
     bottom: 50%;
     right: 60px;
-    content: '';
+    content: "";
     /* transform: translate(-65px,50%); */
-    
 }
-.leftButton{
+.leftButton {
     position: absolute;
     bottom: 50%;
     left: -35px;
-    content: '';
+    content: "";
 }
 @media (max-width: 1500px) {
-    .alice{
-        width:1180px;
+    .alice {
+        width: 1180px;
     }
 }
 @media (max-width: 1450px) {
-    .alice{
-        width:1170px;
+    .alice {
+        width: 1170px;
         margin: 0 auto;
     }
 }
 @media (max-width: 1330px) {
-    .alice{
-        width:1180px;
+    .alice {
+        width: 1180px;
         margin: 0 auto;
     }
 }
 @media (max-width: 1280px) {
-    .alice{
-        width:1020px;
+    .alice {
+        width: 1020px;
     }
 }
 @media (max-width: 1180px) {
-    .alice{
-        width:1020px;
+    .alice {
+        width: 1020px;
     }
 }
 @media (max-width: 1070px) {
-    .alice{
-        width:750px;
+    .alice {
+        width: 750px;
         margin: 0 auto;
     }
 }
 @media (min-width: 1800px) {
-    .alice{
-        width:1650px;
+    .alice {
+        width: 1650px;
     }
-    .slickWrapper{
+    .slickWrapper {
         max-width: 1700px;
     }
-    .rightButton{
+    .rightButton {
         right: 40px;
     }
 }

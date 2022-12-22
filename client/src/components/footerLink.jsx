@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
 const FooterLink = ({ name, styles }) => {
-  return (
-     <div className={styles} role={'button'}>
-        {name}
-     </div>
-  )
-}
+    return (
+        <div className={styles} role={"button"}>
+            {name}
+        </div>
+    );
+};
 
-export default FooterLink
+FooterLink.propTypes = {
+    name: PropTypes.string.isRequired,
+    styles: PropTypes.string
+};
+
+export default FooterLink;

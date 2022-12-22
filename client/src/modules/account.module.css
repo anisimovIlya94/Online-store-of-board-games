@@ -1,45 +1,44 @@
-.accountWrapper{
+.accountWrapper {
     margin: 145px 0 30px 0;
-    font-family: 'Trebuchet MS';
-    color: #2A2A2A;
+    font-family: "Trebuchet MS";
+    color: #2a2a2a;
 }
-.title{
+.title {
     font-weight: 700;
     font-size: 32px;
     margin-left: 50px;
     margin-bottom: 20px;
 }
-.accountPhoto{
+.accountPhoto {
     width: 74px;
     height: 74px;
     border-radius: 50%;
 }
-.icon{
+.icon {
     font-size: 38px;
-    border: 1px solid #FB791B;
+    border: 1px solid #fb791b;
     border-radius: 50%;
     display: inline-block;
     padding-right: 2px;
-    color: #FB791B;
+    color: #fb791b;
 }
-.accountMainWrapper{
+.accountMainWrapper {
     margin-left: 50px;
     display: flex;
 }
-.accountRight{
+.accountRight {
     flex: 0 1 75%;
 }
-.accountMainInfo{
-    
+.accountMainInfo {
     margin-left: 40px;
 }
-.accountUserInfo{
+.accountUserInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
 }
-.accountMainNavigation{
+.accountMainNavigation {
     max-width: 250px;
     max-height: 250px;
     background-color: #fff;
@@ -47,43 +46,43 @@
     border-radius: 15px;
     font-size: 16px;
 }
-.accountMainNavList li{
+.accountMainNavList li {
     margin-bottom: 30px;
 }
-.accountMainNavButton{
+.accountMainNavButton {
     background-color: #fff;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.active{
+.active {
     font-size: 22px;
     font-weight: 700;
 }
-.userName{
+.userName {
     font-weight: 700;
     font-size: 22px;
     display: inline-block;
     transform: translate(0, 25px);
     margin-left: 28px;
 }
-.userStatus{
+.userStatus {
     margin-left: 30px;
     font-weight: 700;
     font-size: 19px;
     display: inline-block;
     transform: translate(0, -9px);
 }
-.userCardTitle{
+.userCardTitle {
     font-weight: 700;
     font-size: 22px;
 }
-.userCardWrapper{
+.userCardWrapper {
     max-width: 440px;
     max-height: 250px;
-    background-color: #2A2A2A;
+    background-color: #2a2a2a;
     border-radius: 15px;
     padding: 10px 10px;
 }
-.userCardBoard{
+.userCardBoard {
     box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
     border-radius: 15px;
     text-align: center;
@@ -92,157 +91,157 @@
     max-width: 420px;
     max-height: 230px;
 }
-.userCardProcent{
+.userCardProcent {
     font-weight: 700;
     font-size: 33px;
 }
 
-.accountUserCardWrapper{
+.accountUserCardWrapper {
     display: flex;
 }
-.userRangs{
+.userRangs {
     margin-left: 30px;
     font-weight: 700;
     font-size: 22px;
 }
-.rangsImageBronze{
+.rangsImageBronze {
     padding: 0 7px;
     background-color: #fff;
     border-radius: 15px;
 }
-.rangeImageOther{
+.rangeImageOther {
     background-color: #fff;
     padding: 0 2px;
     border-radius: 15px;
 }
-.rangsImageBronze,.rangeImageOther{
+.rangsImageBronze,
+.rangeImageOther {
     margin-right: 30px;
 }
-.rangeItem{
+.rangeItem {
     margin-bottom: 23px;
 }
-.rangeProcents{
+.rangeProcents {
     margin-right: 10px;
 }
-.rangeItemWrapper{
+.rangeItemWrapper {
     display: flex;
     min-width: 350px;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.disabled{
+.disabled {
     opacity: 0.4;
 }
-.shoppingLine{
+.shoppingLine {
     width: 640px;
     height: 17px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
     border-radius: 14px;
     margin-top: 3px;
     margin-right: 74px;
     position: relative;
 }
-.shoppingOrangeLine{
+.shoppingOrangeLine {
     position: absolute;
     content: "";
     top: 0;
     left: 0;
     height: 17px;
-    background: #FB791B;
+    background: #fb791b;
     box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
     border-radius: 14px;
 }
-.totalPurchased{
+.totalPurchased {
     font-size: 22px;
 }
-.shoppingLineWrapper{
+.shoppingLineWrapper {
     display: flex;
     margin-top: 60px;
     margin-bottom: 95px;
 }
-@media (max-width:1270px) {
-    .userCardWrapper{
+@media (max-width: 1270px) {
+    .userCardWrapper {
         max-width: 340px;
     }
-    .userCardBoard{
+    .userCardBoard {
         padding: 70px 90px 66px 45px;
     }
-    .userCardProcent{
+    .userCardProcent {
         margin-left: 50px;
     }
-    .rangeItemWrapper{
+    .rangeItemWrapper {
         min-width: 210px;
     }
-    .shoppingLine{
+    .shoppingLine {
         width: 500px;
     }
 }
-.myEventsWrapper{
+.myEventsWrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 825px;
     margin-top: 28px;
 }
-.myEventImage{
+.myEventImage {
     border-radius: 15px;
 }
-.myEventInfo{
+.myEventInfo {
     margin-left: 30px;
     margin-top: 10px;
 }
-.myEventInfoTitle{
+.myEventInfoTitle {
     font-weight: 700;
     font-size: 22px;
 }
-.myEventInfoDate{
+.myEventInfoDate {
     font-weight: 700;
     font-size: 16px;
 }
-.myEventsButton{
+.myEventsButton {
     width: 130px;
 }
-.allEventsWrapper{
+.allEventsWrapper {
     max-width: 825px;
     margin-bottom: 85px;
 }
-.recommendedWrapper{
+.recommendedWrapper {
     max-width: 980px;
     margin-top: 20px;
     margin-left: -10px;
 }
-.recomendation{
+.recomendation {
     margin-bottom: 30px;
 }
-.ordersTitle{
+.ordersTitle {
     font-size: 28px;
     margin-bottom: 30px;
-
 }
-.ordersTitle,.ordersLinkToCatalog{
+.ordersTitle,
+.ordersLinkToCatalog {
     margin-left: 30px;
 }
-.ordersLinkToCatalog{
+.ordersLinkToCatalog {
     font-size: 18px;
-    color: #2A2A2A;
-    
+    color: #2a2a2a;
 }
-.ordersLinkToCatalog:hover{
-    color: #FB791B;
+.ordersLinkToCatalog:hover {
+    color: #fb791b;
 }
-.accountSettingsWrapper{
+.accountSettingsWrapper {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     max-width: 580px;
     margin-bottom: 85px;
 }
-.accountPhotoWrapper{
+.accountPhotoWrapper {
     position: relative;
 }
-.accountPhotoEdit{
+.accountPhotoEdit {
     position: absolute;
     font-size: 25px;
     background-color: inherit;
@@ -251,69 +250,69 @@
     right: 5px;
     content: "";
 }
-.accountPhotoEdit:hover{
-    color: #FB791B;
+.accountPhotoEdit:hover {
+    color: #fb791b;
 }
-.settingsName{
+.settingsName {
     font-size: 22px;
 }
-.settingsTitle,.settingsText{
+.settingsTitle,
+.settingsText {
     font-size: 17px;
 }
-.settingsTitle,.settingsName{
+.settingsTitle,
+.settingsName {
     font-weight: 700;
     display: inline-block;
 }
-.settingsLine{
+.settingsLine {
     margin-bottom: 30px;
 }
-.settingsLineWrapper{
-    transform: translate(-40px,30px);
+.settingsLineWrapper {
+    transform: translate(-40px, 30px);
 }
-.editButtonWrapper{
-    transform: translate(0px,30px);
+.editButtonWrapper {
+    transform: translate(0px, 30px);
     font-size: 17px;
 }
-.editButton{
+.editButton {
     background-color: #fcf3ed;
 }
-.editButton:hover{
-    color: #FB791B;
+.editButton:hover {
+    color: #fb791b;
 }
-.editButtonSpan{
+.editButtonSpan {
     margin-left: 10px;
 }
-.questionsWrapper{
+.questionsWrapper {
     text-align: left;
     /* margin: 85px 0 50px 30px; */
 }
-.questionsTitle{
+.questionsTitle {
     font-weight: 700;
     font-size: 22px;
 }
-.formWrapper{
+.formWrapper {
     margin-top: 21px;
     max-width: 350px;
 }
-.loginTitle{
+.loginTitle {
     font-weight: 700;
     font-size: 20px;
     white-space: nowrap;
     /* margin : 0 0 30px -28px */
     /* transform: translate(-30px,0); */
 }
-.loginWrapper{
+.loginWrapper {
     margin: 145px 0 140px 0;
     width: 100%;
     height: 85vh;
-    
 }
-.loginWindow{
+.loginWindow {
     max-width: 300px;
     margin: auto;
-    
 }
-.loginMargin{
+.loginMargin {
     /* margin-top: 200px; */
     margin: auto;
 }

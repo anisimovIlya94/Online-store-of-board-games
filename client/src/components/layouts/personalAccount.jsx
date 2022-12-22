@@ -1,7 +1,7 @@
 import PersonalAccountPage from "../pages/personalAccount";
 
 const PersonalAccount = () => {
-    return <PersonalAccountPage/>;
-}
- 
+    return <PersonalAccountPage />;
+};
+
 export default PersonalAccount;

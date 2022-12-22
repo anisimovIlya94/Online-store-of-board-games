@@ -1,25 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
-// import categories from "../../fakeAPI/categories";
 import Accordeon from "./catalogAccordeon";
-import classes from "../../modules/catalog.module.css"
+import classes from "../../modules/catalog.module.css";
 import { NavLink } from "react-router-dom";
 import { useCategory } from "../hooks/useCategory";
 
-
 const CatalogSortCategorias = () => {
-const [display, setDisaplay] = useState(true);
-    const [displayName, setDisplayName] = useState('')
+    const [display, setDisaplay] = useState(true);
+    const [displayName, setDisplayName] = useState("");
     const collapseRef = useRef();
-    const {categories, isLoading} = useCategory()
+    const { categories, isLoading } = useCategory();
     const handleDisplayName = (name) => {
-        if(name !== displayName){
+        if (name !== displayName) {
             setDisplayName(name);
         } else {
-            setDisplayName('')
+            setDisplayName("");
         }
-        
-    }
+    };
     const toggleDisplay = () => {
         setDisaplay((prevState) => !prevState);
     };
@@ -29,14 +26,25 @@ const [display, setDisaplay] = useState(true);
         });
         display ? newCollapse.show() : newCollapse.hide();
     }, [display]);
-    // if (isLoading) {
-    //     return "Loading..."
-    // }
     return (
-        <div style={{border: "1px solid #fff"}} className={"card my-2 " + classes.catalogSortWrapper}>
+        <div
+            style={{ border: "1px solid #fff" }}
+            className={"card my-2 " + classes.catalogSortWrapper}
+        >
             <div className={"card-body " + classes.borderBottom}>
-                <div className={"d-flex justify-content-between " + classes.allCategoriasButton}>
-                    <NavLink activeClassName={classes.accordeonNavlinkAllActive} className={classes.accordeonNavlinkAll} to={"/catalog"}>{"Все категории"}</NavLink>
+                <div
+                    className={
+                        "d-flex justify-content-between " +
+                        classes.allCategoriasButton
+                    }
+                >
+                    <NavLink
+                        activeClassName={classes.accordeonNavlinkAllActive}
+                        className={classes.accordeonNavlinkAll}
+                        to={"/catalog"}
+                    >
+                        {"Все категории"}
+                    </NavLink>
                     <i
                         className={
                             "bi bi-caret-" +
@@ -46,19 +54,26 @@ const [display, setDisaplay] = useState(true);
                         role={"button"}
                     ></i>
                 </div>
-                <div className="collapse" ref={collapseRef} id={"name" + "title"}>
-                    {!isLoading && categories.map((category) => {
-                        return <Accordeon key={category._id} name={category._id} onDisplay={handleDisplayName} displayName={displayName} title={category.name}/>
-                    })}
-                    {/* <Accordeon name="1" onDisplay={handleDisplayName} displayName={displayName} title="Настольные игры"/>
-                    <Accordeon name="2" onDisplay={handleDisplayName} displayName={displayName} title="Magic: The Gathering"/>
-                    <Accordeon name="3" onDisplay={handleDisplayName} displayName={displayName} title="Варгеймы"/>
-                    <Accordeon name="4" onDisplay={handleDisplayName} displayName={displayName} title="Краски"/>
-                    <Accordeon name="5" onDisplay={handleDisplayName} displayName={displayName} title="Аксессуары для игр"/>
-                    <Accordeon name="6" onDisplay={handleDisplayName} displayName={displayName} title="Аксессуары для моделизма"/> */}
+                <div
+                    className="collapse"
+                    ref={collapseRef}
+                    id={"name" + "title"}
+                >
+                    {!isLoading &&
+                        categories.map((category) => {
+                            return (
+                                <Accordeon
+                                    key={category._id}
+                                    name={category._id}
+                                    onDisplay={handleDisplayName}
+                                    displayName={displayName}
+                                    title={category.name}
+                                />
+                            );
+                        })}
                 </div>
             </div>
         </div>
     );
-}
-    export default CatalogSortCategorias;
+};
+export default CatalogSortCategorias;

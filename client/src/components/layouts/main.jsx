@@ -1,9 +1,7 @@
-import MainPage from '../pages/mainPage'
+import MainPage from "../pages/mainPage";
 
 const Main = () => {
-    return (
-        <MainPage />
-    );
-}
- 
+    return <MainPage />;
+};
+
 export default Main;

@@ -9,7 +9,7 @@ const http = axios.create({
 });
 
 http.interceptors.request.use(
-    async function (config) {
+    async function(config) {
         const refreshToken = localStorageService.getRefreshToken();
         const expiresDate = localStorageService.getExpiresDateToken();
         const isExpired = refreshToken && expiresDate < Date.now();
@@ -45,7 +45,7 @@ http.interceptors.request.use(
         }
         return config;
     },
-    function (error) {
+    function(error) {
         return Promise.reject(error);
     }
 );
@@ -68,7 +68,7 @@ http.interceptors.response.use(
         res.data = { content: res.data };
         return res;
     },
-    function (error) {
+    function(error) {
         const expectedErrors =
             error.response &&
             error.response.status >= 400 &&
@@ -89,4 +89,3 @@ const httpServices = {
 };
 
 export default httpServices;
-

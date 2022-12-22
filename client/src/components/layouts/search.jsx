@@ -1,9 +1,7 @@
 import SearchingPage from "../pages/searchingPage";
 
 const Search = () => {
-    return ( 
-        <SearchingPage/>
-     );
-}
- 
+    return <SearchingPage />;
+};
+
 export default Search;

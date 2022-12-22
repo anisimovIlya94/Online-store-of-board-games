@@ -1,29 +1,30 @@
-.adminWrapper{
+.adminWrapper {
     margin: 165px 0 0px 0;
     width: 100%;
 }
-.adminWrapper, .adminAddWrapper{
+.adminWrapper,
+.adminAddWrapper {
     height: 100%;
-    font-family: 'Trebuchet MS';
-    color: #2A2A2A;
+    font-family: "Trebuchet MS";
+    color: #2a2a2a;
     font-size: 20px;
 }
-.adminAddWrapper{
+.adminAddWrapper {
     max-width: 600px;
     margin: 0 auto;
     padding-bottom: 50px;
 }
-.title{
+.title {
     font-weight: 700;
     font-size: 32px;
     margin-left: 50px;
     margin-bottom: 20px;
 }
-.adminMainWrapper{
+.adminMainWrapper {
     margin-left: 50px;
     display: flex;
 }
-.adminMainNavigation{
+.adminMainNavigation {
     /* max-width: 350px; */
     height: 180px;
     background-color: #fff;
@@ -33,28 +34,28 @@
     flex: 0 1 20%;
 }
 @media (max-width: 1246px) {
-    .adminMainNavigation{
+    .adminMainNavigation {
         height: 220px;
     }
 }
-.adminMainNavList li{
+.adminMainNavList li {
     margin-bottom: 30px;
 }
-.adminMainNavButton{
+.adminMainNavButton {
     background-color: #fff;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.adminMainNavButton:hover{
-    color: #FB791B;
+.adminMainNavButton:hover {
+    color: #fb791b;
 }
-.active{
+.active {
     font-size: 19px;
     font-weight: 700;
 }
-.adminRight{
+.adminRight {
     flex: 0 1 80%;
     /* width: 100%; */
 }
-.adminProductsWrapper{
+.adminProductsWrapper {
     padding: 0 20px 20px 20px;
 }

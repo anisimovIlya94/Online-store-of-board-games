@@ -1,18 +1,18 @@
-.buttonWrapper{
+.buttonWrapper {
     max-width: 100%;
     /* margin: 0 auto; */
     margin-left: 10px;
     text-align: center;
     white-space: nowrap;
 }
-.buttonOrange{
-    background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
-    font-family: 'Trebuchet MS';
+.buttonOrange {
+    background: linear-gradient(184.53deg, #f9a43f 5.27%, #fb791b 91.78%);
+    font-family: "Trebuchet MS";
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #ffffff;
     border-radius: 9px;
     padding: 9px 38px 9px 38px;
     margin: 0 0 10px -11px;
@@ -21,20 +21,20 @@
     text-align: center;
     width: 100%;
 }
-.buttonOrange:hover{
-    color: #F9A43F;
-    border: 2px solid #F9A43F;
-    background: #FFFFFF;
+.buttonOrange:hover {
+    color: #f9a43f;
+    border: 2px solid #f9a43f;
+    background: #ffffff;
     padding: 7px 36px;
 }
-.buttonWhite{
-    font-family: 'Trebuchet MS';
+.buttonWhite {
+    font-family: "Trebuchet MS";
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #F9A43F;
-    border: 2px solid #F9A43F;
+    color: #f9a43f;
+    border: 2px solid #f9a43f;
     border-radius: 9px;
     padding: 7px 0px;
     display: inline-block;
@@ -42,16 +42,16 @@
     text-align: center;
     width: 100%;
 }
-.buttonWhite:hover{
-    background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
-    color: #FFFFFF;
+.buttonWhite:hover {
+    background: linear-gradient(184.53deg, #f9a43f 5.27%, #fb791b 91.78%);
+    color: #ffffff;
 }
 
-@media (max-width:1140px) {
-    .buttonOrange{
+@media (max-width: 1140px) {
+    .buttonOrange {
         padding: 9px 20px 9px 28px;
     }
-    .buttonWhite{
+    .buttonWhite {
         font-size: 14px;
     }
 }

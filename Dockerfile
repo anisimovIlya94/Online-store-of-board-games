@@ -18,8 +18,6 @@ COPY server/package.json /app
 
 RUN npm install
 
-RUN npm install bcrypt
-
 COPY server /app
 
 COPY --from=client /app/client/build /app/client

@@ -1,41 +1,41 @@
-.catalogBanner{
+.catalogBanner {
     margin: 125px 0 30px 0;
     max-width: 100%;
     height: 234px;
-    background: url('../images/catalog/catalog_banner.png') no-repeat;
+    background: url("../images/catalog/catalog_banner.png") no-repeat;
     background-size: cover;
     position: relative;
 }
-.catalogBannerTitle{
+.catalogBannerTitle {
     position: absolute;
     top: 88px;
     left: 200px;
-    font-family: 'Trebuchet MS';
+    font-family: "Trebuchet MS";
     font-weight: 700;
     font-size: 22px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
-.catalogBannerText{
-    font-family: 'Trebuchet MS';
+.catalogBannerText {
+    font-family: "Trebuchet MS";
     font-size: 16px;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #ffffff;
     position: absolute;
     top: 128px;
     left: 200px;
 }
-.title{
-    font-family: 'Trebuchet MS';
+.title {
+    font-family: "Trebuchet MS";
     font-weight: 700;
     font-size: 32px;
     color: #000000;
     margin: 0 0 20px 50px;
 }
-.catalogBody{
+.catalogBody {
     display: flex;
 }
-.catalogSorting{
-    background-color: #FFFFFF;
+.catalogSorting {
+    background-color: #ffffff;
     width: 300px;
     height: 100%;
     border-radius: 15px;
@@ -46,16 +46,16 @@
     box-shadow: 5px 6px 16px rgba(42, 42, 42, 0.16);
     /* overflow: hidden; */
 }
-.catalogTable{
+.catalogTable {
     position: relative;
     width: 1000px;
 }
-.sortingPriceButton{
+.sortingPriceButton {
     position: absolute;
     content: "";
     top: -30px;
     right: -130px;
-    font-family: 'Trebuchet MS';
+    font-family: "Trebuchet MS";
     font-size: 18px;
     background-color: inherit;
     color: #000000;
@@ -63,231 +63,235 @@
     width: 50px;
 }
 @media (max-width: 1370px) {
-    .catalogTable{
+    .catalogTable {
         width: 650px;
     }
 }
 @media (min-width: 1800px) {
-    .catalogTable{
+    .catalogTable {
         width: 1200px;
     }
 }
-.catalogCard{
+.catalogCard {
     margin-bottom: 40px;
 }
-.accordeon{
+.accordeon {
     transition: all 5s ease 0s;
 }
-.paginationButton{
-    font-family: 'Trebuchet MS';
+.paginationButton {
+    font-family: "Trebuchet MS";
     font-weight: 700;
     font-size: 25px;
     line-height: 22px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     padding: 4px 9px;
     margin-right: 5px;
     background-color: #fcf3ed;
 }
-.paginationWrapper{
+.paginationWrapper {
     max-width: 200px;
     margin: 0 auto;
     text-align: center;
     display: flex;
 }
-.paginationMargin{
+.paginationMargin {
     margin-bottom: 20px;
 }
-.active{
-    border: 2px solid #2A2A2A;
+.active {
+    border: 2px solid #2a2a2a;
     border-radius: 7px;
-    transform: translate(0,-2px);
+    transform: translate(0, -2px);
 }
-.paginateText, .paginateDisabled{
+.paginateText,
+.paginateDisabled {
     background-color: #fcf3ed;
 }
-.paginateText:hover{
-    color: #F9A43F;
+.paginateText:hover {
+    color: #f9a43f;
 }
-.paginationButton:hover{
-    color: #F9A43F;
+.paginationButton:hover {
+    color: #f9a43f;
 }
-.activeText:hover{
-    color: #2A2A2A;
+.activeText:hover {
+    color: #2a2a2a;
 }
-.accordeonHeader{
+.accordeonHeader {
     background-color: #fff;
 }
-.allCategoriasButton{
+.allCategoriasButton {
     max-width: 258px;
     margin-left: 15px;
-    font-family: 'Trebuchet MS';
+    font-family: "Trebuchet MS";
     font-weight: 700;
     font-size: 19px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     white-space: nowrap;
 }
-.catalogSortWrapper{
+.catalogSortWrapper {
     margin-bottom: 10px;
 }
-.sortingCategorias{
-    font-family: 'Trebuchet MS';
+.sortingCategorias {
+    font-family: "Trebuchet MS";
     font-weight: 700;
     font-size: 15px;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.borderBottom{
+.borderBottom {
     border-bottom: 1px solid rgba(42, 42, 42, 0.12);
 }
-.priceInput{
+.priceInput {
     border: 1px solid rgba(0, 0, 0, 0.38);
     max-width: 75px;
     max-height: 27px;
     border-radius: 15px;
-    transform: translate(0,-1px);
+    transform: translate(0, -1px);
     text-align: center;
     padding: 5px;
 }
-.priceInput:focus{
+.priceInput:focus {
     border: 2px solid #000;
 }
-.range{
+.range {
     max-width: 220px;
     margin: 0 auto;
 }
-.priceAllInputs{
+.priceAllInputs {
     max-width: 200px;
     margin: 0 auto;
 }
-.label{
-    font-family: 'Trebuchet MS';
+.label {
+    font-family: "Trebuchet MS";
     font-size: 16px;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.rouble{
-    font-family: 'Trebuchet MS';
+.rouble {
+    font-family: "Trebuchet MS";
     font-size: 20px;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.buttonIcon{
-    transform: translate(4px,0);
+.buttonIcon {
+    transform: translate(4px, 0);
 }
-.sortChackboxWrapper{
+.sortChackboxWrapper {
     margin: 20px 0 0 25px;
 }
-.checkboxLabel{
+.checkboxLabel {
     margin-left: 10px;
-    transform: translate(0,-2px);
-    font-family: 'Trebuchet MS';
+    transform: translate(0, -2px);
+    font-family: "Trebuchet MS";
     font-size: 16px;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.checkboxSpan{
+.checkboxSpan {
     font-size: 14px;
     margin: 0px 0 0 5px;
     color: rgba(0, 0, 0, 0.38);
 }
-.catalogViewWrapper{
+.catalogViewWrapper {
     max-width: 340px;
-    margin:  0 auto;
+    margin: 0 auto;
     text-align: center;
 }
-.catalogViewButton{
-    background-color: #FFFFFF;
-    border: 1px solid #2A2A2A;
+.catalogViewButton {
+    background-color: #ffffff;
+    border: 1px solid #2a2a2a;
     border-radius: 15px;
     padding: 13px 98px;
     margin-bottom: 20px;
-    font-family: 'Trebuchet MS';
+    font-family: "Trebuchet MS";
     font-size: 12px;
-    color: #2A2A2A;
+    color: #2a2a2a;
 }
-.catalogViewButton:hover{
-    color: #F9A43F;
-    border: 1px solid #F9A43F;
+.catalogViewButton:hover {
+    color: #f9a43f;
+    border: 1px solid #f9a43f;
 }
-.sortingCategoriasAncer{
-    font-family: 'Trebuchet MS';
+.sortingCategoriasAncer {
+    font-family: "Trebuchet MS";
     font-size: 16px;
     color: rgba(42, 42, 42, 0.85);
 }
-.sortingCategoriasAncer:hover{
-    color: #F9A43F;
+.sortingCategoriasAncer:hover {
+    color: #f9a43f;
 }
-.quastionWrapper{
+.quastionWrapper {
     max-width: 95%;
     margin-left: 20px;
 }
-.quastionHead{
-    font-family: 'Trebuchet MS';
+.quastionHead {
+    font-family: "Trebuchet MS";
     font-weight: 700;
     font-size: 19px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     background-color: #fcf3ed;
 }
-.questionBody{
+.questionBody {
     margin-top: 10px;
-    font-family: 'Trebuchet MS';
+    font-family: "Trebuchet MS";
     font-size: 16px;
     line-height: 19px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     background-color: #fcf3ed;
 }
-.questionbb{
+.questionbb {
     background-color: #fcf3ed;
     border-bottom: 2px solid rgba(42, 42, 42, 0.12);
 }
-.accordeonNavlink,.accordeonNavlinkAll{
-    font-family: 'Trebuchet MS';
+.accordeonNavlink,
+.accordeonNavlinkAll {
+    font-family: "Trebuchet MS";
     font-size: 16px;
     color: rgba(42, 42, 42, 0.85);
     display: inline-block;
 }
-.accordeonNavlinkAllActive{
-    font-family: 'Trebuchet MS';
+.accordeonNavlinkAllActive {
+    font-family: "Trebuchet MS";
     font-size: 18px;
     display: inline-block;
-    color: #FB791B;
+    color: #fb791b;
 }
-.accordeonNavlink{
+.accordeonNavlink {
     margin-top: 10px;
 }
-.accordeonNavlinkActive{
-    font-family: 'Trebuchet MS';
+.accordeonNavlinkActive {
+    font-family: "Trebuchet MS";
     font-size: 16px;
     display: inline-block;
-    color: #FB791B;
+    color: #fb791b;
 }
-.accordeonNavlink:hover, .accordeonNavlinkAll:hover{
-    color: #FB791B;
+.accordeonNavlink:hover,
+.accordeonNavlinkAll:hover {
+    color: #fb791b;
 }
-.navigation,.navigationDisabled{
-    font-family: 'Trebuchet MS';
+.navigation,
+.navigationDisabled {
+    font-family: "Trebuchet MS";
     font-size: 16px;
     color: #000000;
     margin-right: 10px;
 }
-.navigation:hover{
-    color: #FB791B;
+.navigation:hover {
+    color: #fb791b;
 }
-.navigationDisabled{
-    font-family: 'Trebuchet MS';
+.navigationDisabled {
+    font-family: "Trebuchet MS";
     font-size: 16px;
     color: #b0b0b0;
     margin-right: 10px;
 }
-.navigationDisabled:hover{
+.navigationDisabled:hover {
     color: #b0b0b0;
 }
-.paginateDisabled{
+.paginateDisabled {
     color: #b0b0b0;
     cursor: default;
     display: inline-block;
 }
-.center{
+.center {
     display: flex;
     justify-content: center;
 }
-.loading{
+.loading {
     max-width: 1000px;
     margin: 0 auto;
 }

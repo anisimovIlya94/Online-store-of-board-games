@@ -2,12 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import { getLoadingStatus, getLoggedInStatus } from "../../store/user";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 function ProtectedLoginRoute({ component: Component, children, ...rest }) {
-    const currentUser = useSelector(getLoggedInStatus())
-    const isLoading = useSelector(getLoadingStatus())
-    // console.log(currentUser)
+    const currentUser = useSelector(getLoggedInStatus());
+    const isLoading = useSelector(getLoadingStatus());
     return (
         <Route
             {...rest}
@@ -16,7 +15,7 @@ function ProtectedLoginRoute({ component: Component, children, ...rest }) {
                     return (
                         <Redirect
                             to={{
-                                pathname: "/login",
+                                pathname: "/login"
                             }}
                         />
                     );
@@ -26,13 +25,13 @@ function ProtectedLoginRoute({ component: Component, children, ...rest }) {
         />
     );
 }
-// ProtectedRoute.propTypes = {
-//     component: PropTypes.func,
-//     location: PropTypes.object,
-//     children: PropTypes.oneOfType([
-//         PropTypes.arrayOf(PropTypes.node),
-//         PropTypes.node
-//     ])
-// };
+
+ProtectedLoginRoute.propTypes = {
+    component: PropTypes.func,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
+};
 
 export default ProtectedLoginRoute;

@@ -2,193 +2,181 @@
    position: fixed;
    min-width: 100%;
 } */
-.wrapper{
-   background-color: #2A2A2A;
-   padding: 15px 0px;
+.wrapper {
+    background-color: #2a2a2a;
+    padding: 15px 0px;
 }
-.hat{
-   max-height: 82px;
-   margin: 0 0 0 10px;
+.hat {
+    max-height: 82px;
+    margin: 0 0 0 10px;
 }
-.input{
-   width: 555px;
-   min-height: 38px;
-   border-radius: 9px;
-   background-color:#f1f1f1;
-   padding: 0 0 0 12px;
-   font-size: 20px;
-}
-
-.search{
-   position: relative;
-   margin: 0 30px 0 0;
+.input {
+    width: 555px;
+    min-height: 38px;
+    border-radius: 9px;
+    background-color: #f1f1f1;
+    padding: 0 0 0 12px;
+    font-size: 20px;
 }
 
-/* @media (min-width: 1400px) {
-   .input{
-      width: 655px;
-   }
+.search {
+    position: relative;
+    margin: 0 30px 0 0;
 }
-@media (min-width: 1600px) {
-   .input{
-      width: 855px;
-   }
+.magnifier {
+    position: absolute;
+    content: "";
+    top: 9px;
+    right: 10px;
 }
-@media (min-width: 1800px) {
-   .input{
-      width: 1055px;
-   }
-} */
-.magnifier{
-   position: absolute;
-   content: '';
-   top: 9px;
-   right: 10px;
+.close {
+    position: absolute;
+    content: "";
+    top: 9px;
+    right: 50px;
+    font-size: 20px;
 }
-.close{
-   position: absolute;
-   content: '';
-   top: 9px;
-   right: 50px;
-   font-size: 20px;
+.telephone {
+    margin: 5px 10px 0px 0px;
+    max-width: 100%;
+    max-height: 25.31px;
 }
-.telephone{
-   margin: 5px 10px 0px 0px;
-   max-width: 100%;
-   max-height: 25.31px;
+.telephoneNumber {
+    margin: 7px 0 0 0px;
+    font-family: "Trebuchet MS";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    white-space: nowrap;
+    color: #ffffff;
 }
-.telephoneNumber{
-   margin: 7px 0 0 0px;
-   font-family: 'Trebuchet MS';
-   font-style: normal;
-   font-weight: 700;
-   font-size: 20px;
-   white-space: nowrap;
-   color: #FFFFFF;
+.personalAccount {
+    background-color: #2a2a2a;
 }
-.personalAccount{
-   background-color: #2A2A2A;
+.shoppingCart {
+    background-color: #2a2a2a;
+    max-width: 100%;
+    margin: 0px 0 0 40px;
 }
-.shoppingCart{
-   background-color: #2A2A2A;
-   max-width: 100%;
-   margin: 0px 0 0 40px;
+.fff {
+    background-color: #2a2a2a;
+    transform: translate(0, -2px);
+    color: #ffffff;
+    font-size: 40px;
 }
-.fff{
-   background-color:#2A2A2A;
-   transform: translate(0,-2px);
-   color: #FFFFFF;
-   font-size: 40px;
+.fff:hover {
+    color: #fb791b;
 }
-.fff:hover{
-   color:#FB791B;
+.searchingDropdown {
+    width: 100%;
 }
-.searchingDropdown{
-   width: 100%;
+.searchingImage {
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
 }
-.searchingImage{
-   width: 80px;
-   height: 80px;
-   margin-left: 10px;
+.searchingCardInfo {
+    margin-left: 30px;
+    color: #2a2a2a;
 }
-.searchingCardInfo{
-   margin-left: 30px;
-   color: #2A2A2A;
+.searchingCardName {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2a2a2a;
 }
-.searchingCardName{
-   font-size: 20px;
-   font-weight: 700;
-   color: #2A2A2A;
+.searchingCardName:hover {
+    color: #fb791b;
 }
-.searchingCardName:hover{
-   color:#FB791B;
-}
-.searchingCardPrice{
-   font-size: 17px;
-   font-weight: 500;
-   margin-top: 20px;
-   color: #2A2A2A;
+.searchingCardPrice {
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 20px;
+    color: #2a2a2a;
 }
 
-.searchingLinkAll{
-   font-size: 17px;
-   font-weight: 500;
-   margin-top: 20px;
-   color: #2A2A2A;
+.searchingLinkAll {
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 20px;
+    color: #2a2a2a;
 }
-.searchingLinkAll:hover{
-   color:#FB791B;
+.searchingLinkAll:hover {
+    color: #fb791b;
 }
-.adminButton{
-   font-size: 26px;
-   color: #FFFFFF;
-   display: inline-block;
-   transform: translate(0,5px);
-   background-color: inherit;
+.adminButton {
+    font-size: 26px;
+    color: #ffffff;
+    display: inline-block;
+    transform: translate(0, 5px);
+    background-color: inherit;
 }
-.adminButton:hover{
-   color:#FB791B;
+.adminButton:hover {
+    color: #fb791b;
 }
-.adminLink, .adminOut{
-   font-size: 18px;
-   padding: 10px;
-   /* margin-bottom: 20px; */
-   color: #2A2A2A;
+.adminLink,
+.adminOut {
+    font-size: 18px;
+    padding: 10px;
+    /* margin-bottom: 20px; */
+    color: #2a2a2a;
 }
-.adminOut{
-   /* margin-top: 10px; */
-   margin: 10px 0 0 50px;
-   background-color: inherit;
+.adminOut {
+    margin: 10px 0 0 50px;
+    background-color: inherit;
+    display: inline-block;
 }
-.adminLink:hover, .adminOut:hover, .cartIcon:hover,.menuLink:hover{
-   color: #FB791B;
+.adminLink:hover,
+.adminOut:hover,
+.cartIcon:hover,
+.menuLink:hover {
+    color: #fb791b;
 }
-.cartIcon{
-   color: #FFFFFF;
-   font-size: 32px;
-   transform: translate(0,-5px);
-   display: inline-block;
+.cartIcon {
+    color: #ffffff;
+    font-size: 32px;
+    transform: translate(0, -5px);
+    display: inline-block;
 }
-.menuLink{
-   font-size: 18px;
-   margin: 5px 0 5px 10px;
-   display: inline-block;
-   color: #2A2A2A;
-   text-align: center;
+.menuLink {
+    font-size: 18px;
+    margin: 5px 0 5px 10px;
+    display: inline-block;
+    color: #2a2a2a;
+    text-align: center;
 }
 @media (max-width: 1200px) {
-   .input{
-      width: 455px;
-   }
+    .input {
+        width: 455px;
+    }
 }
 @media (max-width: 1100px) {
-   .input{
-      width: 390px;
-   }
-   .search{
-      margin: 0 10px 0 0;
-   }
-   .telephoneNumber{
-      margin: 7px 5px 0 0px;
-   }
+    .input {
+        width: 390px;
+    }
+    .search {
+        margin: 0 10px 0 0;
+    }
+    .telephoneNumber {
+        margin: 7px 5px 0 0px;
+    }
 }
 @media (max-width: 1000px) {
-   .input{
-      width: 325px;
-   }
+    .input {
+        width: 325px;
+    }
 }
 @media (max-width: 915px) {
-   .input{
-      width: 290px;
-   }
+    .input {
+        width: 290px;
+    }
 }
 @media (min-width: 1600px) {
-   .input{
-      width: 855px;
-   }
+    .input {
+        width: 855px;
+    }
 }
 @media (min-width: 1800px) {
-   .input{
-      width: 1055px;
-   }
+    .input {
+        width: 1055px;
+    }
 }

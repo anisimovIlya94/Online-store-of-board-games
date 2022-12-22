@@ -1,6 +1,6 @@
 import axios from "axios";
 import localStorageService from "./localStorage.service";
-import config from "../../config.json"
+import config from "../../config.json";
 
 const httpAuth = axios.create({
     baseURL: config.endPoint + "/auth/",
@@ -10,20 +10,19 @@ const httpAuth = axios.create({
 });
 
 export const authService = {
-    register: async (payload) => {
-        console.log(payload)
+    register: async(payload) => {
         const { data } = await httpAuth.post(`signUp`, payload);
         return data;
     },
-    logIn: async ({ email, password }) => {
+    logIn: async({ email, password }) => {
         const { data } = await httpAuth.post(`signInWithPassword`, {
             email,
-            password,
+            password
             // returnSecureToken: true
         });
         return data;
     },
-    refresh: async () => {
+    refresh: async() => {
         const { data } = await httpAuth.post("token", {
             grant_type: "refresh_token",
             refresh_token: localStorageService.getRefreshToken()

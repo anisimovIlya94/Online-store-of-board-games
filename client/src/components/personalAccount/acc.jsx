@@ -2,11 +2,11 @@ import ModalWindow from "../modalWindow/modalWindow";
 import LoginWindow from "./loginWindow";
 
 const Acc = () => {
-    return ( 
+    return (
         <ModalWindow id="login">
-            <LoginWindow/>
+            <LoginWindow />
         </ModalWindow>
-     );
-}
- 
+    );
+};
+
 export default Acc;
