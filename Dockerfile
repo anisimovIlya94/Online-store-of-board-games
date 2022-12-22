@@ -10,8 +10,6 @@ RUN npm i bootstrap@5.1.0 --legacy-peer-deps
 
 COPY client /app/client
 
-RUN npm run build
-
 FROM node:16-alpine
 
 WORKDIR /app
