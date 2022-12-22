@@ -7,6 +7,7 @@ import {
     getProductsRedux
 } from "../../../store/catalog";
 import MainCard from "../../main/mainCard";
+import UseWindowDimensions from "../../useWindowDimensions";
 
 const SearchingPage = () => {
     const [products, setProducts] = useState([]);
@@ -30,6 +31,16 @@ const SearchingPage = () => {
             setProducts(getProductsByName(name));
         }
     }, [isLoading, name]);
+    const { width } = UseWindowDimensions();
+    const handleGetRows = () => {
+        if (width >= 1800) {
+            return "6";
+        } else if (width > 1410 && width < 1800) {
+            return "5";
+        } else {
+            return "4";
+        }
+    };
     if (isLoading) {
         return (
             <div
@@ -48,8 +59,8 @@ const SearchingPage = () => {
     }
     return (
         <div className={classes.searchWrapper}>
-            <div className="container text-center">
-                <div className="row row-cols-5">
+            <div className={"" + classes.searchInner}>
+                <div className={`row row-cols-${handleGetRows()}`}>
                     {name &&
                         products.map((prod) => {
                             return (

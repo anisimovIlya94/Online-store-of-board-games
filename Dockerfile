@@ -6,6 +6,8 @@ COPY client/package.json /app/client
 
 RUN npm i --legacy-peer-deps
 
+RUN npm i bootstrap@5.1.0 --legacy-peer-deps
+
 COPY client /app/client
 
 RUN npm run build
@@ -17,6 +19,8 @@ WORKDIR /app
 COPY server/package.json /app
 
 RUN npm install
+
+RUN npm install bcrypt
 
 COPY server /app
 
